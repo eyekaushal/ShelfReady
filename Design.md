@@ -137,5 +137,5 @@ main ──●────────●────────●────
 
 - One branch per `plan.md` block, cut from the latest `main`. Branch names are listed in `plan.md`.
 - Names are `feature/…`, `fix/…`, `docs/…` or `chore/…`. Commits follow Conventional Commits (`feat(auth): …`).
-- Merge via a GitHub PR after CI passes, using a merge commit. Delete the branch after merging.
+- Merge via a GitHub PR after CI passes, using a merge commit. Branches are kept after merging, never deleted.
 - Kaushal runs all git commands; Claude only provides them (CLAUDE.md §16).
