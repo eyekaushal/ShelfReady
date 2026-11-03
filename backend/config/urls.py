@@ -8,6 +8,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/health/", HealthView.as_view(), name="health"),
     path("api/auth/", include("accounts.urls")),
+    path("api/", include("catalog.urls")),
 ]
 
 # Used only when DEBUG=False (in DEBUG, Django shows its own debug pages).

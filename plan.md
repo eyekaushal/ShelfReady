@@ -5,7 +5,7 @@
 > **Per block:** create the block's branch from `main` → build → run tests → 3-line summary → one `git add -A` + one commit → push branch → PR into `main` → merge → tick here.
 > Claude only gives the git commands; Kaushal runs them (see CLAUDE.md §16). `main` is always deployable.
 
-**Progress:** 2 of 14 blocks done
+**Progress:** 3 of 14 blocks done
 
 ---
 
@@ -28,15 +28,16 @@
 - [x] Rate limit on auth endpoints (`auth` scope, 20/min) against password guessing
 - [x] Tests: register/login/refresh/logout/me flow, error format, throttling (28 tests passing)
 
-## Block 3 — Product CRUD API
+## Block 3 — Product CRUD API ✅
 **Branch:** `feature/product-crud`
-- [ ] `Category` model (parent hierarchy, `full_path`)
-- [ ] `Product` model (brief fields + SKU extras + computed fields)
-- [ ] `GtinValidator` class (GS1 mod-10, lengths 8/12/13/14)
-- [ ] Product serializer with validation (price, URL, lengths, GTIN, unique GTIN)
-- [ ] ProductViewSet + owner-or-staff permission
-- [ ] Categories + brands endpoints
-- [ ] Tests: validation, error format, permissions
+- [x] `Category` model (parent hierarchy, `full_path`, unique name per parent)
+- [x] `Product` model (brief fields + SKU extras + computed fields, DB constraints: unique GTIN when set, price > 0)
+- [x] `GtinValidator` class (GS1 mod-10, lengths 8/12/13/14)
+- [x] Product serializer with validation (price, http/https URL, lengths, GTIN, unique GTIN, tag + whitespace cleanup)
+- [x] ProductViewSet + `IsOwnerOrStaff` permission
+- [x] Categories (read-only, with `full_path` + `is_leaf`) + brands endpoints
+- [x] Django admin for Category and Product
+- [x] Tests: validation, error format (incl. Django 404/403 → standard codes), permissions (76 tests passing)
 
 ## Block 4 — Search, filter, sort, pagination + Swagger
 **Branch:** `feature/search-filter-sort`

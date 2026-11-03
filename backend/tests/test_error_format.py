@@ -45,3 +45,21 @@ class TestUnknownUrl:
 
         assert response.status_code == 404
         assert response.json()["error"]["code"] == "not_found"
+
+
+class TestDjangoErrorsAreConverted:
+    def test_django_http404_gets_not_found_code(self):
+        from django.http import Http404
+
+        response = ApiExceptionHandler.handle(Http404(), context={})
+
+        assert response.status_code == 404
+        assert response.data["error"]["code"] == "not_found"
+
+    def test_django_permission_denied_gets_code(self):
+        from django.core.exceptions import PermissionDenied
+
+        response = ApiExceptionHandler.handle(PermissionDenied(), context={})
+
+        assert response.status_code == 403
+        assert response.data["error"]["code"] == "permission_denied"
