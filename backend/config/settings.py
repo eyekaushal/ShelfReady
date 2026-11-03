@@ -1,0 +1,165 @@
+"""
+Django settings for ShelfReady.
+
+Every secret or environment-specific value comes from environment variables
+(or a local `.env` file in development). See `.env.example` for the full list.
+"""
+
+from pathlib import Path
+
+import environ
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Read backend/.env if it exists (local dev). On Render, real env vars are used instead.
+env = environ.Env()
+environ.Env.read_env(BASE_DIR / ".env")
+
+# --- Core -------------------------------------------------------------------
+
+SECRET_KEY = env("DJANGO_SECRET_KEY")
+DEBUG = env.bool("DJANGO_DEBUG", default=False)
+ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=["localhost", "127.0.0.1"])
+
+INSTALLED_APPS = [
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "django.contrib.postgres",  # trigram search lookups (pg_trgm)
+    # third-party
+    "rest_framework",
+    "corsheaders",
+    # our apps
+    "common",
+    "accounts",
+    "catalog",
+    "ai",
+    "imports",
+]
+
+MIDDLEWARE = [
+    # Request id first, so every log line after it (including errors) has the id.
+    "common.request_id_middleware.RequestIdMiddleware",
+    "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",  # serves admin static files on Render
+    "corsheaders.middleware.CorsMiddleware",  # must be before CommonMiddleware
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
+]
+
+ROOT_URLCONF = "config.urls"
+WSGI_APPLICATION = "config.wsgi.application"
+
+TEMPLATES = [
+    {
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
+            ],
+        },
+    },
+]
+
+# --- Database ---------------------------------------------------------------
+
+# One DATABASE_URL works for local Docker and for Neon (Neon adds ?sslmode=require).
+DATABASES = {"default": env.db("DATABASE_URL")}
+DATABASES["default"]["CONN_MAX_AGE"] = 60  # reuse connections for a minute
+DATABASES["default"]["CONN_HEALTH_CHECKS"] = True  # drop dead ones (Neon sleeps)
+
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# --- Auth -------------------------------------------------------------------
+
+AUTH_PASSWORD_VALIDATORS = [
+    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
+    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
+    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
+    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
+]
+
+# --- i18n / time ------------------------------------------------------------
+
+LANGUAGE_CODE = "en-us"
+TIME_ZONE = "Asia/Kolkata"
+USE_I18N = True
+USE_TZ = True
+
+# --- Static files -----------------------------------------------------------
+
+STATIC_URL = "static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
+STORAGES = {
+    "default": {"BACKEND": "django.core.files.storage.FileSystemStorage"},
+    "staticfiles": {"BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage"},
+}
+
+# --- CORS / CSRF (React on Vercel talks to this API) -------------------------
+
+CORS_ALLOWED_ORIGINS = env.list("CORS_ALLOWED_ORIGINS", default=["http://localhost:5173"])
+CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS", default=[])
+
+# --- Production security ----------------------------------------------------
+
+if not DEBUG:
+    # Render terminates HTTPS at its proxy and forwards this header.
+    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+
+# --- Django REST Framework --------------------------------------------------
+
+REST_FRAMEWORK = {
+    # Anyone can read; writing needs login. Owner checks are added per view.
+    "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.IsAuthenticatedOrReadOnly"],
+    # One error shape for every API error (see common/exception_handler.py).
+    "EXCEPTION_HANDLER": "common.exception_handler.handle_exception",
+}
+
+# --- Celery -----------------------------------------------------------------
+
+# Locally (Docker) a worker picks tasks from Redis. On Render there is no worker,
+# so ALWAYS_EAGER=True runs the same task code inline inside the request.
+CELERY_BROKER_URL = env("REDIS_URL", default="redis://localhost:6379/0")
+CELERY_TASK_ALWAYS_EAGER = env.bool("CELERY_TASK_ALWAYS_EAGER", default=True)
+CELERY_TASK_EAGER_PROPAGATES = True  # in eager mode, task errors surface instead of hiding
+
+# --- Logging (structured JSON, one line per event) ---------------------------
+
+LOG_LEVEL = env("LOG_LEVEL", default="INFO")
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "filters": {
+        "request_id": {"()": "common.log.request_id_filter.RequestIdFilter"},
+    },
+    "formatters": {
+        "json": {"()": "common.log.json_formatter.JsonFormatter"},
+    },
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+            "formatter": "json",
+            "filters": ["request_id"],
+        },
+    },
+    "root": {"handlers": ["console"], "level": LOG_LEVEL},
+    "loggers": {
+        # Our middleware already logs every request, so silence Django's duplicate line.
+        "django.request": {"level": "ERROR"},
+        "django.server": {"level": "WARNING"},
+    },
+}

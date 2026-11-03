@@ -335,7 +335,7 @@ CLAUDE.md
 - **One branch per block** in `plan.md`, cut from the latest `main`. Each block in `plan.md` lists its branch name.
 - **Branch names:** `<type>/<short-name>`, with type = `feature/`, `fix/`, `docs/`, `chore/`. Examples: `feature/auth-api`, `fix/price-validation`, `docs/readme`.
 - **Commit messages:** Conventional Commits, e.g. `feat(auth): add JWT login`, `fix(products): reject price 0`, `test(catalog): filter tests`.
-- **Merge** through a GitHub Pull Request into `main` once tests and CI pass (a basic CI workflow is added in Block 1 so every PR is checked). Use "Create a merge commit" so the small commits stay visible in the history. Delete the branch after merging.
+- **Merge** through a GitHub Pull Request into `main` once tests and CI pass (a basic CI workflow is added in Block 1 so every PR is checked). Use "Create a merge commit" so the small commits stay visible in the history. **Keep every branch after merging (never delete them)**, so each block stays visible on GitHub.
 - A bug found later gets its own `fix/...` branch. Don't reopen an old block branch.
 
 ### Commands Claude gives at each stage
@@ -355,5 +355,4 @@ git push -u origin feature/auth-api
 ```bash
 git checkout main
 git pull origin main
-git branch -d feature/auth-api
 ```

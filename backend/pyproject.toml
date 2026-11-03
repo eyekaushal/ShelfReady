@@ -1,0 +1,15 @@
+[tool.ruff]
+line-length = 110
+target-version = "py312"
+extend-exclude = ["*/migrations/*"]
+
+[tool.ruff.lint]
+# E/F = errors, I = import order, B = common bugs, UP = modern Python, DJ = Django rules
+select = ["E", "F", "I", "B", "UP", "DJ"]
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "config.settings"
+testpaths = ["tests"]
+addopts = "-q"
+# WhiteNoise warns when `collectstatic` hasn't run yet; harmless in tests.
+filterwarnings = ["ignore:No directory at:UserWarning"]

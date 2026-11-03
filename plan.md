@@ -5,21 +5,21 @@
 > **Per block:** create the block's branch from `main` → build + small commits → run tests → 3-line summary → push branch → PR into `main` → merge → tick here.
 > Claude only gives the git commands; Kaushal runs them (see CLAUDE.md §16). `main` is always deployable.
 
-**Progress:** 0 of 14 blocks done
+**Progress:** 1 of 14 blocks done
 
 ---
 
-## Block 1 — Project setup
+## Block 1 — Project setup ✅
 **Branch:** `chore/project-setup`
-- [ ] Monorepo folders: `backend/`, `frontend/`, `samples/`
-- [ ] Django 5 project (`config/`) + apps: `accounts`, `catalog`, `ai`, `imports`
-- [ ] Settings from env vars, `.env.example`, `.gitignore`
-- [ ] `docker-compose.yml`: db (pgvector), redis, backend, worker, frontend
-- [ ] Migration enabling `vector` + `pg_trgm`
-- [ ] `/api/health/` endpoint
-- [ ] Custom exception handler (consistent error format) + request-id middleware + structured logging
-- [ ] pytest + pytest-django + ruff configured
-- [ ] Basic GitHub Actions CI (ruff + pytest) on push and on PRs into `main`
+- [x] Monorepo folders: `backend/`, `samples/` (`frontend/` is created by Vite in Block 6)
+- [x] Django 5.2 LTS project (`config/`) + apps: `accounts`, `catalog`, `ai`, `imports`, `common`
+- [x] Settings from env vars (django-environ), `.env.example`, `.gitignore`
+- [x] `docker-compose.yml`: db (pgvector), redis, backend, worker (frontend service added in Block 6)
+- [x] Migration enabling `vector` + `pg_trgm`
+- [x] `/api/health/` endpoint (no DB hit, so keep-warm pings don't use up Neon's compute hours)
+- [x] Custom exception handler (consistent error format, JSON 404/500) + request-id middleware + JSON logging
+- [x] pytest + pytest-django + ruff configured (11 tests passing)
+- [x] Basic GitHub Actions CI (ruff + check + migrations check + pytest) on push and on PRs into `main`
 
 ## Block 2 — Auth API
 **Branch:** `feature/auth-api`
@@ -55,6 +55,7 @@
 ## Block 6 — React frontend (base screens)
 **Branch:** `feature/frontend-base`
 - [ ] Vite + React (JS) + Tailwind + React Router + TanStack Query
+- [ ] Add `frontend` service to `docker-compose.yml`
 - [ ] `ApiClient` class: axios + JWT refresh interceptor
 - [ ] AuthContext, Login, Register, ProtectedRoute
 - [ ] Product list: debounced search, filters, sort, pagination, URL-synced
