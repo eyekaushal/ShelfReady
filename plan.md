@@ -5,7 +5,7 @@
 > **Per block:** create the block's branch from `main` → build → run tests → 3-line summary → one `git add -A` + one commit → push branch → PR into `main` → merge → tick here.
 > Claude only gives the git commands; Kaushal runs them (see CLAUDE.md §16). `main` is always deployable.
 
-**Progress:** 3 of 14 blocks done
+**Progress:** 4 of 14 blocks done
 
 ---
 
@@ -39,14 +39,14 @@
 - [x] Django admin for Category and Product
 - [x] Tests: validation, error format (incl. Django 404/403 → standard codes), permissions (76 tests passing)
 
-## Block 4 — Search, filter, sort, pagination + Swagger
+## Block 4 — Search, filter, sort, pagination + Swagger ✅
 **Branch:** `feature/search-filter-sort`
-- [ ] `SearchFilter` (name, brand, description)
-- [ ] `django-filter`: brand, category (with sub-categories), min/max price
-- [ ] `OrderingFilter`: price, name, created_at
-- [ ] Pagination (12, `page_size`, max 100)
-- [ ] drf-spectacular: `/api/docs/`, `/api/redoc/`, `/api/schema/`
-- [ ] Tests: filters/search/sort/pagination
+- [x] `SearchFilter` (name, brand, description, case-insensitive)
+- [x] `django-filter` `ProductFilter`: brand (exact, ignores case), category slug (with sub-categories), min/max price (+ min ≤ max check)
+- [x] `StableOrderingFilter`: price, name, created_at, with an `id` tie-breaker so pages never repeat/skip
+- [x] `StandardPagination` (12, `page_size`, max 100)
+- [x] drf-spectacular: `/api/docs/`, `/api/redoc/`, `/api/schema/` (schema validated in CI with `--fail-on-warn`)
+- [x] Tests: filters/search/sort/pagination/docs (106 tests passing)
 
 ## Block 5 — Seed data
 **Branch:** `feature/seed-data`

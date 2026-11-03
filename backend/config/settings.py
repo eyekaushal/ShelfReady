@@ -34,6 +34,8 @@ INSTALLED_APPS = [
     "rest_framework",
     "rest_framework_simplejwt.token_blacklist",  # stores logged-out refresh tokens
     "corsheaders",
+    "django_filters",
+    "drf_spectacular",
     # our apps
     "common",
     "accounts",
@@ -132,11 +134,32 @@ REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.IsAuthenticatedOrReadOnly"],
     # One error shape for every API error (see common/exception_handler.py).
     "EXCEPTION_HANDLER": "common.exception_handler.handle_exception",
+    # Every list endpoint is paginated: {"count", "next", "previous", "results"}.
+    "DEFAULT_PAGINATION_CLASS": "common.pagination.standard_pagination.StandardPagination",
+    # drf-spectacular reads our views + serializers and builds the OpenAPI schema.
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     # Views opt in with `throttle_scope = "..."`. Limits are per user (or per IP if anonymous).
     "DEFAULT_THROTTLE_CLASSES": ["rest_framework.throttling.ScopedRateThrottle"],
     "DEFAULT_THROTTLE_RATES": {
         "auth": env("THROTTLE_AUTH", default="20/min"),  # slows down password guessing
     },
+}
+
+# --- API docs (drf-spectacular) ------------------------------------------------
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "ShelfReady API",
+    "DESCRIPTION": (
+        "A recognition-ready product catalog (SKU master) for retail shelf recognition.\n\n"
+        "**Auth:** call `POST /api/auth/login/`, then click *Authorize* and paste the `access` token.\n\n"
+        "**Errors** always look like "
+        '`{"error": {"code": "...", "message": "...", "details": {...}}}`.'
+    ),
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": False,  # don't list the schema endpoint inside itself
+    # Separate "request" and "response" models, so read-only fields (id, created_by...)
+    # don't show up as inputs in Swagger.
+    "COMPONENT_SPLIT_REQUEST": True,
 }
 
 # --- JWT (djangorestframework-simplejwt) --------------------------------------

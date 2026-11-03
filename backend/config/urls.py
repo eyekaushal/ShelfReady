@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.urls import include, path
+from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 
 from common.views.error_views import ErrorViews
 from common.views.health_view import HealthView
@@ -9,6 +10,10 @@ urlpatterns = [
     path("api/health/", HealthView.as_view(), name="health"),
     path("api/auth/", include("accounts.urls")),
     path("api/", include("catalog.urls")),
+    # API docs
+    path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
+    path("api/docs/", SpectacularSwaggerView.as_view(url_name="schema"), name="swagger-ui"),
+    path("api/redoc/", SpectacularRedocView.as_view(url_name="schema"), name="redoc"),
 ]
 
 # Used only when DEBUG=False (in DEBUG, Django shows its own debug pages).
