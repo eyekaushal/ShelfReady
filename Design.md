@@ -103,28 +103,52 @@ backend/
 
 ## 7. Frontend layout
 
+Stack: React 19 + Vite + plain JS, Tailwind v4, React Router 7, TanStack Query 5, axios, lucide-react icons,
+oxlint for linting. Node 22 (`frontend/.nvmrc`).
+
 ```
 frontend/src/
-  api/          apiClient.js (class ApiClient: axios + JWT refresh interceptor), products.js, ai.js, auth.js
-  auth/         AuthContext.jsx, ProtectedRoute.jsx
-  pages/        ProductListPage, ProductDetailPage, ProductFormPage, LoginPage, RegisterPage,
-                LookalikesPage, ReadinessDashboardPage, ImportPage
-  components/   SearchBar, FilterPanel, SortDropdown, Pagination, ProductCard, ProductSkeleton,
-                EmptyState, ErrorState, ConfirmModal, FilterChips, AiBadge, Toast
-  hooks/        useProducts, useUrlFilters, useDebounce
+  api/          apiClient.js (class ApiClient: axios, Bearer token, silent JWT refresh shared by
+                parallel requests, every error → ApiError), authApi.js, productsApi.js, catalogApi.js
+                (+ aiApi.js from Block 7)
+  auth/         AuthContext.jsx (AuthProvider), authContext.js, useAuth.js (+ canEditProduct), ProtectedRoute.jsx
+  pages/        ProductListPage, ProductDetailPage, ProductFormPage (new + edit), LoginPage, RegisterPage,
+                NotFoundPage  (+ LookalikesPage, ReadinessDashboardPage, ImportPage in add-ons)
+  components/
+    layout/     AppShell (sidebar on desktop, drawer on mobile), Sidebar, AuthLayout, Wordmark
+    catalog/    SearchBar, FilterPanel, FilterChips, SortMenu, ViewToggle, Pagination, ProductTable,
+                ProductGrid, ProductImage, ProductListSkeleton, ReadinessRing
+    ui/         Button, Input, Select, Textarea, PasswordInput, FormField, FormSection, Modal, ConfirmModal,
+                Menu, Toast, Badge, Chip, Avatar, Skeleton, Spinner, EmptyState, ErrorState, PageHeader,
+                DescriptionList
+  hooks/        useUrlFilters, useProducts / useProduct, useProductMutations, useCatalogOptions, useDebounce
+  lib/          apiError.js (class ApiError), validation.js (mirrors the backend serializer, incl. GTIN
+                mod-10), format.js (₹ en-IN, dates), readiness.js, cn.js
 ```
 
-- **Server state:** TanStack Query. **URL state:** filters live in the query string (`useUrlFilters`).
+- **Server state:** TanStack Query (30 s stale time; retries once, only on network / 5xx errors).
+- **URL state:** search, brand, category, price range, ordering, page, page size and view (table / grid)
+  live in the query string (`useUrlFilters`); defaults are left out; any change except paging resets to page 1.
+- **Tokens:** access + refresh in localStorage; on 401 `token_not_valid` the client refreshes once and retries.
+- **Permissions in the UI:** Edit / Delete only shown when `canEditProduct` (owner or staff), same rule as
+  `IsOwnerOrStaff`; the backend still enforces it.
 - **Every data screen** has loading (skeleton), empty (message + clear filters) and error (message + retry) states.
 
 ## 8. UI design
 
-- **Style:** clean, light, mobile-first, Tailwind. One accent colour, neutral greys, rounded cards, soft shadows.
-- **Header:** "ShelfReady" logo · Catalog · Look-alikes · Readiness · Import · Login/user menu.
-- **List page:** search bar with a ✨ "Ask AI" toggle → filter chips row → filter sidebar (drawer on mobile) → product card grid (image, name, brand, price, readiness badge) → pagination.
-- **Product form:** "Fill from photo" panel at the top (URL or upload) → fields with an "AI-filled — please review" badge → live validation → Save.
-- **Details page:** image, fields, readiness checklist, "Possible look-alikes" box, history timeline.
-- **Feedback:** toasts for success/failure, a confirm modal for delete.
+- **Style:** Linear / Attio-like: white canvas, hairline borders, Inter, one blue accent, status colour only as
+  rings, dots and chips. Mobile-first.
+- **Shell:** left sidebar (Catalog, Add product, API docs, user + logout); top bar with a drawer on mobile.
+  Look-alikes, Readiness and Import links get added with the add-ons.
+- **List page:** search bar (debounced, "/" to focus) → Filter popover (brand, category, price) + sort menu +
+  table/grid toggle → removable filter chips (reused by AI search in Block 8) → table or grid → pagination.
+- **Product form:** sections Basics, Description, Pack shot (live image preview), Identifiers; client-side
+  validation, backend field errors mapped onto the same fields. Block 7 adds the "Fill from photo" panel and
+  "AI-filled — please review" badges.
+- **Details page:** image, highlight tiles (price, pack size, variant, GTIN, category, readiness ring), description,
+  tags, full field list. Add-ons add the readiness checklist, "Possible look-alikes" box and history timeline.
+- **Readiness ring:** dashed "Not scored yet" until Block 11 computes scores (avoids a misleading 0%).
+- **Feedback:** toasts (bottom centre, 4 s), confirm modal for delete.
 
 ## 9. Seed data
 
