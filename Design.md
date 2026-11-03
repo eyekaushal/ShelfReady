@@ -28,7 +28,7 @@ React (Vercel) ──axios + JWT──▶ Django REST API (Render) ──▶ Pos
 
 ```
 backend/
-  config/                 settings.py, urls.py, wsgi.py
+  config/                 settings.py, urls.py, wsgi.py, celery.py
   accounts/               serializers/, views/, urls.py
   catalog/                models/ (category.py, product.py, lookalike_pair.py), serializers/, views/, filters/
   ai/                     views/, serializers/
@@ -44,7 +44,8 @@ backend/
     readiness_service.py      class ReadinessService
     gtin_validator.py         class GtinValidator
     import_service.py         class ImportService
-  common/                 exception_handler.py, request_id_middleware.py, logging
+  common/                 exception_handler.py (ApiExceptionHandler), request_id_middleware.py,
+                          log/ (RequestContext, RequestIdFilter, JsonFormatter), views/ (HealthView, ErrorViews)
   seed/                   products.json + management command seed_catalog
   tests/
 ```
