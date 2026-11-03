@@ -5,7 +5,7 @@
 > **Per block:** create the block's branch from `main` → build → run tests → 3-line summary → one `git add -A` + one commit → push branch → PR into `main` → merge → tick here.
 > Claude only gives the git commands; Kaushal runs them (see CLAUDE.md §16). `main` is always deployable.
 
-**Progress:** 5 of 14 blocks done
+**Progress:** 6 of 14 blocks done
 
 ---
 
@@ -56,18 +56,18 @@
 - [x] `seed_catalog` command + `CatalogSeeder` service (idempotent) + demo account `demo` / `SEED_DEMO_PASSWORD`
 - [x] Tests: seeder + guards on the committed JSON (118 tests passing)
 
-## Block 6 — React frontend (base screens)
+## Block 6 — React frontend (base screens) ✅
 **Branch:** `feature/frontend-base`
-- [ ] Vite + React (JS) + Tailwind + React Router + TanStack Query
-- [ ] Add `frontend` service to `docker-compose.yml`
-- [ ] `ApiClient` class: axios + JWT refresh interceptor
-- [ ] AuthContext, Login, Register, ProtectedRoute
-- [ ] Product list: debounced search, filters, sort, pagination, URL-synced
-- [ ] Product details page
-- [ ] Add/Edit form with client-side validation
-- [ ] Delete confirmation modal
-- [ ] Loading skeletons, empty state, error + retry, toasts, responsive
-- [ ] `npm run lint` + `npm run build` pass
+- [x] Vite + React 19 (JS) + Tailwind v4 + React Router + TanStack Query + lucide-react icons (Node 22, `.nvmrc`)
+- [x] Add `frontend` service to `docker-compose.yml`
+- [x] `ApiClient` class: axios + JWT refresh interceptor
+- [x] AuthContext, Login, Register, ProtectedRoute
+- [x] Product list: debounced search, filters, sort, pagination, URL-synced
+- [x] Product details page
+- [x] Add/Edit form with client-side validation
+- [x] Delete confirmation modal
+- [x] Loading skeletons, empty state, error + retry, toasts, responsive
+- [x] `npm run lint` (oxlint, 0 warnings) + `npm run build` pass; full create → edit → delete flow checked in a real browser
 
 ## Block 7 — AI: Photo → product form
 **Branch:** `feature/ai-photo-to-form`
