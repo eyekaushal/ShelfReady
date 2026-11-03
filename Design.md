@@ -47,10 +47,12 @@ backend/
     readiness_service.py      class ReadinessService
     gtin_validator.py         class GtinValidator
     import_service.py         class ImportService
+    catalog_seeder.py         class CatalogSeeder           (loads seed JSON, idempotent)
   common/                 exception_handler.py (ApiExceptionHandler), request_id_middleware.py,
                           log/ (RequestContext, RequestIdFilter, JsonFormatter), views/ (HealthView, ErrorViews),
                           pagination/ (StandardPagination), filters/ (StableOrderingFilter)
-  seed/                   products.json + management command seed_catalog
+  seed/                   fetch_open_food_facts.py (OpenFoodFactsFetcher, run once) → products.json (committed)
+  catalog/management/     commands/seed_catalog.py → services/catalog_seeder.py (CatalogSeeder)
   tests/
 ```
 
@@ -124,13 +126,21 @@ frontend/src/
 - **Details page:** image, fields, readiness checklist, "Possible look-alikes" box, history timeline.
 - **Feedback:** toasts for success/failure, a confirm modal for delete.
 
-## 9. Infrastructure
+## 9. Seed data
+
+- **Source:** Open Food Facts (ODbL data, CC BY-SA images), India, 20 brands × up to 7 products.
+- **Prices are illustrative** (OFF has no prices): leaf-category ₹/g or ₹/ml × pack size, rounded to ₹5.
+- **Deliberate problems** (marked `demo_note` in the JSON) so readiness + look-alike features have real cases.
+- **Loader writes via the ORM, not the API**, so the deliberately bad rows (e.g. invalid GTIN) can exist.
+- **Idempotent:** matched on category slug / username / GTIN, so re-running updates instead of duplicating.
+
+## 10. Infrastructure
 
 - **Local:** `docker-compose.yml` → `db` (pgvector/pgvector:pg16), `redis`, `backend`, `worker`, `frontend`.
 - **Prod:** Render (gunicorn + whitenoise, eager Celery), Vercel (SPA rewrite), Neon (extensions enabled via migration).
 - **CI:** GitHub Actions → ruff + pytest (pgvector Postgres service) + frontend lint + build. Runs on every push and on every PR into `main`. Keep-warm cron every ~10 min.
 
-## 10. Git workflow
+## 11. Git workflow
 
 ```
 main ──●────────●────────●──────▶   (always deployable → Render + Vercel auto-deploy)

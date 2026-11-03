@@ -5,7 +5,7 @@
 > **Per block:** create the block's branch from `main` → build → run tests → 3-line summary → one `git add -A` + one commit → push branch → PR into `main` → merge → tick here.
 > Claude only gives the git commands; Kaushal runs them (see CLAUDE.md §16). `main` is always deployable.
 
-**Progress:** 4 of 14 blocks done
+**Progress:** 5 of 14 blocks done
 
 ---
 
@@ -48,11 +48,13 @@
 - [x] drf-spectacular: `/api/docs/`, `/api/redoc/`, `/api/schema/` (schema validated in CI with `--fail-on-warn`)
 - [x] Tests: filters/search/sort/pagination/docs (106 tests passing)
 
-## Block 5 — Seed data
+## Block 5 — Seed data ✅
 **Branch:** `feature/seed-data`
-- [ ] Script to fetch ~100–150 Indian FMCG products from Open Food Facts → `backend/seed/products.json`
-- [ ] Include twins, missing pack_size/variant, invalid GTIN, blurry/small image
-- [ ] `seed_catalog` management command (idempotent) + demo account
+- [x] `OpenFoodFactsFetcher` script → `backend/seed/products.json` (141 products, 20 Indian brands, 24 categories)
+- [x] Cleans names / pack sizes, maps categories by name + brand default, picks flavour variants, illustrative prices
+- [x] Demo problems: twins (Parle-G sizes, Lay's sizes…), missing pack size, invalid GTIN, 200 px image, non-leaf category, one duplicate
+- [x] `seed_catalog` command + `CatalogSeeder` service (idempotent) + demo account `demo` / `SEED_DEMO_PASSWORD`
+- [x] Tests: seeder + guards on the committed JSON (118 tests passing)
 
 ## Block 6 — React frontend (base screens)
 **Branch:** `feature/frontend-base`
@@ -91,7 +93,7 @@
 - [ ] Neon DB + extensions migration
 - [ ] Render: gunicorn, whitenoise, build command, env vars, eager Celery
 - [ ] Vercel: `vercel.json` SPA rewrite, `VITE_API_BASE_URL`
-- [ ] Seed data + demo account in prod
+- [ ] Seed data + demo account in prod (`python manage.py seed_catalog`, set `SEED_DEMO_PASSWORD`)
 - [ ] Keep-warm GitHub Actions cron
 - [ ] Render + Vercel set to auto-deploy from `main` only
 - [ ] Full flow tested in an incognito window
@@ -130,6 +132,6 @@
 ## Block 14 — Docs, CI and submission
 **Branch:** `docs/readme-architecture-ci`
 - [ ] CI polish: add frontend lint + build, pgvector Postgres service
-- [ ] README.md (all sections in CLAUDE.md §12)
+- [ ] README.md (all sections in CLAUDE.md §12), incl. Open Food Facts attribution (ODbL data, CC BY-SA images) and "prices are illustrative"
 - [ ] ARCHITECTURE.md (request journey, Django-for-Express table, interview Q&A)
 - [ ] Submission checklist (CLAUDE.md §13) sent to Indira

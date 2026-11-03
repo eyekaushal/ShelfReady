@@ -175,6 +175,11 @@ SIMPLE_JWT = {
     "UPDATE_LAST_LOGIN": True,
 }
 
+# --- Seed data ------------------------------------------------------------------
+
+# Password for the public demo account created by `manage.py seed_catalog` (shown in the README).
+SEED_DEMO_PASSWORD = env("SEED_DEMO_PASSWORD", default="ShelfReady@2026")
+
 # --- Celery -----------------------------------------------------------------
 
 # Locally (Docker) a worker picks tasks from Redis. On Render there is no worker,
