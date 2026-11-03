@@ -2,10 +2,10 @@
 
 > Build in block order. Tick `- [x]` when a task is done **and tested**.
 > Deadline: submit by **4 Nov 2026 night** (hard deadline 5 Nov 2026, 9:00 AM IST). Stop wherever the deadline hits.
-> **Per block:** create the block's branch from `main` → build + small commits → run tests → 3-line summary → push branch → PR into `main` → merge → tick here.
+> **Per block:** create the block's branch from `main` → build → run tests → 3-line summary → one `git add -A` + one commit → push branch → PR into `main` → merge → tick here.
 > Claude only gives the git commands; Kaushal runs them (see CLAUDE.md §16). `main` is always deployable.
 
-**Progress:** 1 of 14 blocks done
+**Progress:** 2 of 14 blocks done
 
 ---
 
@@ -21,11 +21,12 @@
 - [x] pytest + pytest-django + ruff configured (11 tests passing)
 - [x] Basic GitHub Actions CI (ruff + check + migrations check + pytest) on push and on PRs into `main`
 
-## Block 2 — Auth API
+## Block 2 — Auth API ✅
 **Branch:** `feature/auth-api`
-- [ ] simplejwt with refresh blacklist
-- [ ] Register, login, refresh, logout, `me` endpoints
-- [ ] Tests: register/login/logout flow
+- [x] simplejwt with refresh rotation + blacklist (access 30 min, refresh 7 days)
+- [x] Register (returns tokens, unique email, Django password rules), login, refresh, logout, `me` endpoints
+- [x] Rate limit on auth endpoints (`auth` scope, 20/min) against password guessing
+- [x] Tests: register/login/refresh/logout/me flow, error format, throttling (28 tests passing)
 
 ## Block 3 — Product CRUD API
 **Branch:** `feature/product-crud`

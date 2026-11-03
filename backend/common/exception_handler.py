@@ -34,9 +34,7 @@ class ApiExceptionHandler:
             body = cls.build_body("validation_error", "Invalid input.", cls._as_dict(response.data))
         else:
             # e.g. NotAuthenticated → code "not_authenticated", message from DRF.
-            code = getattr(exc, "default_code", "error")
-            message = response.data.get("detail", str(exc)) if isinstance(response.data, dict) else str(exc)
-            body = cls.build_body(code, str(message))
+            body = cls.build_body(cls._code_of(exc), cls._message_of(exc))
 
         response.data = body
         return response
@@ -44,6 +42,21 @@ class ApiExceptionHandler:
     @staticmethod
     def build_body(code, message, details=None):
         return {"error": {"code": code, "message": message, "details": details or {}}}
+
+    @staticmethod
+    def _code_of(exc):
+        # Prefer the specific code on the detail (e.g. simplejwt's "token_not_valid",
+        # "no_active_account") over the generic class code ("authentication_failed").
+        detail = getattr(exc, "detail", None)
+        return getattr(detail, "code", None) or getattr(exc, "default_code", "error")
+
+    @staticmethod
+    def _message_of(exc):
+        detail = getattr(exc, "detail", None)
+        # simplejwt puts the human message under "detail" inside a dict.
+        if isinstance(detail, dict) and "detail" in detail:
+            return str(detail["detail"])
+        return str(detail) if detail is not None else str(exc)
 
     @staticmethod
     def _as_dict(data):

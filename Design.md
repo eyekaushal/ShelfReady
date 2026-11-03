@@ -29,7 +29,8 @@ React (Vercel) ──axios + JWT──▶ Django REST API (Render) ──▶ Pos
 ```
 backend/
   config/                 settings.py, urls.py, wsgi.py, celery.py
-  accounts/               serializers/, views/, urls.py
+  accounts/               serializers/ (RegisterSerializer, UserSerializer), views/ (RegisterView, LoginView,
+                          LogoutView, MeView), urls.py
   catalog/                models/ (category.py, product.py, lookalike_pair.py), serializers/, views/, filters/
   ai/                     views/, serializers/
   imports/                models/import_job.py, views/, tasks.py
@@ -64,10 +65,10 @@ backend/
 
 | Method | Path | Auth | Purpose |
 |---|---|---|---|
-| POST | `/api/auth/register/` | – | Create account |
+| POST | `/api/auth/register/` | – | Create account → `{user, access, refresh}` |
 | POST | `/api/auth/login/` | – | JWT pair |
-| POST | `/api/auth/refresh/` | – | New access token |
-| POST | `/api/auth/logout/` | user | Blacklist refresh |
+| POST | `/api/auth/refresh/` | – | New access + refresh (rotation) |
+| POST | `/api/auth/logout/` | – (refresh token is the proof) | Blacklist refresh → 205 |
 | GET | `/api/auth/me/` | user | Current user |
 | GET | `/api/products/` | – | List + `search`, `brand`, `category`, `min_price`, `max_price`, `ordering`, `page`, `page_size` |
 | POST | `/api/products/` | user | Create |

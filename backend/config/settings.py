@@ -5,6 +5,7 @@ Every secret or environment-specific value comes from environment variables
 (or a local `.env` file in development). See `.env.example` for the full list.
 """
 
+from datetime import timedelta
 from pathlib import Path
 
 import environ
@@ -31,6 +32,7 @@ INSTALLED_APPS = [
     "django.contrib.postgres",  # trigram search lookups (pg_trgm)
     # third-party
     "rest_framework",
+    "rest_framework_simplejwt.token_blacklist",  # stores logged-out refresh tokens
     "corsheaders",
     # our apps
     "common",
@@ -122,10 +124,32 @@ if not DEBUG:
 # --- Django REST Framework --------------------------------------------------
 
 REST_FRAMEWORK = {
+    # The React app sends "Authorization: Bearer <access token>" on every request.
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ],
     # Anyone can read; writing needs login. Owner checks are added per view.
     "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.IsAuthenticatedOrReadOnly"],
     # One error shape for every API error (see common/exception_handler.py).
     "EXCEPTION_HANDLER": "common.exception_handler.handle_exception",
+    # Views opt in with `throttle_scope = "..."`. Limits are per user (or per IP if anonymous).
+    "DEFAULT_THROTTLE_CLASSES": ["rest_framework.throttling.ScopedRateThrottle"],
+    "DEFAULT_THROTTLE_RATES": {
+        "auth": env("THROTTLE_AUTH", default="20/min"),  # slows down password guessing
+    },
+}
+
+# --- JWT (djangorestframework-simplejwt) --------------------------------------
+
+SIMPLE_JWT = {
+    # Short-lived access token; the frontend silently refreshes it with the refresh token.
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
+    # Each refresh returns a NEW refresh token and blacklists the old one,
+    # so a stolen refresh token stops working after it's used once.
+    "ROTATE_REFRESH_TOKENS": True,
+    "BLACKLIST_AFTER_ROTATION": True,
+    "UPDATE_LAST_LOGIN": True,
 }
 
 # --- Celery -----------------------------------------------------------------
