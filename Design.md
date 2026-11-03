@@ -31,7 +31,9 @@ backend/
   config/                 settings.py, urls.py, wsgi.py, celery.py
   accounts/               serializers/ (RegisterSerializer, UserSerializer), views/ (RegisterView, LoginView,
                           LogoutView, MeView), urls.py
-  catalog/                models/ (category.py, product.py, lookalike_pair.py), serializers/, views/, filters/
+  catalog/                models/ (category.py, product.py, lookalike_pair.py), serializers/ (ProductSerializer,
+                          CategorySerializer), views/ (ProductViewSet, CategoryViewSet, BrandListView),
+                          permissions/ (IsOwnerOrStaff), admin/, filters/
   ai/                     views/, serializers/
   imports/                models/import_job.py, views/, tasks.py
   services/
@@ -71,9 +73,9 @@ backend/
 | POST | `/api/auth/logout/` | – (refresh token is the proof) | Blacklist refresh → 205 |
 | GET | `/api/auth/me/` | user | Current user |
 | GET | `/api/products/` | – | List + `search`, `brand`, `category`, `min_price`, `max_price`, `ordering`, `page`, `page_size` |
-| POST | `/api/products/` | user | Create |
+| POST | `/api/products/` | user | Create (`category` = id; response adds `category_detail`) |
 | GET / PUT / PATCH / DELETE | `/api/products/{id}/` | owner / staff for writes | Detail / update / delete |
-| GET | `/api/categories/` · `/api/brands/` | – | Dropdown data |
+| GET | `/api/categories/` · `/api/brands/` | – | Dropdown data (not paginated). Categories are managed in admin |
 | POST | `/api/ai/extract-product/` | user, throttled | Photo → fields |
 | POST | `/api/ai/generate-description/` | user, throttled | Text → description + tags |
 | POST | `/api/ai/parse-search/` | throttled, cached 10 min | Sentence → filters |

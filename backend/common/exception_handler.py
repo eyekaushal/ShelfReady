@@ -1,6 +1,8 @@
 import logging
 
-from rest_framework import status
+from django.core.exceptions import PermissionDenied as DjangoPermissionDenied
+from django.http import Http404
+from rest_framework import exceptions, status
 from rest_framework.exceptions import ValidationError
 from rest_framework.response import Response
 from rest_framework.views import exception_handler as drf_exception_handler
@@ -19,6 +21,13 @@ class ApiExceptionHandler:
 
     @classmethod
     def handle(cls, exc, context):
+        # Django's own errors (e.g. from get_object_or_404) have no error code.
+        # Swap them for DRF's versions, which do ("not_found", "permission_denied").
+        if isinstance(exc, Http404):
+            exc = exceptions.NotFound()
+        elif isinstance(exc, DjangoPermissionDenied):
+            exc = exceptions.PermissionDenied()
+
         # Let DRF build its normal response first (it knows the right status codes).
         response = drf_exception_handler(exc, context)
 

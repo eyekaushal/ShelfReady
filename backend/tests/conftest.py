@@ -29,3 +29,51 @@ def tokens(api_client, user):
         "/api/auth/login/", {"username": "asha", "password": "Shelf-ready-42"}, format="json"
     )
     return response.json()
+
+
+# --- catalog fixtures ---------------------------------------------------------
+
+@pytest.fixture
+def other_user(db):
+    return User.objects.create_user(username="vikram", email="vikram@example.com", password="Shelf-ready-42")
+
+
+@pytest.fixture
+def staff_user(db):
+    return User.objects.create_user(
+        username="admin1", email="admin1@example.com", password="Shelf-ready-42", is_staff=True
+    )
+
+
+@pytest.fixture
+def categories(db):
+    """Food › Biscuits › Cream Biscuits, plus Beverages."""
+    from catalog.models import Category
+
+    food = Category.objects.create(name="Food", slug="food")
+    biscuits = Category.objects.create(name="Biscuits", slug="biscuits", parent=food)
+    cream = Category.objects.create(name="Cream Biscuits", slug="cream-biscuits", parent=biscuits)
+    beverages = Category.objects.create(name="Beverages", slug="beverages")
+    return {"food": food, "biscuits": biscuits, "cream": cream, "beverages": beverages}
+
+
+@pytest.fixture
+def product(user, categories):
+    from catalog.models import Product
+
+    return Product.objects.create(
+        name="Parle-G Gold",
+        brand="Parle",
+        category=categories["biscuits"],
+        description="Glucose biscuits.",
+        price="30.00",
+        pack_size="100 g",
+        created_by=user,
+    )
+
+
+@pytest.fixture
+def auth_client(api_client, user):
+    """An API client logged in as `user` (the product owner)."""
+    api_client.force_authenticate(user=user)
+    return api_client
