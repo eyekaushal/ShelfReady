@@ -1,7 +1,7 @@
 # Local development stack: `docker compose up --build`
 #   API     → http://localhost:8000/api/health/
 #   DB      → localhost:5432 (user/password/db: shelfready)
-# The frontend service is added in Block 6.
+#   UI      → http://localhost:5173
 
 services:
   db:
@@ -62,6 +62,19 @@ services:
         condition: service_healthy
       redis:
         condition: service_started
+
+  frontend:
+    build: ./frontend
+    environment:
+      # The browser calls the API, so this is the host address, not the Docker service name.
+      VITE_API_BASE_URL: http://localhost:8000/api
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules  # keep the container's Linux node_modules, not the host's
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
 
 volumes:
   pgdata:
