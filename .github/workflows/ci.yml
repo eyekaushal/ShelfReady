@@ -46,5 +46,7 @@ jobs:
         run: python manage.py check
       - name: Missing migrations?
         run: python manage.py makemigrations --check --dry-run
+      - name: API schema is valid (Swagger)
+        run: python manage.py spectacular --validate --fail-on-warn --file /dev/null
       - name: Tests
         run: pytest

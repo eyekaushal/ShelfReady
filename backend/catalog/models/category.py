@@ -38,3 +38,19 @@ class Category(models.Model):
             names.append(node.name)
             node = node.parent
         return " › ".join(reversed(names))
+
+    def descendant_ids(self) -> list[int]:
+        """
+        This category's id plus every sub-category below it, at any depth.
+        Filtering by "Food" should also return products in "Food › Biscuits".
+
+        One query per level of the tree (our tree is 3 levels deep, so ~3 queries).
+        """
+        ids = [self.id]
+        current_level = [self.id]
+        while current_level:
+            current_level = list(
+                Category.objects.filter(parent_id__in=current_level).values_list("id", flat=True)
+            )
+            ids.extend(current_level)
+        return ids

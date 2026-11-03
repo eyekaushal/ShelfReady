@@ -33,7 +33,7 @@ backend/
                           LogoutView, MeView), urls.py
   catalog/                models/ (category.py, product.py, lookalike_pair.py), serializers/ (ProductSerializer,
                           CategorySerializer), views/ (ProductViewSet, CategoryViewSet, BrandListView),
-                          permissions/ (IsOwnerOrStaff), admin/, filters/
+                          permissions/ (IsOwnerOrStaff), admin/, filters/ (ProductFilter)
   ai/                     views/, serializers/
   imports/                models/import_job.py, views/, tasks.py
   services/
@@ -48,7 +48,8 @@ backend/
     gtin_validator.py         class GtinValidator
     import_service.py         class ImportService
   common/                 exception_handler.py (ApiExceptionHandler), request_id_middleware.py,
-                          log/ (RequestContext, RequestIdFilter, JsonFormatter), views/ (HealthView, ErrorViews)
+                          log/ (RequestContext, RequestIdFilter, JsonFormatter), views/ (HealthView, ErrorViews),
+                          pagination/ (StandardPagination), filters/ (StableOrderingFilter)
   seed/                   products.json + management command seed_catalog
   tests/
 ```
@@ -72,7 +73,7 @@ backend/
 | POST | `/api/auth/refresh/` | – | New access + refresh (rotation) |
 | POST | `/api/auth/logout/` | – (refresh token is the proof) | Blacklist refresh → 205 |
 | GET | `/api/auth/me/` | user | Current user |
-| GET | `/api/products/` | – | List + `search`, `brand`, `category`, `min_price`, `max_price`, `ordering`, `page`, `page_size` |
+| GET | `/api/products/` | – | List + `search`, `brand`, `category` (slug, incl. sub-categories), `min_price`, `max_price`, `ordering`, `page`, `page_size` → `{count, next, previous, results}` |
 | POST | `/api/products/` | user | Create (`category` = id; response adds `category_detail`) |
 | GET / PUT / PATCH / DELETE | `/api/products/{id}/` | owner / staff for writes | Detail / update / delete |
 | GET | `/api/categories/` · `/api/brands/` | – | Dropdown data (not paginated). Categories are managed in admin |
