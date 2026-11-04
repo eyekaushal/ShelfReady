@@ -144,6 +144,7 @@ REST_FRAMEWORK = {
         "auth": env("THROTTLE_AUTH", default="20/min"),  # slows down password guessing
         "ai": env("THROTTLE_AI", default="20/hour"),  # AI calls cost money: per user, per hour
         "ai_search": env("THROTTLE_AI_SEARCH", default="30/hour"),  # AI search, per user or IP
+        "ai_global": env("THROTTLE_AI_GLOBAL", default="300/day"),  # spend cap across everyone
     },
 }
 

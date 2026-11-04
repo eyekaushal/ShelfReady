@@ -18,7 +18,10 @@ export function AuthProvider({ children }) {
     authApi
       .me()
       .then(setUser)
-      .catch(() => apiClient.clearTokens())
+      .catch((error) => {
+        // Only a 401 means the login is bad. A slow or sleeping server must not log anyone out.
+        if (error.status === 401) apiClient.clearTokens()
+      })
       .finally(() => setIsLoading(false))
   }, [])
 

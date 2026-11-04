@@ -1,10 +1,12 @@
 from drf_spectacular.utils import OpenApiExample, OpenApiResponse, extend_schema
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from rest_framework.throttling import ScopedRateThrottle
 from rest_framework.views import APIView
 
 from ai.serializers.description_request_serializer import DescriptionRequestSerializer
 from ai.serializers.generated_description_serializer import GeneratedDescriptionSerializer
+from common.throttling.global_ai_throttle import GlobalAiThrottle
 from services.description_service import DescriptionService
 
 
@@ -13,6 +15,7 @@ class GenerateDescriptionView(APIView):
 
     permission_classes = [IsAuthenticated]
     throttle_scope = "ai"
+    throttle_classes = [ScopedRateThrottle, GlobalAiThrottle]
 
     @extend_schema(
         tags=["ai"],

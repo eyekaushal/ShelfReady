@@ -1,8 +1,7 @@
 import { apiClient } from './apiClient'
 
-// Reading a pack photo takes Claude a few seconds (more on a cold server), so allow longer
-// than the client's default 20 s.
-const AI_TIMEOUT = 60000
+// Waking a sleeping server (about a minute) plus reading a pack photo (up to about 30 s).
+const AI_TIMEOUT = 100000
 
 export const aiApi = {
   /** {enabled: bool}: false when the server has no API key, so AI buttons show "unavailable". */
