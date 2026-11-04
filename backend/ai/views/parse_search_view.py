@@ -2,9 +2,11 @@ from drf_spectacular.utils import OpenApiExample, OpenApiResponse, extend_schema
 from rest_framework import serializers
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
+from rest_framework.throttling import ScopedRateThrottle
 from rest_framework.views import APIView
 
 from ai.serializers.search_request_serializer import SearchRequestSerializer
+from common.throttling.global_ai_throttle import GlobalAiThrottle
 from services.nl_search_service import NLSearchService
 
 
@@ -18,6 +20,7 @@ class ParseSearchView(APIView):
 
     permission_classes = [AllowAny]
     throttle_scope = "ai_search"
+    throttle_classes = [ScopedRateThrottle, GlobalAiThrottle]
 
     @extend_schema(
         tags=["ai"],

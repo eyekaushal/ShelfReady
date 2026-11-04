@@ -18,7 +18,8 @@ const REFRESH_KEY = 'shelfready.refresh'
  */
 class ApiClient {
   constructor() {
-    this.http = axios.create({ baseURL: BASE_URL, timeout: 20000 })
+    // 70 s: Render's free plan can take about a minute to wake up.
+    this.http = axios.create({ baseURL: BASE_URL, timeout: 70000 })
     this.refreshing = null // the in-flight refresh promise, so we only refresh once
     this.onSessionExpired = null // AuthContext sets this to log the user out in the UI
 

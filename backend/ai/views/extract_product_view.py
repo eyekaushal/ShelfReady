@@ -3,9 +3,11 @@ from rest_framework import serializers
 from rest_framework.parsers import FormParser, JSONParser, MultiPartParser
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from rest_framework.throttling import ScopedRateThrottle
 from rest_framework.views import APIView
 
 from ai.serializers.extract_product_request_serializer import ExtractProductRequestSerializer
+from common.throttling.global_ai_throttle import GlobalAiThrottle
 from services.ai_service_error import AIServiceError
 from services.claude_client import ClaudeClient
 from services.image_service import ImageService
@@ -45,6 +47,7 @@ class ExtractProductView(APIView):
     permission_classes = [IsAuthenticated]
     parser_classes = [JSONParser, MultiPartParser, FormParser]
     throttle_scope = "ai"
+    throttle_classes = [ScopedRateThrottle, GlobalAiThrottle]
 
     @extend_schema(
         tags=["ai"],

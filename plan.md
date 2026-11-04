@@ -91,13 +91,15 @@
 
 ## Block 9 — Deploy (base spec complete here ✅)
 **Branch:** `chore/deploy`
-- [ ] Neon DB + extensions migration
-- [ ] Render: gunicorn (`--timeout 90`: photo reading can take 10–30 s), whitenoise, build command, env vars, eager Celery
-- [ ] Vercel: `vercel.json` SPA rewrite, `VITE_API_BASE_URL`, `VITE_CLOUDINARY_CLOUD_NAME`, `VITE_CLOUDINARY_UPLOAD_PRESET`
-- [ ] Fix: on page load, only clear the saved login on a 401 from `/auth/me/` (not on a cold-start timeout)
-- [ ] Seed data + demo account in prod (`python manage.py seed_catalog`, set `SEED_DEMO_PASSWORD`)
-- [ ] Keep-warm GitHub Actions cron
-- [ ] Render + Vercel set to auto-deploy from `main` only
+- [x] Deploy files: `render.yaml`, `backend/build.sh` (install, collectstatic, migrate, seed: free plan has no shell), `frontend/vercel.json`, Node 22 + Python 3.12 pinned
+- [x] Gunicorn: 1 worker + 4 threads, `--timeout 90` (rehearsed in production mode on an empty DB)
+- [x] Fix: page load only clears the saved login on a 401; API timeout 70 s for Render cold starts
+- [x] `GlobalAiThrottle`: shared daily cap on AI calls (`ai_global`, 300/day), since `X-Forwarded-For` can be forged
+- [x] Keep-warm GitHub Actions cron (needs the `RENDER_URL` repo variable)
+- [ ] Neon project created; extensions enabled by the migration
+- [ ] Render service live, `DATABASE_URL` / `ANTHROPIC_API_KEY` / CORS set, seed + demo account in prod
+- [ ] Vercel live with `VITE_API_BASE_URL`, `VITE_CLOUDINARY_CLOUD_NAME`, `VITE_CLOUDINARY_UPLOAD_PRESET`
+- [ ] `RENDER_URL` variable set and keep-warm run succeeded
 - [ ] Full flow tested in an incognito window
 
 ## Block 10 — Add-on #1: Look-alike SKU detector

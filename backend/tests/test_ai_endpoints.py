@@ -216,3 +216,30 @@ class TestThrottle:
         ]
 
         assert statuses == [200, 200, 429]
+
+
+@pytest.mark.django_db
+class TestGlobalCap:
+    def test_forged_ip_headers_cannot_get_past_the_daily_cap(self, api_client, monkeypatch, fake_claude):
+        monkeypatch.setitem(ScopedRateThrottle.THROTTLE_RATES, "ai_global", "2/day")
+        answer = {
+            "search": "",
+            "brand": "",
+            "category": "",
+            "min_price": None,
+            "max_price": None,
+            "ordering": "",
+        }
+        fake_claude(claude_response(answer), claude_response(answer))
+
+        statuses = [
+            api_client.post(
+                "/api/ai/parse-search/",
+                {"query": f"query {i}"},
+                format="json",
+                HTTP_X_FORWARDED_FOR=f"1.2.3.{i}",
+            ).status_code
+            for i in range(3)
+        ]
+
+        assert statuses == [200, 200, 429]
