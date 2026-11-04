@@ -88,4 +88,4 @@ Features are *inspired by publicly described challenges in retail image recognit
 
 ## 8. Open questions
 
-- Cloudinary for permanent image uploads? (Ask before adding. Default is URL-first.)
+- ~~Cloudinary for permanent image uploads?~~ Decided in Block 7: yes, unsigned upload from the frontend (optional via env vars).

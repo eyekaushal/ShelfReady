@@ -9,6 +9,11 @@ django-environ==0.14.0
 psycopg[binary]==3.3.7
 pgvector==0.5.1
 
+# AI + images
+anthropic==2.4.0
+httpx2==2.16.0  # already used by anthropic; we use it for the safe image fetch
+pillow==13.0.0
+
 # Background tasks
 celery==5.6.3
 redis==8.1.0

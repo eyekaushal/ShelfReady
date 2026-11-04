@@ -34,10 +34,12 @@ backend/
   catalog/                models/ (category.py, product.py, lookalike_pair.py), serializers/ (ProductSerializer,
                           CategorySerializer), views/ (ProductViewSet, CategoryViewSet, BrandListView),
                           permissions/ (IsOwnerOrStaff), admin/, filters/ (ProductFilter)
-  ai/                     views/, serializers/
+  ai/                     views/ (AIStatusView, ExtractProductView, GenerateDescriptionView),
+                          serializers/ (request + AI-output validation serializers)
   imports/                models/import_job.py, views/, tasks.py
   services/
     claude_client.py          class ClaudeClient            (one wrapper for all Claude calls + logging)
+    ai_service_error.py       class AIServiceError          (DRF exception with ai_* codes)
     product_extract_service.py class ProductExtractService  (photo → fields)
     nl_search_service.py      class NLSearchService         (sentence → whitelisted filters)
     description_service.py    class DescriptionService
@@ -79,7 +81,8 @@ backend/
 | POST | `/api/products/` | user | Create (`category` = id; response adds `category_detail`) |
 | GET / PUT / PATCH / DELETE | `/api/products/{id}/` | owner / staff for writes | Detail / update / delete |
 | GET | `/api/categories/` · `/api/brands/` | – | Dropdown data (not paginated). Categories are managed in admin |
-| POST | `/api/ai/extract-product/` | user, throttled | Photo → fields |
+| GET | `/api/ai/status/` | – | `{enabled}`: AI buttons show "AI unavailable" when false |
+| POST | `/api/ai/extract-product/` | user, throttled | Photo (URL or multipart `image`) → `{fields, confidence, notes}` |
 | POST | `/api/ai/generate-description/` | user, throttled | Text → description + tags |
 | POST | `/api/ai/parse-search/` | throttled, cached 10 min | Sentence → filters |
 | GET | `/api/lookalikes/?status=` · POST `/api/lookalikes/{id}/resolve/` | user | Add-on #1 |
@@ -95,11 +98,24 @@ backend/
 
 ## 6. AI design
 
-- **One `ClaudeClient` class** handles every call: model from env, timeout, logging (model, latency, tokens, status), and a friendly error when the key is missing or the quota is hit.
-- **Forced tool use / JSON schema** for every output → validated with a DRF serializer → retry once → otherwise a clean error.
-- **Untrusted input:** text on packaging or in spreadsheets is data, never instructions. The output is only data.
-- **NL search whitelist:** allowed keys only; brand and category must exist in the DB; ordering from the allowed list; prices ≥ 0. The LLM never writes SQL.
-- **Models:** `ANTHROPIC_MODEL_VISION` (photo extraction), `ANTHROPIC_MODEL_FAST` (search parsing, description, column mapping). Check the IDs in the Anthropic docs before use.
+- **One `ClaudeClient` class** handles every call: model from env, structured JSON output, DRF validation with
+  one retry, refusal fallback on models that support it, one `ai call` log line (task, model, latency, tokens,
+  outcome; never the key or the image), and SDK errors → clean `AIServiceError` codes:
+  `ai_not_configured` (503), `ai_busy` (503), `ai_refused` (422), `ai_invalid_output` (502), `ai_error` (502).
+- **Structured outputs** (`output_config.format` with a JSON schema). Forced tool use is not used: it returns a
+  400 on Claude Sonnet 5.5.
+- **Untrusted input:** text on packaging or in spreadsheets is data, never instructions (said in the system
+  prompt; output is only data, validated, unknown keys dropped, never auto-saved).
+- **Photo → form:** `ImageService` fetches URLs safely (SSRF: http/https only, public IPs only, each redirect
+  re-checked, 5 s, 5 MB, image content-type) or reads the upload, verifies JPEG/PNG/WebP with Pillow and shrinks
+  to ≤1568 px. Categories are a whitelist (`enum` of slugs) and come back as an id for the form.
+  Price and GTIN are never filled by AI.
+- **Uploads:** browser → Cloudinary (unsigned preset) → permanent URL → extract by URL. Without Cloudinary env
+  vars: one-off multipart upload, not stored.
+- **NL search whitelist (Block 8):** allowed keys only; brand and category must exist in the DB; ordering from the
+  allowed list; prices ≥ 0. The LLM never writes SQL.
+- **Models:** `ANTHROPIC_MODEL_VISION` = `claude-sonnet-5-5` (photo extraction, effort `medium`),
+  `ANTHROPIC_MODEL_FAST` = `claude-haiku-5-5` (description, search parsing, column mapping, effort `low`).
 
 ## 7. Frontend layout
 
@@ -110,7 +126,7 @@ oxlint for linting. Node 22 (`frontend/.nvmrc`).
 frontend/src/
   api/          apiClient.js (class ApiClient: axios, Bearer token, silent JWT refresh shared by
                 parallel requests, every error → ApiError), authApi.js, productsApi.js, catalogApi.js
-                (+ aiApi.js from Block 7)
+                aiApi.js (60 s timeout for AI calls)
   auth/         AuthContext.jsx (AuthProvider), authContext.js, useAuth.js (+ canEditProduct), ProtectedRoute.jsx
   pages/        ProductListPage, ProductDetailPage, ProductFormPage (new + edit), LoginPage, RegisterPage,
                 NotFoundPage  (+ LookalikesPage, ReadinessDashboardPage, ImportPage in add-ons)
@@ -121,8 +137,10 @@ frontend/src/
     ui/         Button, Input, Select, Textarea, PasswordInput, FormField, FormSection, Modal, ConfirmModal,
                 Menu, Toast, Badge, Chip, Avatar, Skeleton, Spinner, EmptyState, ErrorState, PageHeader,
                 DescriptionList
-  hooks/        useUrlFilters, useProducts / useProduct, useProductMutations, useCatalogOptions, useDebounce
-  lib/          apiError.js (class ApiError), validation.js (mirrors the backend serializer, incl. GTIN
+  components/ai/ PhotoFillPanel (upload / URL → Claude → prefill), AiBadge ("AI-filled · review", amber if unsure)
+  hooks/        useUrlFilters, useProducts / useProduct, useProductMutations, useCatalogOptions, useDebounce,
+                useAiStatus
+  lib/          cloudinary.js (optional unsigned upload), apiError.js (class ApiError), validation.js (mirrors the backend serializer, incl. GTIN
                 mod-10), format.js (₹ en-IN, dates), readiness.js, cn.js
 ```
 
@@ -142,9 +160,11 @@ frontend/src/
   Look-alikes, Readiness and Import links get added with the add-ons.
 - **List page:** search bar (debounced, "/" to focus) → Filter popover (brand, category, price) + sort menu +
   table/grid toggle → removable filter chips (reused by AI search in Block 8) → table or grid → pagination.
-- **Product form:** sections Basics, Description, Pack shot (live image preview), Identifiers; client-side
-  validation, backend field errors mapped onto the same fields. Block 7 adds the "Fill from photo" panel and
-  "AI-filled — please review" badges.
+- **Product form:** "Fill from photo" panel on top (new products), then sections Basics, Description, Pack shot
+  (live image preview), Identifiers; client-side validation, backend field errors mapped onto the same fields.
+  AI-filled fields get a blue "AI-filled · review" badge (amber "AI · check this" when confidence is low) that
+  disappears once the user edits the field. "Write with AI" under the description fills description + tags.
+- **AI look:** no new colours: the same blue accent with a Sparkles icon; "AI unavailable" grey tag when off.
 - **Details page:** image, highlight tiles (price, pack size, variant, GTIN, category, readiness ring), description,
   tags, full field list. Add-ons add the readiness checklist, "Possible look-alikes" box and history timeline.
 - **Readiness ring:** dashed "Not scored yet" until Block 11 computes scores (avoids a misleading 0%).

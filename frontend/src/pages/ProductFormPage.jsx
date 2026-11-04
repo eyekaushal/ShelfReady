@@ -1,8 +1,11 @@
-import { AlertCircle, Lock } from 'lucide-react'
+import { AlertCircle, Lock, Sparkles } from 'lucide-react'
 import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
+import { aiApi } from '../api/aiApi'
 import { canEditProduct, useAuth } from '../auth/useAuth'
+import { AiBadge } from '../components/ai/AiBadge'
+import { PhotoFillPanel } from '../components/ai/PhotoFillPanel'
 import { ProductImage } from '../components/catalog/ProductImage'
 import { Badge } from '../components/ui/Badge'
 import { Button } from '../components/ui/Button'
@@ -16,10 +19,12 @@ import { Select } from '../components/ui/Select'
 import { PageSpinner } from '../components/ui/Spinner'
 import { Textarea } from '../components/ui/Textarea'
 import { useToast } from '../components/ui/toastContext'
+import { useAiStatus } from '../hooks/useAiStatus'
 import { useBrands, useCategories } from '../hooks/useCatalogOptions'
 import { useDebounce } from '../hooks/useDebounce'
 import { useProductMutations } from '../hooks/useProductMutations'
 import { useProduct } from '../hooks/useProducts'
+import { toApiError } from '../lib/apiError'
 import { parseTags, validateProduct } from '../lib/validation'
 
 const EMPTY_FORM = {
@@ -77,11 +82,15 @@ export function ProductFormPage() {
   const categories = useCategories()
   const brands = useBrands()
   const { create, update } = useProductMutations()
+  const ai = useAiStatus()
 
   const [values, setValues] = useState(EMPTY_FORM)
   const [errors, setErrors] = useState({})
   const [formError, setFormError] = useState(null)
   const [loadedId, setLoadedId] = useState(null)
+  // Fields the AI filled, with its confidence: {name: "high", pack_size: "low", ...}.
+  const [aiFields, setAiFields] = useState({})
+  const [writing, setWriting] = useState(false)
 
   // Once the product we're editing arrives, fill the form with it (one time per product).
   if (existing.data && existing.data.id !== loadedId) {
@@ -93,9 +102,56 @@ export function ProductFormPage() {
     const value = event.target.value
     setValues((current) => ({ ...current, [field]: value }))
     if (errors[field]) setErrors((current) => ({ ...current, [field]: undefined }))
+    // Once the user edits an AI-filled field, it's theirs: drop the badge.
+    if (aiFields[field]) setAiFields(({ [field]: _removed, ...rest }) => rest)
+  }
+
+  /** Copy AI suggestions into the form (only non-empty ones). Returns how many fields were filled. */
+  const applyAi = (suggested, confidence) => {
+    const filled = {}
+    for (const [field, value] of Object.entries(suggested)) {
+      if (value === null || value === '' || (Array.isArray(value) && value.length === 0)) continue
+      filled[field] = field === 'tags' ? value.join(', ') : String(value)
+    }
+    setValues((current) => ({ ...current, ...filled }))
+    setErrors((current) => ({ ...current, ...Object.fromEntries(Object.keys(filled).map((f) => [f, undefined])) }))
+    setAiFields((current) => ({
+      ...current,
+      ...Object.fromEntries(Object.keys(filled).map((field) => [field, confidence[field] || 'medium'])),
+    }))
+    return Object.keys(filled).length
+  }
+
+  const fillFromPhoto = (answer, imageUrl) => {
+    const count = applyAi(answer.fields, answer.confidence)
+    // The photo's URL (pasted, or the Cloudinary copy) becomes the product image.
+    if (imageUrl) setValues((current) => ({ ...current, image_url: imageUrl }))
+    return count
+  }
+
+  const writeDescription = async () => {
+    setWriting(true)
+    try {
+      const answer = await aiApi.generateDescription({
+        name: values.name.trim(),
+        brand: values.brand.trim(),
+        category: values.category ? Number(values.category) : null,
+        pack_size: values.pack_size.trim(),
+        variant: values.variant.trim(),
+      })
+      // Keep the user's own tags and add the AI's after them.
+      const tags = [...new Set([...parseTags(values.tags), ...answer.tags])].slice(0, 10)
+      applyAi({ description: answer.description, tags }, { description: 'high', tags: 'high' })
+    } catch (caught) {
+      toast.error(toApiError(caught).message)
+    } finally {
+      setWriting(false)
+    }
   }
 
   const mutation = isEdit ? update : create
+  const badge = (field) => (aiFields[field] ? <AiBadge confidence={aiFields[field]} /> : null)
+  const canWrite = ai.enabled && values.name.trim().length >= 2 && values.brand.trim().length >= 2
   const tags = parseTags(values.tags)
   // Don't fetch a half-typed URL on every keystroke; preview once typing pauses.
   const previewUrl = useDebounce(values.image_url.trim(), 500)
@@ -164,14 +220,20 @@ export function ProductFormPage() {
         </div>
       ) : null}
 
+      {!isEdit ? (
+        <div className="mb-6">
+          <PhotoFillPanel enabled={ai.enabled} onFilled={fillFromPhoto} />
+        </div>
+      ) : null}
+
       <div className="grid gap-6 lg:grid-cols-[1fr_340px]">
         <div className="space-y-6">
           <FormSection title="Basics" description="What the product is called and where it sits in the catalog.">
-            <FormField label="Product name" htmlFor="field-name" error={errors.name}>
+            <FormField label="Product name" htmlFor="field-name" error={errors.name} badge={badge('name')}>
               <Input id="field-name" value={values.name} onChange={set('name')} invalid={Boolean(errors.name)} placeholder="e.g. Good Day Butter Cookies" maxLength={200} />
             </FormField>
             <div className="grid gap-4 sm:grid-cols-2">
-              <FormField label="Brand" htmlFor="field-brand" error={errors.brand}>
+              <FormField label="Brand" htmlFor="field-brand" error={errors.brand} badge={badge('brand')}>
                 <Input id="field-brand" value={values.brand} onChange={set('brand')} invalid={Boolean(errors.brand)} placeholder="e.g. Britannia" list="brand-options" maxLength={100} />
                 <datalist id="brand-options">
                   {(brands.data || []).map((brand) => (
@@ -183,16 +245,27 @@ export function ProductFormPage() {
                 <Input id="field-price" type="text" inputMode="decimal" value={values.price} onChange={set('price')} invalid={Boolean(errors.price)} placeholder="0.00" leading="₹" />
               </FormField>
             </div>
-            <FormField label="Category" htmlFor="field-category" error={errors.category} hint="Pick the most specific category you can. Cameras need the full path.">
+            <FormField label="Category" htmlFor="field-category" error={errors.category} badge={badge('category')} hint="Pick the most specific category you can. Cameras need the full path.">
               <Select id="field-category" value={values.category} onChange={set('category')} invalid={Boolean(errors.category)} placeholder="Choose a category" options={categoryOptions} />
             </FormField>
           </FormSection>
 
           <FormSection title="Description" description="Factual packaging details. No invented claims.">
-            <FormField label="Description" htmlFor="field-description" error={errors.description} hint={`${values.description.length}/2000`}>
+            <FormField label="Description" htmlFor="field-description" error={errors.description} badge={badge('description')}>
               <Textarea id="field-description" rows={5} value={values.description} onChange={set('description')} invalid={Boolean(errors.description)} placeholder="Two or three sentences about the product and its pack." maxLength={2000} />
+              <div className="flex items-center justify-between gap-3 pt-0.5">
+                <p className="text-xs text-gray-500">
+                  <span className="tabular">{values.description.length}/2000</span>
+                  {' · '}
+                  {ai.enabled ? 'Write with AI needs a name and brand.' : 'AI is unavailable right now.'}
+                </p>
+                <Button size="sm" onClick={writeDescription} disabled={!canWrite} loading={writing}>
+                  {writing ? null : <Sparkles className="size-3.5 text-accent" />}
+                  {writing ? 'Writing…' : 'Write with AI'}
+                </Button>
+              </div>
             </FormField>
-            <FormField label="Tags" htmlFor="field-tags" error={errors.tags} optional hint="Comma separated, up to 10.">
+            <FormField label="Tags" htmlFor="field-tags" error={errors.tags} optional badge={badge('tags')} hint="Comma separated, up to 10.">
               <Input id="field-tags" value={values.tags} onChange={set('tags')} invalid={Boolean(errors.tags)} placeholder="biscuits, butter, cookies" />
               {tags.length ? (
                 <div className="flex flex-wrap gap-1.5 pt-1">
@@ -217,10 +290,10 @@ export function ProductFormPage() {
             <FormField label="GTIN / barcode" htmlFor="field-gtin" error={errors.gtin} optional hint="8, 12, 13 or 14 digits. The check digit is verified.">
               <Input id="field-gtin" inputMode="numeric" value={values.gtin} onChange={set('gtin')} invalid={Boolean(errors.gtin)} placeholder="8901063010574" className="font-mono" />
             </FormField>
-            <FormField label="Pack size" htmlFor="field-pack_size" error={errors.pack_size} optional>
+            <FormField label="Pack size" htmlFor="field-pack_size" error={errors.pack_size} optional badge={badge('pack_size')}>
               <Input id="field-pack_size" value={values.pack_size} onChange={set('pack_size')} invalid={Boolean(errors.pack_size)} placeholder="250 g" maxLength={50} />
             </FormField>
-            <FormField label="Variant" htmlFor="field-variant" error={errors.variant} optional hint="Flavour, type or edition, e.g. Chocolate.">
+            <FormField label="Variant" htmlFor="field-variant" error={errors.variant} optional badge={badge('variant')} hint="Flavour, type or edition, e.g. Chocolate.">
               <Input id="field-variant" value={values.variant} onChange={set('variant')} invalid={Boolean(errors.variant)} placeholder="Butter" maxLength={100} />
             </FormField>
           </FormSection>

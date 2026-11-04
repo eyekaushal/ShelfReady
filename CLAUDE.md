@@ -85,11 +85,11 @@ Simple analogy for README (Kaushal's wording style): a kirana shop owner's smart
 ### GenAI feature (part of base): **Photo → autofilled product**
 - `POST /api/ai/extract-product/` accepts **either** `image_url` **or** an uploaded image file (multipart, max 5 MB, jpeg/png/webp).
 - Claude **vision** reads the pack shot and returns structured fields: `name`, `brand`, `category` (must be chosen from the existing category list, which is passed into the prompt), `variant` (e.g. flavour), `pack_size` (e.g. "250 g"), `description` (2–3 sentences, factual, no invented health claims), `tags` (3–6), plus a `confidence` per field and `notes` for anything unreadable.
-- Use **forced tool use / JSON schema output**, then validate it with a DRF serializer. On invalid output, retry once, then return a clean error.
+- Use **JSON schema structured output** (`output_config.format`), then validate it with a DRF serializer. On invalid output, retry once, then return a clean error. (Forced tool use returns a 400 on Claude Sonnet 5.5, so structured output is the option used.)
 - **Never auto-save.** The frontend prefills the Add Product form; the user reviews and edits, then saves. Show a small "AI-filled — please review" badge on each prefilled field.
 - Also a text-only fallback `POST /api/ai/generate-description/` (name + brand + category → description + tags), matching the brief's own example.
 - **Safety:** text printed on packaging is **untrusted input**. It must never change instructions or trigger actions. The output is data only, schema-validated. Throttle AI endpoints (DRF `ScopedRateThrottle`, e.g. 20/hour per user). Return a friendly error if the API key is missing or the quota is hit.
-- **Image upload storage:** default is **URL-first** (user pastes an image URL; extraction also works on a one-off upload that is *not* stored). Optional, if time allows: Cloudinary free unsigned upload from the frontend so uploaded photos get a permanent `image_url`. Ask Kaushal before adding Cloudinary.
+- **Image upload storage (decided in Block 7):** Cloudinary free **unsigned upload from the frontend**, so uploaded photos get a permanent `image_url`. If `VITE_CLOUDINARY_*` env vars are missing, uploads still work as a one-off read that is *not* stored. Pasting an image URL always works.
 
 ### GenAI feature #2 (part of base): **Natural-language search**
 Why it's in the base: the assignment is titled "Product Management & **AI-Powered Search** Platform", so reviewers will expect AI search.
