@@ -142,6 +142,7 @@ REST_FRAMEWORK = {
     "DEFAULT_THROTTLE_CLASSES": ["rest_framework.throttling.ScopedRateThrottle"],
     "DEFAULT_THROTTLE_RATES": {
         "auth": env("THROTTLE_AUTH", default="20/min"),  # slows down password guessing
+        "ai": env("THROTTLE_AI", default="20/hour"),  # AI calls cost money: per user, per hour
     },
 }
 
@@ -174,6 +175,25 @@ SIMPLE_JWT = {
     "BLACKLIST_AFTER_ROTATION": True,
     "UPDATE_LAST_LOGIN": True,
 }
+
+# --- AI (Anthropic Claude) ------------------------------------------------------
+
+# Empty key = AI features switch off cleanly ("AI unavailable"); the rest of the app still works.
+ANTHROPIC_API_KEY = env("ANTHROPIC_API_KEY", default="")
+ANTHROPIC_MODEL_VISION = env("ANTHROPIC_MODEL_VISION", default="claude-sonnet-5-5")  # reads pack photos
+ANTHROPIC_MODEL_FAST = env("ANTHROPIC_MODEL_FAST", default="claude-haiku-5-5")  # short text tasks
+AI_TIMEOUT_SECONDS = env.float("AI_TIMEOUT_SECONDS", default=40.0)
+
+# Images we fetch or receive (photo → form, and later pHash / blur checks).
+IMAGE_MAX_BYTES = 5 * 1024 * 1024  # 5 MB
+IMAGE_FETCH_TIMEOUT_SECONDS = env.float("IMAGE_FETCH_TIMEOUT_SECONDS", default=5.0)
+
+# Same-origin uploads are capped a bit above the image limit, so Django rejects huge bodies early.
+DATA_UPLOAD_MAX_MEMORY_SIZE = 6 * 1024 * 1024
+FILE_UPLOAD_MAX_MEMORY_SIZE = 6 * 1024 * 1024
+
+# Identical AI searches are cached briefly (Block 8); local memory is enough for one instance.
+CACHES = {"default": {"BACKEND": "django.core.cache.backends.locmem.LocMemCache"}}
 
 # --- Seed data ------------------------------------------------------------------
 
@@ -213,5 +233,7 @@ LOGGING = {
         # Our middleware already logs every request, so silence Django's duplicate line.
         "django.request": {"level": "ERROR"},
         "django.server": {"level": "WARNING"},
+        # The HTTP library logs every request at INFO; our own "ai call" lines are enough.
+        "httpx2": {"level": "WARNING"},
     },
 }

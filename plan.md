@@ -5,7 +5,7 @@
 > **Per block:** create the block's branch from `main` → build → run tests → 3-line summary → one `git add -A` + one commit → push branch → PR into `main` → merge → tick here.
 > Claude only gives the git commands; Kaushal runs them (see CLAUDE.md §16). `main` is always deployable.
 
-**Progress:** 6 of 14 blocks done
+**Progress:** 7 of 14 blocks done
 
 ---
 
@@ -69,15 +69,15 @@
 - [x] Loading skeletons, empty state, error + retry, toasts, responsive
 - [x] `npm run lint` (oxlint, 0 warnings) + `npm run build` pass; full create → edit → delete flow checked in a real browser
 
-## Block 7 — AI: Photo → product form
+## Block 7 — AI: Photo → product form ✅
 **Branch:** `feature/ai-photo-to-form`
-- [ ] `ClaudeClient` class (env models, logging, friendly errors)
-- [ ] `ImageService.safe_fetch` (SSRF-safe, 5 s, 5 MB, image content-type)
-- [ ] `POST /api/ai/extract-product/` (URL or upload, forced tool use, serializer validation, retry once)
-- [ ] `POST /api/ai/generate-description/`
-- [ ] Throttling (20/hour) + "AI unavailable" when there's no key
-- [ ] Frontend: "Fill from photo" panel + "AI-filled — please review" badges
-- [ ] Tests with Claude mocked
+- [x] `ClaudeClient` class: env models, JSON-schema structured output, DRF validation + one retry, refusal fallback (Sonnet), log line per call, SDK errors → `ai_*` codes
+- [x] `ImageService`: SSRF-safe fetch (http/https, public IPs only, every redirect re-checked, 5 s, 5 MB, image content-type), Pillow-verified JPEG/PNG/WebP, shrink to 1568 px for Claude
+- [x] `POST /api/ai/extract-product/` (URL or upload; category whitelist; never saves) + `GET /api/ai/status/`
+- [x] `POST /api/ai/generate-description/` (fast model)
+- [x] Throttling (`ai` scope, 20/hour per user) + "AI unavailable" when there's no key (checked before any image fetch)
+- [x] Frontend: "Fill from photo" panel (upload / URL), Cloudinary unsigned upload when configured, "AI-filled · review" badges (amber when unsure), "Write with AI" for description + tags
+- [x] Tests with Claude mocked (177 backend tests passing); UI checked in the browser with a mocked AI answer
 
 ## Block 8 — AI: Natural-language search
 **Branch:** `feature/ai-nl-search`
@@ -91,8 +91,9 @@
 ## Block 9 — Deploy (base spec complete here ✅)
 **Branch:** `chore/deploy`
 - [ ] Neon DB + extensions migration
-- [ ] Render: gunicorn, whitenoise, build command, env vars, eager Celery
-- [ ] Vercel: `vercel.json` SPA rewrite, `VITE_API_BASE_URL`
+- [ ] Render: gunicorn (`--timeout 90`: photo reading can take 10–30 s), whitenoise, build command, env vars, eager Celery
+- [ ] Vercel: `vercel.json` SPA rewrite, `VITE_API_BASE_URL`, `VITE_CLOUDINARY_CLOUD_NAME`, `VITE_CLOUDINARY_UPLOAD_PRESET`
+- [ ] Fix: on page load, only clear the saved login on a 401 from `/auth/me/` (not on a cold-start timeout)
 - [ ] Seed data + demo account in prod (`python manage.py seed_catalog`, set `SEED_DEMO_PASSWORD`)
 - [ ] Keep-warm GitHub Actions cron
 - [ ] Render + Vercel set to auto-deploy from `main` only
