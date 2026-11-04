@@ -131,14 +131,15 @@
       "pack_size": "",
       "variant": "",
       "price": "5.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/171/913/4845/front_en.11.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793799981/seed-8901719134845.jpg",
       "description": "Parle-G Biscuit by Parle, 45 g pack. Listed under glucose biscuits.",
       "tags": [
         "glucose biscuits",
         "biscuits",
         "food"
       ],
-      "demo_note": "missing pack size (look-alike twin)"
+      "demo_note": "missing pack size (look-alike twin)",
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/171/913/4845/front_en.11.400.jpg"
     },
     {
       "gtin": "8901719134852",
@@ -148,13 +149,14 @@
       "pack_size": "90 g",
       "variant": "",
       "price": "10.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/171/913/4852/front_en.25.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793799981/seed-8901719134852.jpg",
       "description": "Parle-G by Parle, 90 g pack. Listed under glucose biscuits.",
       "tags": [
         "glucose biscuits",
         "biscuits",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/171/913/4852/front_en.25.400.jpg"
     },
     {
       "gtin": "8901719129988",
@@ -164,13 +166,14 @@
       "pack_size": "31.5 g",
       "variant": "",
       "price": "10.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/171/912/9988/front_en.14.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793799982/seed-8901719129988.jpg",
       "description": "Happy happy by Parle, 31.5 g pack. Listed under cookies.",
       "tags": [
         "cookies",
         "biscuits",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/171/912/9988/front_en.14.400.jpg"
     },
     {
       "gtin": "8901719135248",
@@ -180,14 +183,15 @@
       "pack_size": "56.7 g",
       "variant": "",
       "price": "10.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/171/913/5248/front_en.25.200.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793799982/seed-8901719135248.jpg",
       "description": "Krackjack by Parle, 56.7 g pack. Listed under crackers.",
       "tags": [
         "crackers",
         "biscuits",
         "food"
       ],
-      "demo_note": "image too small"
+      "demo_note": "image too small",
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/171/913/5248/front_en.25.200.jpg"
     },
     {
       "gtin": "8901719135118",
@@ -197,13 +201,14 @@
       "pack_size": "",
       "variant": "",
       "price": "20.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/171/913/5118/front_en.24.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793799981/seed-8901719135118.jpg",
       "description": "Monaco by Parle. Listed under crackers.",
       "tags": [
         "crackers",
         "biscuits",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/171/913/5118/front_en.24.400.jpg"
     },
     {
       "gtin": "8901719123870",
@@ -213,13 +218,14 @@
       "pack_size": "250 g",
       "variant": "",
       "price": "30.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/171/912/3870/front_en.27.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793799981/seed-8901719123870.jpg",
       "description": "Parle-G by Parle, 250 g pack. Listed under glucose biscuits.",
       "tags": [
         "glucose biscuits",
         "biscuits",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/171/912/3870/front_en.27.400.jpg"
     },
     {
       "gtin": "8901719105913",
@@ -229,13 +235,14 @@
       "pack_size": "120 g",
       "variant": "",
       "price": "35.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/171/910/5913/front_en.22.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793799997/seed-8901719105913.jpg",
       "description": "Parle Hide & Seek by Parle, 120 g pack. Listed under cookies.",
       "tags": [
         "cookies",
         "biscuits",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/171/910/5913/front_en.22.400.jpg"
     },
     {
       "gtin": "8901063139329",
@@ -245,13 +252,14 @@
       "pack_size": "50 g",
       "variant": "",
       "price": "15.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/106/313/9329/front_en.14.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800010/seed-8901063139329.jpg",
       "description": "Bourbon by Britannia, 50 g pack. Listed under cream biscuits.",
       "tags": [
         "biscuits",
         "food"
       ],
-      "demo_note": "category not specific (not a leaf)"
+      "demo_note": "category not specific (not a leaf)",
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/106/313/9329/front_en.14.400.jpg"
     },
     {
       "gtin": "8901063093522",
@@ -261,13 +269,14 @@
       "pack_size": "52.5 g",
       "variant": "",
       "price": "15.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/106/309/3522/front_en.28.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800010/seed-8901063093522.jpg",
       "description": "Good Day by Britannia, 52.5 g pack. Listed under cookies.",
       "tags": [
         "cookies",
         "biscuits",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/106/309/3522/front_en.28.400.jpg"
     },
     {
       "gtin": "8901063162915",
@@ -277,14 +286,15 @@
       "pack_size": "64 g",
       "variant": "",
       "price": "5.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/106/316/2914/front_en.3.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800004/seed-8901063162915.jpg",
       "description": "Marie Gold Biscuit by Britannia, 64 g pack. Listed under glucose biscuits.",
       "tags": [
         "glucose biscuits",
         "biscuits",
         "food"
       ],
-      "demo_note": "invalid GTIN check digit"
+      "demo_note": "invalid GTIN check digit",
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/106/316/2914/front_en.3.400.jpg"
     },
     {
       "gtin": "8901063092853",
@@ -294,13 +304,14 @@
       "pack_size": "30.2 g",
       "variant": "Cashew",
       "price": "10.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/106/309/2853/front_en.4.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793799991/seed-8901063092853.jpg",
       "description": "Good Day cashew cookie by Britannia, 30.2 g pack. Listed under cookies.",
       "tags": [
         "cookies",
         "biscuits",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/106/309/2853/front_en.4.400.jpg"
     },
     {
       "gtin": "8901063029255",
@@ -310,13 +321,14 @@
       "pack_size": "57 g",
       "variant": "",
       "price": "15.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/106/302/9255/front_en.9.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793799992/seed-8901063029255.jpg",
       "description": "Jimjam by Britannia, 57 g pack. Listed under cream biscuits.",
       "tags": [
         "cream biscuits",
         "biscuits",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/106/302/9255/front_en.9.400.jpg"
     },
     {
       "gtin": "8901063023901",
@@ -326,13 +338,14 @@
       "pack_size": "",
       "variant": "",
       "price": "10.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/106/302/3901/front_en.6.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800004/seed-8901063023901.jpg",
       "description": "Marie Gold by Britannia. Listed under glucose biscuits.",
       "tags": [
         "glucose biscuits",
         "biscuits",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/106/302/3901/front_en.6.400.jpg"
     },
     {
       "gtin": "8901063162532",
@@ -342,13 +355,14 @@
       "pack_size": "33 g",
       "variant": "",
       "price": "5.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/106/316/2532/front_en.5.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800005/seed-8901063162532.jpg",
       "description": "Marie gold by Britannia, 33 g pack. Listed under glucose biscuits.",
       "tags": [
         "glucose biscuits",
         "biscuits",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/106/316/2532/front_en.5.400.jpg"
     },
     {
       "gtin": "8901725015275",
@@ -358,13 +372,14 @@
       "pack_size": "69 g",
       "variant": "",
       "price": "20.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/172/501/5275/front_en.51.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800005/seed-8901725015275.jpg",
       "description": "Dark Fantasy Choco fills by Sunfeast, 69 g pack. Listed under cookies.",
       "tags": [
         "cookies",
         "biscuits",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/172/501/5275/front_en.51.400.jpg"
     },
     {
       "gtin": "8901725016296",
@@ -374,13 +389,14 @@
       "pack_size": "108 g",
       "variant": "",
       "price": "30.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/172/501/6296/front_en.20.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800012/seed-8901725016296.jpg",
       "description": "Dark Fantasy Bourbon Biscuit by Sunfeast, 108 g pack. Listed under cream biscuits.",
       "tags": [
         "cream biscuits",
         "biscuits",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/172/501/6296/front_en.20.400.jpg"
     },
     {
       "gtin": "8909081005251",
@@ -390,13 +406,14 @@
       "pack_size": "72.6 g",
       "variant": "",
       "price": "15.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/908/100/5251/front_en.16.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800012/seed-8909081005251.jpg",
       "description": "Yippee Noodles by Sunfeast, 72.6 g pack. Listed under instant noodles.",
       "tags": [
         "instant noodles",
         "instant food",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/908/100/5251/front_en.16.400.jpg"
     },
     {
       "gtin": "8909081005046",
@@ -406,13 +423,14 @@
       "pack_size": "",
       "variant": "",
       "price": "30.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/908/100/5046/front_en.14.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800013/seed-8909081005046.jpg",
       "description": "Dark Fantasy Choco Fills by Sunfeast. Listed under cookies.",
       "tags": [
         "cookies",
         "biscuits",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/908/100/5046/front_en.14.400.jpg"
     },
     {
       "gtin": "8901725000622",
@@ -422,13 +440,14 @@
       "pack_size": "",
       "variant": "",
       "price": "30.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/172/500/0622/front_en.3.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800013/seed-8901725000622.jpg",
       "description": "sunfeast Mom by Sunfeast. Listed under cookies.",
       "tags": [
         "cookies",
         "biscuits",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/172/500/0622/front_en.3.400.jpg"
     },
     {
       "gtin": "8901725018016",
@@ -438,13 +457,14 @@
       "pack_size": "",
       "variant": "",
       "price": "20.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/172/501/8016/front_en.8.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800016/seed-8901725018016.jpg",
       "description": "Yippee noodles by Sunfeast. Listed under instant noodles.",
       "tags": [
         "instant noodles",
         "instant food",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/172/501/8016/front_en.8.400.jpg"
     },
     {
       "gtin": "8901725104641",
@@ -454,13 +474,14 @@
       "pack_size": "584 g",
       "variant": "Cashew",
       "price": "175.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/172/510/4641/front_en.6.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800016/seed-8901725104641.jpg",
       "description": "Sunfeast moms magic cashew almond by Sunfeast, 584 g pack. Listed under cookies.",
       "tags": [
         "cookies",
         "biscuits",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/172/510/4641/front_en.6.400.jpg"
     },
     {
       "gtin": "8902579002039",
@@ -470,12 +491,13 @@
       "pack_size": "250 ml",
       "variant": "",
       "price": "20.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/257/900/2039/front_en.3.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800017/seed-8902579002039.jpg",
       "description": "Appy Fizz by Parle Agro, 250 ml pack. Listed under soft drinks.",
       "tags": [
         "soft drinks",
         "beverages"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/257/900/2039/front_en.3.400.jpg"
     },
     {
       "gtin": "8902579002299",
@@ -485,13 +507,14 @@
       "pack_size": "80 ml",
       "variant": "Chocolate",
       "price": "10.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/257/900/2299/front_en.14.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800017/seed-8902579002299.jpg",
       "description": "Smoodh chocolate by Parle Agro, 80 ml pack. Listed under milk & milk drinks.",
       "tags": [
         "milk drinks",
         "dairy",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/257/900/2299/front_en.14.400.jpg"
     },
     {
       "gtin": "8902579103170",
@@ -501,12 +524,13 @@
       "pack_size": "600 ml",
       "variant": "",
       "price": "60.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/257/910/3170/front_en.69.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800017/seed-8902579103170.jpg",
       "description": "Frooti by Parle Agro, 600 ml pack. Listed under juices & fruit drinks.",
       "tags": [
         "juices",
         "beverages"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/257/910/3170/front_en.69.400.jpg"
     },
     {
       "gtin": "8902579003456",
@@ -516,13 +540,14 @@
       "pack_size": "180 ml",
       "variant": "",
       "price": "20.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/257/900/3456/front_en.3.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800018/seed-8902579003456.jpg",
       "description": "Smoodh Chaas by Parle Agro, 180 ml pack. Listed under milk & milk drinks.",
       "tags": [
         "milk drinks",
         "dairy",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/257/900/3456/front_en.3.400.jpg"
     },
     {
       "gtin": "8902579002053",
@@ -532,12 +557,13 @@
       "pack_size": "",
       "variant": "",
       "price": "10.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/257/900/2053/front_en.3.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800023/seed-8902579002053.jpg",
       "description": "Appy fizz by Parle Agro. Listed under soft drinks.",
       "tags": [
         "soft drinks",
         "beverages"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/257/900/2053/front_en.3.400.jpg"
     },
     {
       "gtin": "8902579002046",
@@ -547,12 +573,13 @@
       "pack_size": "600 ml",
       "variant": "",
       "price": "50.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/257/900/2046/front_en.12.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800023/seed-8902579002046.jpg",
       "description": "Appy fizz by Parle Agro, 600 ml pack. Listed under soft drinks.",
       "tags": [
         "soft drinks",
         "beverages"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/257/900/2046/front_en.12.400.jpg"
     },
     {
       "gtin": "8902579130015",
@@ -562,12 +589,13 @@
       "pack_size": "",
       "variant": "",
       "price": "10.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/257/913/0015/front_en.6.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800024/seed-8902579130015.jpg",
       "description": "Appy Juice Packet by Parle Agro. Listed under juices & fruit drinks.",
       "tags": [
         "juices",
         "beverages"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/257/913/0015/front_en.6.400.jpg"
     },
     {
       "gtin": "8904004400731",
@@ -577,13 +605,14 @@
       "pack_size": "200 g",
       "variant": "",
       "price": "55.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/400/440/0731/front_en.28.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800024/seed-8904004400731.jpg",
       "description": "Aloo Bhujia Sev by Haldiram's, 200 g pack. Listed under namkeen.",
       "tags": [
         "namkeen",
         "snacks",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/400/440/0731/front_en.28.400.jpg"
     },
     {
       "gtin": "8904004400236",
@@ -593,13 +622,14 @@
       "pack_size": "22 g",
       "variant": "",
       "price": "5.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/400/440/0236/front_en.14.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800024/seed-8904004400236.jpg",
       "description": "Haldiram's Soya sticks by Haldiram's, 22 g pack. Listed under namkeen.",
       "tags": [
         "namkeen",
         "snacks",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/400/440/0236/front_en.14.400.jpg"
     },
     {
       "gtin": "8904004403718",
@@ -609,13 +639,14 @@
       "pack_size": "",
       "variant": "",
       "price": "30.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/400/440/3718/front_en.4.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800042/seed-8904004403718.jpg",
       "description": "Moong Dal by Haldiram's. Listed under namkeen.",
       "tags": [
         "namkeen",
         "snacks",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/400/440/3718/front_en.4.400.jpg"
     },
     {
       "gtin": "8904004403732",
@@ -625,13 +656,14 @@
       "pack_size": "200 g",
       "variant": "",
       "price": "55.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/400/440/3732/front_en.8.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800051/seed-8904004403732.jpg",
       "description": "Haldiram moong dal by Haldiram's, 200 g pack. Listed under namkeen.",
       "tags": [
         "namkeen",
         "snacks",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/400/440/3732/front_en.8.400.jpg"
     },
     {
       "gtin": "8904004402261",
@@ -641,13 +673,14 @@
       "pack_size": "45 g",
       "variant": "",
       "price": "15.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/400/440/2261/front_en.3.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800042/seed-8904004402261.jpg",
       "description": "Phalhari Chiwda by Haldiram's, 45 g pack. Listed under namkeen.",
       "tags": [
         "namkeen",
         "snacks",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/400/440/2261/front_en.3.400.jpg"
     },
     {
       "gtin": "8904004403725",
@@ -657,13 +690,14 @@
       "pack_size": "35 g",
       "variant": "",
       "price": "10.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/400/440/3725/front_en.20.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800035/seed-8904004403725.jpg",
       "description": "Moong Dal by Haldiram's, 35 g pack. Listed under namkeen.",
       "tags": [
         "namkeen",
         "snacks",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/400/440/3725/front_en.20.400.jpg"
     },
     {
       "gtin": "8904004400779",
@@ -673,13 +707,14 @@
       "pack_size": "",
       "variant": "",
       "price": "30.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/400/440/0779/front_fr.9.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800052/seed-8904004400779.jpg",
       "description": "Haldiram's Aloo Bhujia by Haldiram's. Listed under namkeen.",
       "tags": [
         "namkeen",
         "snacks",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/400/440/0779/front_fr.9.400.jpg"
     },
     {
       "gtin": "8906005508904",
@@ -689,13 +724,14 @@
       "pack_size": "110 g",
       "variant": "",
       "price": "30.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/600/550/8904/front_en.3.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800052/seed-8906005508904.jpg",
       "description": "Bikaji mobile bhel chowpati bhelpuri by Bikaji, 110 g pack. Listed under namkeen.",
       "tags": [
         "namkeen",
         "snacks",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/600/550/8904/front_en.3.400.jpg"
     },
     {
       "gtin": "8906005505040",
@@ -705,13 +741,14 @@
       "pack_size": "",
       "variant": "",
       "price": "30.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/600/550/5040/front_fr.3.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800042/seed-8906005505040.jpg",
       "description": "Soya sticks by Bikaji. Listed under namkeen.",
       "tags": [
         "namkeen",
         "snacks",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/600/550/5040/front_fr.3.400.jpg"
     },
     {
       "gtin": "8906005500090",
@@ -721,13 +758,14 @@
       "pack_size": "1 kg",
       "variant": "",
       "price": "280.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/600/550/0090/front_en.4.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800050/seed-8906005500090.jpg",
       "description": "Bikaneri Bhujia by Bikaji, 1 kg pack. Listed under namkeen.",
       "tags": [
         "namkeen",
         "snacks",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/600/550/0090/front_en.4.400.jpg"
     },
     {
       "gtin": "8906005500366",
@@ -737,13 +775,14 @@
       "pack_size": "",
       "variant": "",
       "price": "30.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/600/550/0366/front_en.3.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800050/seed-8906005500366.jpg",
       "description": "Bikaji aloo bujia by Bikaji. Listed under namkeen.",
       "tags": [
         "namkeen",
         "snacks",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/600/550/0366/front_en.3.400.jpg"
     },
     {
       "gtin": "8906005504258",
@@ -753,13 +792,14 @@
       "pack_size": "",
       "variant": "",
       "price": "30.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/600/550/4258/front_en.3.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800050/seed-8906005504258.jpg",
       "description": "Bikaji Kaju Kismis Mix by Bikaji. Listed under namkeen.",
       "tags": [
         "namkeen",
         "snacks",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/600/550/4258/front_en.3.400.jpg"
     },
     {
       "gtin": "8906005506948",
@@ -769,13 +809,14 @@
       "pack_size": "",
       "variant": "Cream & Onion",
       "price": "45.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/600/550/6948/front_en.3.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800057/seed-8906005506948.jpg",
       "description": "bikaji Chips cream and onion by Bikaji. Listed under chips & crisps.",
       "tags": [
         "chips crisps",
         "snacks",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/600/550/6948/front_en.3.400.jpg"
     },
     {
       "gtin": "8906005504395",
@@ -785,13 +826,14 @@
       "pack_size": "1 kg",
       "variant": "",
       "price": "280.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/600/550/4395/front_en.5.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800057/seed-8906005504395.jpg",
       "description": "Tana-bana by Bikaji, 1 kg pack. Listed under namkeen.",
       "tags": [
         "namkeen",
         "snacks",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/600/550/4395/front_en.5.400.jpg"
     },
     {
       "gtin": "8901491366052",
@@ -801,13 +843,14 @@
       "pack_size": "58 g",
       "variant": "",
       "price": "25.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/149/136/6052/front_en.32.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800058/seed-8901491366052.jpg",
       "description": "Puffcorn by Kurkure, 58 g pack. Listed under chips & crisps.",
       "tags": [
         "chips crisps",
         "snacks",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/149/136/6052/front_en.32.400.jpg"
     },
     {
       "gtin": "8901491361026",
@@ -817,13 +860,14 @@
       "pack_size": "41.5 g",
       "variant": "Masala",
       "price": "20.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/149/136/1026/front_en.51.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800058/seed-8901491361026.jpg",
       "description": "Kurkure Masala Munch by Kurkure, 41.5 g pack. Listed under chips & crisps.",
       "tags": [
         "chips crisps",
         "snacks",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/149/136/1026/front_en.51.400.jpg"
     },
     {
       "gtin": "8901491001168",
@@ -833,13 +877,14 @@
       "pack_size": "",
       "variant": "Masala",
       "price": "45.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/149/100/1168/front_fr.3.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800058/seed-8901491001168.jpg",
       "description": "Masala munch by Kurkure. Listed under chips & crisps.",
       "tags": [
         "chips crisps",
         "snacks",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/149/100/1168/front_fr.3.400.jpg"
     },
     {
       "gtin": "8901491103084",
@@ -849,13 +894,14 @@
       "pack_size": "75 g",
       "variant": "",
       "price": "35.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/149/110/3084/front_es.3.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800058/seed-8901491103084.jpg",
       "description": "Green chutney style by Kurkure, 75 g pack. Listed under chips & crisps.",
       "tags": [
         "chips crisps",
         "snacks",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/149/110/3084/front_es.3.400.jpg"
     },
     {
       "gtin": "8901491100533",
@@ -865,13 +911,14 @@
       "pack_size": "",
       "variant": "Chilli",
       "price": "45.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/149/110/0533/front_en.35.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800067/seed-8901491100533.jpg",
       "description": "Chilli Chatka by Kurkure. Listed under chips & crisps.",
       "tags": [
         "chips crisps",
         "snacks",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/149/110/0533/front_en.35.400.jpg"
     },
     {
       "gtin": "8901491365703",
@@ -881,13 +928,14 @@
       "pack_size": "31.2 g",
       "variant": "",
       "price": "15.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/149/136/5703/front_en.36.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800079/seed-8901491365703.jpg",
       "description": "Puffcorn by Kurkure, 31.2 g pack. Listed under chips & crisps.",
       "tags": [
         "chips crisps",
         "snacks",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/149/136/5703/front_en.36.400.jpg"
     },
     {
       "gtin": "8901491380010",
@@ -897,13 +945,14 @@
       "pack_size": "",
       "variant": "Masala",
       "price": "45.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/149/138/0010/front_en.12.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800087/seed-8901491380010.jpg",
       "description": "Solid Masti Masala by Kurkure. Listed under chips & crisps.",
       "tags": [
         "chips crisps",
         "snacks",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/149/138/0010/front_en.12.400.jpg"
     },
     {
       "gtin": "8901491101844",
@@ -913,13 +962,14 @@
       "pack_size": "50 g",
       "variant": "",
       "price": "20.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/149/110/1844/front_en.32.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800070/seed-8901491101844.jpg",
       "description": "Lay's Potato Chips by Lay's, 50 g pack. Listed under chips & crisps.",
       "tags": [
         "chips crisps",
         "snacks",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/149/110/1844/front_en.32.400.jpg"
     },
     {
       "gtin": "8901491503051",
@@ -929,13 +979,14 @@
       "pack_size": "25 g",
       "variant": "Chilli",
       "price": "10.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/149/150/3051/front_en.27.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800086/seed-8901491503051.jpg",
       "description": "West Indies' Hot 'n' Sweet Chilli flavor by Lay's, 25 g pack. Listed under chips & crisps.",
       "tags": [
         "chips crisps",
         "snacks",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/149/150/3051/front_en.27.400.jpg"
     },
     {
       "gtin": "8901491503020",
@@ -945,13 +996,14 @@
       "pack_size": "26.5 g",
       "variant": "Magic Masala",
       "price": "10.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/149/150/3020/front_en.35.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800087/seed-8901491503020.jpg",
       "description": "Lays India's Magic Masala by Lay's, 26.5 g pack. Listed under chips & crisps.",
       "tags": [
         "chips crisps",
         "snacks",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/149/150/3020/front_en.35.400.jpg"
     },
     {
       "gtin": "8901491000789",
@@ -961,13 +1013,14 @@
       "pack_size": "90 g",
       "variant": "Magic Masala",
       "price": "40.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/149/100/0789/front_en.30.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800095/seed-8901491000789.jpg",
       "description": "Lays India's magic masala by Lay's, 90 g pack. Listed under chips & crisps.",
       "tags": [
         "chips crisps",
         "snacks",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/149/100/0789/front_en.30.400.jpg"
     },
     {
       "gtin": "8901491502030",
@@ -977,13 +1030,14 @@
       "pack_size": "12.3 g",
       "variant": "Cream & Onion",
       "price": "5.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/149/150/2030/front_en.19.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800081/seed-8901491502030.jpg",
       "description": "Lay's American Style Cream & Onion Flavour by Lay's, 12.3 g pack. Listed under chips & crisps.",
       "tags": [
         "chips crisps",
         "snacks",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/149/150/2030/front_en.19.400.jpg"
     },
     {
       "gtin": "8901491000772",
@@ -993,13 +1047,14 @@
       "pack_size": "82 g",
       "variant": "",
       "price": "35.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/149/100/0772/front_en.33.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800089/seed-8901491000772.jpg",
       "description": "Lays american onion by Lay's, 82 g pack. Listed under chips & crisps.",
       "tags": [
         "chips crisps",
         "snacks",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/149/100/0772/front_en.33.400.jpg"
     },
     {
       "gtin": "8901491101820",
@@ -1009,13 +1064,14 @@
       "pack_size": "50 g",
       "variant": "",
       "price": "20.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/149/110/1820/front_en.37.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800091/seed-8901491101820.jpg",
       "description": "Lays by Lay's, 50 g pack. Listed under chips & crisps.",
       "tags": [
         "chips crisps",
         "snacks",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/149/110/1820/front_en.37.400.jpg"
     },
     {
       "gtin": "8901725118938",
@@ -1025,13 +1081,14 @@
       "pack_size": "19.2 g",
       "variant": "",
       "price": "10.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/172/511/8938/front_en.29.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800094/seed-8901725118938.jpg",
       "description": "Bingo Tedhe Medhe by Bingo, 19.2 g pack. Listed under chips & crisps.",
       "tags": [
         "chips crisps",
         "snacks",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/172/511/8938/front_en.29.400.jpg"
     },
     {
       "gtin": "8901725118921",
@@ -1041,13 +1098,14 @@
       "pack_size": "",
       "variant": "",
       "price": "45.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/172/511/8921/front_en.7.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800095/seed-8901725118921.jpg",
       "description": "Tedha Medha by Bingo. Listed under chips & crisps.",
       "tags": [
         "chips crisps",
         "snacks",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/172/511/8921/front_en.7.400.jpg"
     },
     {
       "gtin": "8901725013691",
@@ -1057,13 +1115,14 @@
       "pack_size": "200 g",
       "variant": "",
       "price": "90.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/172/501/3691/front_en.5.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800095/seed-8901725013691.jpg",
       "description": "Bingo mad snack by Bingo, 200 g pack. Listed under chips & crisps.",
       "tags": [
         "chips crisps",
         "snacks",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/172/501/3691/front_en.5.400.jpg"
     },
     {
       "gtin": "8901725013684",
@@ -1073,13 +1132,14 @@
       "pack_size": "58 g",
       "variant": "Achaari",
       "price": "25.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/172/501/3684/front_en.24.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800097/seed-8901725013684.jpg",
       "description": "Bingo! Mad Angles Achaari Masti by Bingo, 58 g pack. Listed under chips & crisps.",
       "tags": [
         "chips crisps",
         "snacks",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/172/501/3684/front_en.24.400.jpg"
     },
     {
       "gtin": "8909081003776",
@@ -1089,13 +1149,14 @@
       "pack_size": "",
       "variant": "Masala",
       "price": "45.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/908/100/3776/front_en.3.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800096/seed-8909081003776.jpg",
       "description": "Tedhe Medhe Masala Tadka by Bingo. Listed under chips & crisps.",
       "tags": [
         "chips crisps",
         "snacks",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/908/100/3776/front_en.3.400.jpg"
     },
     {
       "gtin": "8901725117504",
@@ -1105,13 +1166,14 @@
       "pack_size": "",
       "variant": "Masala",
       "price": "45.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/172/511/7504/front_en.5.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800102/seed-8901725117504.jpg",
       "description": "No Rulz Curlz masala by Bingo. Listed under chips & crisps.",
       "tags": [
         "chips crisps",
         "snacks",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/172/511/7504/front_en.5.400.jpg"
     },
     {
       "gtin": "8901725007096",
@@ -1121,13 +1183,14 @@
       "pack_size": "21.4 g",
       "variant": "Salted",
       "price": "10.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/172/500/7096/front_en.9.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800115/seed-8901725007096.jpg",
       "description": "Potato Chips Salted by Bingo, 21.4 g pack. Listed under chips & crisps.",
       "tags": [
         "chips crisps",
         "snacks",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/172/500/7096/front_en.9.400.jpg"
     },
     {
       "gtin": "89080153",
@@ -1137,13 +1200,14 @@
       "pack_size": "6 g",
       "variant": "Masala",
       "price": "5.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/000/008/908/0153/front_en.8.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800102/seed-89080153.jpg",
       "description": "Maggi masala magic by Maggi, 6 g pack. Listed under instant noodles.",
       "tags": [
         "instant noodles",
         "instant food",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/000/008/908/0153/front_en.8.400.jpg"
     },
     {
       "gtin": "8901058000306",
@@ -1153,13 +1217,14 @@
       "pack_size": "560 g",
       "variant": "Masala",
       "price": "110.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/105/800/0306/front_en.10.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800102/seed-8901058000306.jpg",
       "description": "Maggi Masala Noodles by Maggi, 560 g pack. Listed under instant noodles.",
       "tags": [
         "instant noodles",
         "instant food",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/105/800/0306/front_en.10.400.jpg"
     },
     {
       "gtin": "8901058023787",
@@ -1169,13 +1234,14 @@
       "pack_size": "140 g",
       "variant": "Masala",
       "price": "30.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/105/802/3787/front_en.6.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800123/seed-8901058023787.jpg",
       "description": "2-Minute Noodles Masala Taste by Maggi, 140 g pack. Listed under instant noodles.",
       "tags": [
         "instant noodles",
         "instant food",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/105/802/3787/front_en.6.400.jpg"
     },
     {
       "gtin": "8901058023800",
@@ -1185,13 +1251,14 @@
       "pack_size": "",
       "variant": "Masala",
       "price": "20.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/105/802/3800/front_en.3.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800124/seed-8901058023800.jpg",
       "description": "Maggi 2-minute noodles Masala by Maggi. Listed under instant noodles.",
       "tags": [
         "instant noodles",
         "instant food",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/105/802/3800/front_en.3.400.jpg"
     },
     {
       "gtin": "8901058009729",
@@ -1201,13 +1268,14 @@
       "pack_size": "72.5 g",
       "variant": "Masala",
       "price": "15.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/105/800/9729/front_en.19.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800130/seed-8901058009729.jpg",
       "description": "Masala Veg Atta Noodles by Maggi, 72.5 g pack. Listed under instant noodles.",
       "tags": [
         "instant noodles",
         "instant food",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/105/800/9729/front_en.19.400.jpg"
     },
     {
       "gtin": "8901058003000",
@@ -1217,13 +1285,14 @@
       "pack_size": "75 g",
       "variant": "Cheese",
       "price": "15.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/105/800/3000/front_en.13.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800131/seed-8901058003000.jpg",
       "description": "Pazzta Cheese Macaroni by Maggi, 75 g pack. Listed under instant noodles.",
       "tags": [
         "instant noodles",
         "instant food",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/105/800/3000/front_en.13.400.jpg"
     },
     {
       "gtin": "19010588",
@@ -1233,13 +1302,14 @@
       "pack_size": "71 g",
       "variant": "Chicken",
       "price": "15.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/000/001/901/0588/front_en.15.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800130/seed-19010588.jpg",
       "description": "Chicken noodles by Maggi, 71 g pack. Listed under instant noodles.",
       "tags": [
         "instant noodles",
         "instant food",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/000/001/901/0588/front_en.15.400.jpg"
     },
     {
       "gtin": "7622202225512",
@@ -1249,13 +1319,14 @@
       "pack_size": "41.75 g",
       "variant": "Original",
       "price": "15.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/762/220/222/5512/front_en.28.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800121/seed-7622202225512.jpg",
       "description": "Original Oreo by Cadbury, 41.75 g pack. Listed under cream biscuits.",
       "tags": [
         "cream biscuits",
         "biscuits",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/762/220/222/5512/front_en.28.400.jpg"
     },
     {
       "gtin": "7622202334009",
@@ -1265,12 +1336,13 @@
       "pack_size": "11 g",
       "variant": "",
       "price": "10.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/762/220/233/4009/front_en.9.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800129/seed-7622202334009.jpg",
       "description": "Dairy Milk by Cadbury, 11 g pack. Listed under chocolates.",
       "tags": [
         "chocolates",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/762/220/233/4009/front_en.9.400.jpg"
     },
     {
       "gtin": "7622202216695",
@@ -1280,12 +1352,13 @@
       "pack_size": "7.11 g",
       "variant": "",
       "price": "5.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/762/220/221/6695/front_en.3.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800131/seed-7622202216695.jpg",
       "description": "Gems by Cadbury, 7.11 g pack. Listed under chocolates.",
       "tags": [
         "chocolates",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/762/220/221/6695/front_en.3.400.jpg"
     },
     {
       "gtin": "7622202326172",
@@ -1295,12 +1368,13 @@
       "pack_size": "52 g",
       "variant": "Roast Almond",
       "price": "50.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/762/220/232/6172/front_en.3.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800131/seed-7622202326172.jpg",
       "description": "Cadbury Dairy Milk Silk Roast Almond by Cadbury, 52 g pack. Listed under chocolates.",
       "tags": [
         "chocolates",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/762/220/232/6172/front_en.3.400.jpg"
     },
     {
       "gtin": "7622202326202",
@@ -1310,12 +1384,13 @@
       "pack_size": "129 g",
       "variant": "Fruit & Nut",
       "price": "130.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/762/220/232/6202/front_en.28.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800136/seed-7622202326202.jpg",
       "description": "Dairy Milk Silk Fruit and Nut Chocolate Bar by Cadbury, 129 g pack. Listed under chocolates.",
       "tags": [
         "chocolates",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/762/220/232/6202/front_en.28.400.jpg"
     },
     {
       "gtin": "7622202031618",
@@ -1325,12 +1400,13 @@
       "pack_size": "30 g",
       "variant": "",
       "price": "30.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/762/220/203/1618/front_en.3.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800139/seed-7622202031618.jpg",
       "description": "Nutties by Cadbury, 30 g pack. Listed under chocolates.",
       "tags": [
         "chocolates",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/762/220/203/1618/front_en.3.400.jpg"
     },
     {
       "gtin": "7622202318047",
@@ -1340,12 +1416,13 @@
       "pack_size": "33 g",
       "variant": "",
       "price": "35.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/762/220/231/8047/front_en.3.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800139/seed-7622202318047.jpg",
       "description": "Cadbury 5Star by Cadbury, 33 g pack. Listed under chocolates.",
       "tags": [
         "chocolates",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/762/220/231/8047/front_en.3.400.jpg"
     },
     {
       "gtin": "8901262010016",
@@ -1355,13 +1432,14 @@
       "pack_size": "100 g",
       "variant": "",
       "price": "55.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/126/201/0016/front_en.53.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800139/seed-8901262010016.jpg",
       "description": "Amul Pasteurized Butter by Amul, 100 g pack. Listed under butter & cheese.",
       "tags": [
         "butter cheese",
         "dairy",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/126/201/0016/front_en.53.400.jpg"
     },
     {
       "gtin": "8901262200196",
@@ -1371,13 +1449,14 @@
       "pack_size": "200 ml",
       "variant": "",
       "price": "25.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/126/220/0196/front_en.54.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800138/seed-8901262200196.jpg",
       "description": "Amul Masti Spiced Buttermilk by Amul, 200 ml pack. Listed under milk & milk drinks.",
       "tags": [
         "milk drinks",
         "dairy",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/126/220/0196/front_en.54.400.jpg"
     },
     {
       "gtin": "8901262260121",
@@ -1387,13 +1466,14 @@
       "pack_size": "500 ml",
       "variant": "",
       "price": "60.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/126/226/0121/front_en.52.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800138/seed-8901262260121.jpg",
       "description": "Amul Taaza Milky Milk by Amul, 500 ml pack. Listed under milk & milk drinks.",
       "tags": [
         "milk drinks",
         "dairy",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/126/226/0121/front_en.52.400.jpg"
     },
     {
       "gtin": "8901262010320",
@@ -1403,13 +1483,14 @@
       "pack_size": "200 g",
       "variant": "",
       "price": "110.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/126/201/0320/front_en.3.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800146/seed-8901262010320.jpg",
       "description": "Amul Butter by Amul, 200 g pack. Listed under butter & cheese.",
       "tags": [
         "butter cheese",
         "dairy",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/126/201/0320/front_en.3.400.jpg"
     },
     {
       "gtin": "8901262180115",
@@ -1419,13 +1500,14 @@
       "pack_size": "200 g",
       "variant": "",
       "price": "110.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/126/218/0115/front_en.6.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800146/seed-8901262180115.jpg",
       "description": "Malai Paneer Fresh by Amul, 200 g pack. Listed under butter & cheese.",
       "tags": [
         "butter cheese",
         "dairy",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/126/218/0115/front_en.6.400.jpg"
     },
     {
       "gtin": "8901262020039",
@@ -1435,13 +1517,14 @@
       "pack_size": "200 g",
       "variant": "Cheese",
       "price": "110.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/126/202/0039/front_en.40.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800167/seed-8901262020039.jpg",
       "description": "Amul cheese by Amul, 200 g pack. Listed under butter & cheese.",
       "tags": [
         "butter cheese",
         "dairy",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/126/202/0039/front_en.40.400.jpg"
     },
     {
       "gtin": "8901262200189",
@@ -1451,13 +1534,14 @@
       "pack_size": "200 ml",
       "variant": "",
       "price": "25.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/126/220/0189/front_en.26.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800160/seed-8901262200189.jpg",
       "description": "Amul Lassi by Amul, 200 ml pack. Listed under milk & milk drinks.",
       "tags": [
         "milk drinks",
         "dairy",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/126/220/0189/front_en.26.400.jpg"
     },
     {
       "gtin": "8901058005080",
@@ -1467,12 +1551,13 @@
       "pack_size": "38.5 g",
       "variant": "",
       "price": "40.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/105/800/5080/front_en.7.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800153/seed-8901058005080.jpg",
       "description": "Munch Max by Nestlé, 38.5 g pack. Listed under chocolates.",
       "tags": [
         "chocolates",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/105/800/5080/front_en.7.400.jpg"
     },
     {
       "gtin": "8901058015171",
@@ -1482,12 +1567,13 @@
       "pack_size": "",
       "variant": "",
       "price": "100.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/105/801/5171/front_en.12.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800153/seed-8901058015171.jpg",
       "description": "Nestle KitKat by Nestlé. Listed under chocolates.",
       "tags": [
         "chocolates",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/105/801/5171/front_en.12.400.jpg"
     },
     {
       "gtin": "8901058861921",
@@ -1497,12 +1583,13 @@
       "pack_size": "42 g",
       "variant": "",
       "price": "40.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/105/886/1921/front_en.3.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800151/seed-8901058861921.jpg",
       "description": "Milky bar by Nestlé, 42 g pack. Listed under chocolates.",
       "tags": [
         "chocolates",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/105/886/1921/front_en.3.400.jpg"
     },
     {
       "gtin": "8901058903966",
@@ -1512,12 +1599,13 @@
       "pack_size": "38 g",
       "variant": "",
       "price": "40.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/105/890/3966/front_en.6.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800151/seed-8901058903966.jpg",
       "description": "Milkybar Moosha by Nestlé, 38 g pack. Listed under chocolates.",
       "tags": [
         "chocolates",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/105/890/3966/front_en.6.400.jpg"
     },
     {
       "gtin": "8901058022445",
@@ -1527,12 +1615,13 @@
       "pack_size": "",
       "variant": "",
       "price": "100.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/105/802/2445/front_en.8.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800160/seed-8901058022445.jpg",
       "description": "KitKat Minis by Nestlé. Listed under chocolates.",
       "tags": [
         "chocolates",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/105/802/2445/front_en.8.400.jpg"
     },
     {
       "gtin": "8901058852141",
@@ -1542,12 +1631,13 @@
       "pack_size": "50 g",
       "variant": "Caramel",
       "price": "50.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/105/885/2141/front_en.29.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800160/seed-8901058852141.jpg",
       "description": "Kitkat Delights Caramel by Nestlé, 50 g pack. Listed under chocolates.",
       "tags": [
         "chocolates",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/105/885/2141/front_en.29.400.jpg"
     },
     {
       "gtin": "8901058014341",
@@ -1557,12 +1647,13 @@
       "pack_size": "50 g",
       "variant": "",
       "price": "50.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/105/801/4341/front_en.7.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800161/seed-8901058014341.jpg",
       "description": "KitKat Delights dark by Nestlé, 50 g pack. Listed under chocolates.",
       "tags": [
         "chocolates",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/105/801/4341/front_en.7.400.jpg"
     },
     {
       "gtin": "8901052005062",
@@ -1572,12 +1663,13 @@
       "pack_size": "",
       "variant": "",
       "price": "55.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/105/200/5062/front_en.3.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800160/seed-8901052005062.jpg",
       "description": "Tata Tea Agni by Tata Tea. Listed under tea.",
       "tags": [
         "tea",
         "beverages"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/105/200/5062/front_en.3.400.jpg"
     },
     {
       "gtin": "8901052008193",
@@ -1587,12 +1679,13 @@
       "pack_size": "1.5 kg",
       "variant": "",
       "price": "825.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/105/200/8193/front_en.3.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800168/seed-8901052008193.jpg",
       "description": "Tata Tea Agni by Tata Tea, 1.5 kg pack. Listed under tea.",
       "tags": [
         "tea",
         "beverages"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/105/200/8193/front_en.3.400.jpg"
     },
     {
       "gtin": "8901052010615",
@@ -1602,12 +1695,13 @@
       "pack_size": "1 kg",
       "variant": "",
       "price": "550.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/105/201/0615/front_en.18.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800168/seed-8901052010615.jpg",
       "description": "Premium by Tata Tea, 1 kg pack. Listed under tea.",
       "tags": [
         "tea",
         "beverages"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/105/201/0615/front_en.18.400.jpg"
     },
     {
       "gtin": "8901052000906",
@@ -1617,12 +1711,13 @@
       "pack_size": "500 g",
       "variant": "",
       "price": "275.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/105/200/0906/front_en.3.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800168/seed-8901052000906.jpg",
       "description": "Tata tea Gold by Tata Tea, 500 g pack. Listed under tea.",
       "tags": [
         "tea",
         "beverages"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/105/200/0906/front_en.3.400.jpg"
     },
     {
       "gtin": "8901052020706",
@@ -1632,12 +1727,13 @@
       "pack_size": "6 g",
       "variant": "",
       "price": "5.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/105/202/0706/front_en.4.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800168/seed-8901052020706.jpg",
       "description": "Chakra Gold by Tata Tea, 6 g pack. Listed under tea.",
       "tags": [
         "tea",
         "beverages"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/105/202/0706/front_en.4.400.jpg"
     },
     {
       "gtin": "8901052031504",
@@ -1647,12 +1743,13 @@
       "pack_size": "500 g",
       "variant": "",
       "price": "275.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/105/203/1504/front_en.3.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800169/seed-8901052031504.jpg",
       "description": "Kanan Devan Strong by Tata Tea, 500 g pack. Listed under tea.",
       "tags": [
         "tea",
         "beverages"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/105/203/1504/front_en.3.400.jpg"
     },
     {
       "gtin": "8901052000913",
@@ -1662,12 +1759,13 @@
       "pack_size": "1 kg",
       "variant": "",
       "price": "550.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/105/200/0913/front_en.5.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800175/seed-8901052000913.jpg",
       "description": "Gold Tata tea by Tata Tea, 1 kg pack. Listed under tea.",
       "tags": [
         "tea",
         "beverages"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/105/200/0913/front_en.5.400.jpg"
     },
     {
       "gtin": "8901030882548",
@@ -1677,12 +1775,13 @@
       "pack_size": "100 g",
       "variant": "",
       "price": "55.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/103/088/2548/front_en.14.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800175/seed-8901030882548.jpg",
       "description": "Brooke Bond Red Label NaturalCare by Brooke Bond, 100 g pack. Listed under tea.",
       "tags": [
         "tea",
         "beverages"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/103/088/2548/front_en.14.400.jpg"
     },
     {
       "gtin": "8901030877124",
@@ -1692,12 +1791,13 @@
       "pack_size": "",
       "variant": "",
       "price": "55.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/103/087/7124/front_en.3.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800175/seed-8901030877124.jpg",
       "description": "Brooke Bond Red Label by Brooke Bond. Listed under tea.",
       "tags": [
         "tea",
         "beverages"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/103/087/7124/front_en.3.400.jpg"
     },
     {
       "gtin": "8909106010062",
@@ -1707,12 +1807,13 @@
       "pack_size": "",
       "variant": "Masala",
       "price": "55.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/910/601/0062/front_en.7.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800175/seed-8909106010062.jpg",
       "description": "Brooke Bond Red Label Masala Tea Premix by Brooke Bond. Listed under tea.",
       "tags": [
         "tea",
         "beverages"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/910/601/0062/front_en.7.400.jpg"
     },
     {
       "gtin": "8901030893599",
@@ -1722,12 +1823,13 @@
       "pack_size": "",
       "variant": "",
       "price": "55.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/103/089/3599/front_en.5.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800175/seed-8901030893599.jpg",
       "description": "Red Label by Brooke Bond. Listed under tea.",
       "tags": [
         "tea",
         "beverages"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/103/089/3599/front_en.5.400.jpg"
     },
     {
       "gtin": "8901030674570",
@@ -1737,12 +1839,13 @@
       "pack_size": "250 g",
       "variant": "Natural Care",
       "price": "140.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/103/067/4570/front_en.10.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800176/seed-8901030674570.jpg",
       "description": "Brooke Bond Red Label Natural Care Flavoured Tea by Brooke Bond, 250 g pack. Listed under tea.",
       "tags": [
         "tea",
         "beverages"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/103/067/4570/front_en.10.400.jpg"
     },
     {
       "gtin": "8909106014565",
@@ -1752,12 +1855,13 @@
       "pack_size": "575 g",
       "variant": "Natural Care",
       "price": "315.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/910/601/4565/front_en.7.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800182/seed-8909106014565.jpg",
       "description": "Red label natural care by Brooke Bond, 575 g pack. Listed under tea.",
       "tags": [
         "tea",
         "beverages"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/910/601/4565/front_en.7.400.jpg"
     },
     {
       "gtin": "9908060337108",
@@ -1767,12 +1871,13 @@
       "pack_size": "1 kg",
       "variant": "",
       "price": "550.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/990/806/033/7108/front_en.3.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800183/seed-9908060337108.jpg",
       "description": "Red label by Brooke Bond, 1 kg pack. Listed under tea.",
       "tags": [
         "tea",
         "beverages"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/990/806/033/7108/front_en.3.400.jpg"
     },
     {
       "gtin": "8901030535895",
@@ -1782,12 +1887,13 @@
       "pack_size": "1.2 g",
       "variant": "",
       "price": "5.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/103/053/5895/front_en.3.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800183/seed-8901030535895.jpg",
       "description": "Bru Instant Coffee by Bru, 1.2 g pack. Listed under coffee.",
       "tags": [
         "coffee",
         "beverages"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/103/053/5895/front_en.3.400.jpg"
     },
     {
       "gtin": "8901030935213",
@@ -1797,12 +1903,13 @@
       "pack_size": "50 g",
       "variant": "",
       "price": "120.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/103/093/5213/front_en.3.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800187/seed-8901030935213.jpg",
       "description": "Coffee by Bru, 50 g pack. Listed under coffee.",
       "tags": [
         "coffee",
         "beverages"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/103/093/5213/front_en.3.400.jpg"
     },
     {
       "gtin": "8901030974625",
@@ -1812,12 +1919,13 @@
       "pack_size": "",
       "variant": "",
       "price": "240.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/103/097/4625/front_en.3.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800197/seed-8901030974625.jpg",
       "description": "Instant Coffee by Bru. Listed under coffee.",
       "tags": [
         "coffee",
         "beverages"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/103/097/4625/front_en.3.400.jpg"
     },
     {
       "gtin": "8909106013919",
@@ -1827,12 +1935,13 @@
       "pack_size": "6 g",
       "variant": "",
       "price": "15.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/910/601/3919/front_en.7.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800181/seed-8909106013919.jpg",
       "description": "Bru Instant Coffee by Bru, 6 g pack. Listed under coffee.",
       "tags": [
         "coffee",
         "beverages"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/910/601/3919/front_en.7.400.jpg"
     },
     {
       "gtin": "8909106009622",
@@ -1842,12 +1951,13 @@
       "pack_size": "",
       "variant": "",
       "price": "240.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/910/600/9622/front_en.3.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800197/seed-8909106009622.jpg",
       "description": "Bru Instant by Bru. Listed under coffee.",
       "tags": [
         "coffee",
         "beverages"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/910/600/9622/front_en.3.400.jpg"
     },
     {
       "gtin": "8909106066410",
@@ -1857,12 +1967,13 @@
       "pack_size": "7.3 g",
       "variant": "",
       "price": "20.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/910/606/6410/front_en.3.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800205/seed-8909106066410.jpg",
       "description": "Bru Instant Coffee by Bru, 7.3 g pack. Listed under coffee.",
       "tags": [
         "coffee",
         "beverages"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/910/606/6410/front_en.3.400.jpg"
     },
     {
       "gtin": "8901030625381",
@@ -1872,12 +1983,13 @@
       "pack_size": "",
       "variant": "",
       "price": "240.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/103/062/5381/front_en.6.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800190/seed-8901030625381.jpg",
       "description": "Bru Coffee by Bru. Listed under coffee.",
       "tags": [
         "coffee",
         "beverages"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/103/062/5381/front_en.6.400.jpg"
     },
     {
       "gtin": "89009758",
@@ -1887,12 +1999,13 @@
       "pack_size": "24 g",
       "variant": "Classic",
       "price": "60.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/000/008/900/9758/front_en.3.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800197/seed-89009758.jpg",
       "description": "NESCAFE classic by Nescafé, 24 g pack. Listed under coffee.",
       "tags": [
         "coffee",
         "beverages"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/000/008/900/9758/front_en.3.400.jpg"
     },
     {
       "gtin": "89009949",
@@ -1902,12 +2015,13 @@
       "pack_size": "45 g",
       "variant": "Classic",
       "price": "110.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/000/008/900/9949/front_en.4.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800197/seed-89009949.jpg",
       "description": "Nescafe Classic Instant coffee by Nescafé, 45 g pack. Listed under coffee.",
       "tags": [
         "coffee",
         "beverages"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/000/008/900/9949/front_en.4.400.jpg"
     },
     {
       "gtin": "8901058007169",
@@ -1917,12 +2031,13 @@
       "pack_size": "4 g",
       "variant": "Classic",
       "price": "10.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/105/800/7169/front_en.10.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800196/seed-8901058007169.jpg",
       "description": "Nescafe Classic Instant coffee by Nescafé, 4 g pack. Listed under coffee.",
       "tags": [
         "coffee",
         "beverages"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/105/800/7169/front_en.10.400.jpg"
     },
     {
       "gtin": "8901058865660",
@@ -1932,12 +2047,13 @@
       "pack_size": "125 g",
       "variant": "",
       "price": "300.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/105/886/5660/front_en.3.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800203/seed-8901058865660.jpg",
       "description": "Gold Cappuccino by Nescafé, 125 g pack. Listed under coffee.",
       "tags": [
         "coffee",
         "beverages"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/105/886/5660/front_en.3.400.jpg"
     },
     {
       "gtin": "89008669",
@@ -1947,12 +2063,13 @@
       "pack_size": "95 g",
       "variant": "",
       "price": "230.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/000/008/900/8669/front_en.3.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800204/seed-89008669.jpg",
       "description": "Nescafe Gold by Nescafé, 95 g pack. Listed under coffee.",
       "tags": [
         "coffee",
         "beverages"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/000/008/900/8669/front_en.3.400.jpg"
     },
     {
       "gtin": "8901058867015",
@@ -1962,12 +2079,13 @@
       "pack_size": "50 g",
       "variant": "",
       "price": "120.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/105/886/7015/front_en.3.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800205/seed-8901058867015.jpg",
       "description": "Gold Blend Instant Coffee by Nescafé, 50 g pack. Listed under coffee.",
       "tags": [
         "coffee",
         "beverages"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/105/886/7015/front_en.3.400.jpg"
     },
     {
       "gtin": "89080306",
@@ -1977,12 +2095,13 @@
       "pack_size": "1.9 g",
       "variant": "",
       "price": "5.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/000/008/908/0306/front_en.3.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800204/seed-89080306.jpg",
       "description": "Nescafe Sunrise by Nescafé, 1.9 g pack. Listed under coffee.",
       "tags": [
         "coffee",
         "beverages"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/000/008/908/0306/front_en.3.400.jpg"
     },
     {
       "gtin": "8901207025365",
@@ -1992,13 +2111,14 @@
       "pack_size": "",
       "variant": "",
       "price": "50.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/120/702/5365/front_en.14.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800205/seed-8901207025365.jpg",
       "description": "Honey by Dabur. Listed under honey & spreads.",
       "tags": [
         "honey spreads",
         "pantry",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/120/702/5365/front_en.14.400.jpg"
     },
     {
       "gtin": "8901207005527",
@@ -2008,13 +2128,14 @@
       "pack_size": "400 g",
       "variant": "",
       "price": "200.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/120/700/5527/front_en.12.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800210/seed-8901207005527.jpg",
       "description": "Honey Squeezy by Dabur, 400 g pack. Listed under honey & spreads.",
       "tags": [
         "honey spreads",
         "pantry",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/120/700/5527/front_en.12.400.jpg"
     },
     {
       "gtin": "8901207025372",
@@ -2024,13 +2145,14 @@
       "pack_size": "500 g",
       "variant": "",
       "price": "250.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/120/702/5372/front_en.21.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800210/seed-8901207025372.jpg",
       "description": "Dabur Honey by Dabur, 500 g pack. Listed under honey & spreads.",
       "tags": [
         "honey spreads",
         "pantry",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/120/702/5372/front_en.21.400.jpg"
     },
     {
       "gtin": "8901207040337",
@@ -2040,13 +2162,14 @@
       "pack_size": "950 g",
       "variant": "",
       "price": "475.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/120/704/0337/front_en.42.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800211/seed-8901207040337.jpg",
       "description": "Chyawanprash Awaleha by Dabur, 950 g pack. Listed under honey & spreads.",
       "tags": [
         "honey spreads",
         "pantry",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/120/704/0337/front_en.42.400.jpg"
     },
     {
       "gtin": "8901207006241",
@@ -2056,13 +2179,14 @@
       "pack_size": "",
       "variant": "",
       "price": "50.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/120/700/6241/front_en.5.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800212/seed-8901207006241.jpg",
       "description": "Dabur Chyawanprash by Dabur. Listed under honey & spreads.",
       "tags": [
         "honey spreads",
         "pantry",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/120/700/6241/front_en.5.400.jpg"
     },
     {
       "gtin": "8901207036989",
@@ -2072,13 +2196,14 @@
       "pack_size": "550 g",
       "variant": "",
       "price": "275.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/120/703/6989/front_en.9.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800212/seed-8901207036989.jpg",
       "description": "Chyawanprash by Dabur, 550 g pack. Listed under honey & spreads.",
       "tags": [
         "honey spreads",
         "pantry",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/120/703/6989/front_en.9.400.jpg"
     },
     {
       "gtin": "8901207026553",
@@ -2088,13 +2213,14 @@
       "pack_size": "225 g",
       "variant": "",
       "price": "110.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/120/702/6553/front_en.9.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800214/seed-8901207026553.jpg",
       "description": "Honey by Dabur, 225 g pack. Listed under honey & spreads.",
       "tags": [
         "honey spreads",
         "pantry",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/120/702/6553/front_en.9.400.jpg"
     },
     {
       "gtin": "8906080604690",
@@ -2104,12 +2230,13 @@
       "pack_size": "270 ml",
       "variant": "",
       "price": "25.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/608/060/4690/front_en.22.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800223/seed-8906080604690.jpg",
       "description": "Swing Coconut Water by Paper Boat, 270 ml pack. Listed under juices & fruit drinks.",
       "tags": [
         "juices",
         "beverages"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/608/060/4690/front_en.22.400.jpg"
     },
     {
       "gtin": "8906080602818",
@@ -2119,12 +2246,13 @@
       "pack_size": "",
       "variant": "",
       "price": "10.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/608/060/2818/front_en.11.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800217/seed-8906080602818.jpg",
       "description": "Paper boat pomegranate by Paper Boat. Listed under juices & fruit drinks.",
       "tags": [
         "juices",
         "beverages"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/608/060/2818/front_en.11.400.jpg"
     },
     {
       "gtin": "8906080601767",
@@ -2134,12 +2262,13 @@
       "pack_size": "140 ml",
       "variant": "",
       "price": "15.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/608/060/1767/front_en.6.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800217/seed-8906080601767.jpg",
       "description": "Swing Lush Lychee by Paper Boat, 140 ml pack. Listed under juices & fruit drinks.",
       "tags": [
         "juices",
         "beverages"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/608/060/1767/front_en.6.400.jpg"
     },
     {
       "gtin": "8906080601934",
@@ -2149,12 +2278,13 @@
       "pack_size": "125 ml",
       "variant": "Guava",
       "price": "10.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/608/060/1934/front_en.23.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800219/seed-8906080601934.jpg",
       "description": "Swing Juicier Drink Yummy Guava by Paper Boat, 125 ml pack. Listed under juices & fruit drinks.",
       "tags": [
         "juices",
         "beverages"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/608/060/1934/front_en.23.400.jpg"
     },
     {
       "gtin": "8906080603914",
@@ -2164,12 +2294,13 @@
       "pack_size": "250 ml",
       "variant": "",
       "price": "25.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/608/060/3914/front_en.3.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800219/seed-8906080603914.jpg",
       "description": "Swing pomegranate by Paper Boat, 250 ml pack. Listed under juices & fruit drinks.",
       "tags": [
         "juices",
         "beverages"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/608/060/3914/front_en.3.400.jpg"
     },
     {
       "gtin": "8906080603303",
@@ -2179,12 +2310,13 @@
       "pack_size": "1.2 l",
       "variant": "",
       "price": "120.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/608/060/3303/front_en.5.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800224/seed-8906080603303.jpg",
       "description": "Swing by Paper Boat, 1.2 l pack. Listed under juices & fruit drinks.",
       "tags": [
         "juices",
         "beverages"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/608/060/3303/front_en.5.400.jpg"
     },
     {
       "gtin": "8906080601774",
@@ -2194,12 +2326,13 @@
       "pack_size": "125 ml",
       "variant": "",
       "price": "10.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/608/060/1774/front_en.31.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800223/seed-8906080601774.jpg",
       "description": "Swing Juicier Drink by Paper Boat, 125 ml pack. Listed under juices & fruit drinks.",
       "tags": [
         "juices",
         "beverages"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/608/060/1774/front_en.31.400.jpg"
     },
     {
       "gtin": "8901042967325",
@@ -2209,13 +2342,14 @@
       "pack_size": "60 g",
       "variant": "",
       "price": "20.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/104/296/7325/front_en.11.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800238/seed-8901042967325.jpg",
       "description": "Mtr Poha by MTR, 60 g pack. Listed under ready mixes.",
       "tags": [
         "ready mixes",
         "instant food",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/104/296/7325/front_en.11.400.jpg"
     },
     {
       "gtin": "8901042968940",
@@ -2225,13 +2359,14 @@
       "pack_size": "60 g",
       "variant": "",
       "price": "20.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/104/296/8940/front_en.14.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800233/seed-8901042968940.jpg",
       "description": "MTR Veggie Upma by MTR, 60 g pack. Listed under ready mixes.",
       "tags": [
         "ready mixes",
         "instant food",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/104/296/8940/front_en.14.400.jpg"
     },
     {
       "gtin": "8901042969725",
@@ -2241,13 +2376,14 @@
       "pack_size": "175 g",
       "variant": "",
       "price": "60.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/104/296/9725/front_en.25.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800233/seed-8901042969725.jpg",
       "description": "Gulab Jamun by MTR, 175 g pack. Listed under ready mixes.",
       "tags": [
         "ready mixes",
         "instant food",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/104/296/9725/front_en.25.400.jpg"
     },
     {
       "gtin": "8901042954516",
@@ -2257,13 +2393,14 @@
       "pack_size": "500 g",
       "variant": "",
       "price": "175.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/104/295/4516/front_en.68.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800235/seed-8901042954516.jpg",
       "description": "Rava idli by MTR, 500 g pack. Listed under ready mixes.",
       "tags": [
         "ready mixes",
         "instant food",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/104/295/4516/front_en.68.400.jpg"
     },
     {
       "gtin": "8901042964478",
@@ -2273,13 +2410,14 @@
       "pack_size": "500 g",
       "variant": "",
       "price": "175.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/104/296/4478/front_en.3.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800230/seed-8901042964478.jpg",
       "description": "Multigrain Dosa by MTR, 500 g pack. Listed under ready mixes.",
       "tags": [
         "ready mixes",
         "instant food",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/104/296/4478/front_en.3.400.jpg"
     },
     {
       "gtin": "8901042971162",
@@ -2289,13 +2427,14 @@
       "pack_size": "100 g",
       "variant": "",
       "price": "35.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/104/297/1162/front_en.5.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800231/seed-8901042971162.jpg",
       "description": "Kandi Podi by MTR, 100 g pack. Listed under ready mixes.",
       "tags": [
         "ready mixes",
         "instant food",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/104/297/1162/front_en.5.400.jpg"
     },
     {
       "gtin": "8901042957968",
@@ -2305,13 +2444,14 @@
       "pack_size": "500 g",
       "variant": "",
       "price": "175.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/104/295/7968/front_en.10.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800237/seed-8901042957968.jpg",
       "description": "Mtr Dosa by MTR, 500 g pack. Listed under ready mixes.",
       "tags": [
         "ready mixes",
         "instant food",
         "food"
-      ]
+      ],
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/104/295/7968/front_en.10.400.jpg"
     },
     {
       "gtin": "8901063093539",
@@ -2321,14 +2461,15 @@
       "pack_size": "52.5 g",
       "variant": "",
       "price": "15.00",
-      "image_url": "https://images.openfoodfacts.org/images/products/890/106/309/3522/front_en.28.400.jpg",
+      "image_url": "https://res.cloudinary.com/ryqtbd4a/image/upload/v1793800235/seed-8901063093539.jpg",
       "description": "Good Day by Britannia, 52.5 g pack. Listed under cookies. (re-entered)",
       "tags": [
         "cookies",
         "biscuits",
         "food"
       ],
-      "demo_note": "duplicate of another product"
+      "demo_note": "duplicate of another product",
+      "source_image_url": "https://images.openfoodfacts.org/images/products/890/106/309/3522/front_en.28.400.jpg"
     }
   ]
 }

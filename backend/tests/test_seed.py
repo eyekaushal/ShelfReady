@@ -103,6 +103,12 @@ class TestSeedFileContents:
         gtins = [p["gtin"] for p in data["products"]]
         assert len(gtins) == len(set(gtins))
 
+    def test_images_are_on_the_fast_cdn_with_their_source_kept(self, data):
+        # Open Food Facts can take many seconds per image: see seed/mirror_images_to_cloudinary.py.
+        for product in data["products"]:
+            assert product["image_url"].startswith("https://res.cloudinary.com/")
+            assert "openfoodfacts" in product["source_image_url"]
+
     def test_demo_problems_are_present(self, data):
         notes = {p.get("demo_note") for p in data["products"]}
         assert {

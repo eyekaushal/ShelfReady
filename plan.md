@@ -96,10 +96,11 @@
 - [x] Fix: page load only clears the saved login on a 401; API timeout 70 s for Render cold starts
 - [x] `GlobalAiThrottle`: shared daily cap on AI calls (`ai_global`, 300/day), since `X-Forwarded-For` can be forged
 - [x] Keep-warm GitHub Actions cron (needs the `RENDER_URL` repo variable)
-- [ ] Neon project created; extensions enabled by the migration
-- [ ] Render service live, `DATABASE_URL` / `ANTHROPIC_API_KEY` / CORS set, seed + demo account in prod
-- [ ] Vercel live with `VITE_API_BASE_URL`, `VITE_CLOUDINARY_CLOUD_NAME`, `VITE_CLOUDINARY_UPLOAD_PRESET`
-- [ ] `RENDER_URL` variable set and keep-warm run succeeded
+- [x] Neon project created (Singapore); extensions enabled by the migration
+- [x] Render live at https://shelfready-api.onrender.com, env vars + CORS set, seed + demo account in prod
+- [x] Vercel live at https://shelf-ready.vercel.app with the API + Cloudinary env vars
+- [x] `RENDER_URL` variable set and keep-warm run succeeded
+- [x] Seed images copied to Cloudinary (first load was 4–25 s per image from Open Food Facts)
 - [ ] Full flow tested in an incognito window
 
 ## Block 10 — Add-on #1: Look-alike SKU detector
