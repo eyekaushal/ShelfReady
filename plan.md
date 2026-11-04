@@ -5,7 +5,7 @@
 > **Per block:** create the block's branch from `main` → build → run tests → 3-line summary → one `git add -A` + one commit → push branch → PR into `main` → merge → tick here.
 > Claude only gives the git commands; Kaushal runs them (see CLAUDE.md §16). `main` is always deployable.
 
-**Progress:** 7 of 14 blocks done
+**Progress:** 8 of 14 blocks done
 
 ---
 
@@ -79,14 +79,15 @@
 - [x] Frontend: "Fill from photo" panel (upload / URL), Cloudinary unsigned upload when configured, "AI-filled · review" badges (amber when unsure), "Write with AI" for description + tags
 - [x] Tests with Claude mocked (177 backend tests passing); UI checked in the browser with a mocked AI answer
 
-## Block 8 — AI: Natural-language search
+## Block 8 — AI: Natural-language search ✅
 **Branch:** `feature/ai-nl-search`
-- [ ] `NLSearchService` + `POST /api/ai/parse-search/` (forced tool use)
-- [ ] Whitelist validation (keys, brand/category exist, ordering, prices ≥ 0)
-- [ ] 10-minute cache for identical queries
-- [ ] Frontend: ✨ Ask AI toggle + removable filter chips, synced to the URL
-- [ ] Fallback to keyword search + notice
-- [ ] Tests: unknown brand/category, extra keys, bad ordering are dropped
+- [x] `NLSearchService` + `POST /api/ai/parse-search/` (JSON-schema structured output, Haiku, brand/category/ordering as enums)
+- [x] Whitelist (`ParsedSearchSerializer`): allowed keys only, brand + category must exist (unknown → dropped), allowed orderings, prices numbers ≥ 0, reversed range swapped
+- [x] 10-minute cache for identical queries (case/space-insensitive)
+- [x] Open to anonymous visitors, own rate limit (`ai_search`, 30/hour per user or IP)
+- [x] Frontend: "Ask AI" toggle on the search bar, "AI understood …" notice + removable chips, filters synced to the URL
+- [x] Fallback to keyword search with the raw text + a notice when AI fails
+- [x] Tests: unknown brand/category, extra keys, bad orderings/prices dropped; cache; throttle; fallback 503 (202 tests passing); checked live with a real Haiku call
 
 ## Block 9 — Deploy (base spec complete here ✅)
 **Branch:** `chore/deploy`

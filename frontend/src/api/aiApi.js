@@ -19,6 +19,9 @@ export const aiApi = {
     return apiClient.post('/ai/extract-product/', form, { timeout: AI_TIMEOUT })
   },
 
+  /** "Britannia biscuits under ₹50" → {filters: {search, brand, category, min_price, max_price, ordering}, cached} */
+  parseSearch: (query) => apiClient.post('/ai/parse-search/', { query }, { timeout: AI_TIMEOUT }),
+
   /** {name, brand, category?, pack_size?, variant?} → {description, tags} */
   generateDescription: (details) =>
     apiClient.post('/ai/generate-description/', details, { timeout: AI_TIMEOUT }),

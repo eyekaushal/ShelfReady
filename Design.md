@@ -41,7 +41,7 @@ backend/
     claude_client.py          class ClaudeClient            (one wrapper for all Claude calls + logging)
     ai_service_error.py       class AIServiceError          (DRF exception with ai_* codes)
     product_extract_service.py class ProductExtractService  (photo → fields)
-    nl_search_service.py      class NLSearchService         (sentence → whitelisted filters)
+    nl_search_service.py      class NLSearchService         (sentence → whitelisted filters, 10-min cache)
     description_service.py    class DescriptionService
     image_service.py          class ImageService            (safe fetch, pHash, size, blur)
     embedding_service.py      class EmbeddingService        (fastembed or pg_trgm fallback)
@@ -84,7 +84,7 @@ backend/
 | GET | `/api/ai/status/` | – | `{enabled}`: AI buttons show "AI unavailable" when false |
 | POST | `/api/ai/extract-product/` | user, throttled | Photo (URL or multipart `image`) → `{fields, confidence, notes}` |
 | POST | `/api/ai/generate-description/` | user, throttled | Text → description + tags |
-| POST | `/api/ai/parse-search/` | throttled, cached 10 min | Sentence → filters |
+| POST | `/api/ai/parse-search/` | – (throttled `ai_search`, cached 10 min) | Sentence → `{filters, cached}` for `GET /api/products/` |
 | GET | `/api/lookalikes/?status=` · POST `/api/lookalikes/{id}/resolve/` | user | Add-on #1 |
 | GET | `/api/readiness/summary/` | – | Add-on #2 |
 | POST / GET | `/api/imports/` · `/api/imports/{id}/` | user | Add-on #3 |
@@ -113,8 +113,10 @@ backend/
   serializer): what the product is, never how the pack looks.
 - **Uploads:** browser → Cloudinary (unsigned preset) → permanent URL → extract by URL. Without Cloudinary env
   vars: one-off multipart upload, not stored.
-- **NL search whitelist (Block 8):** allowed keys only; brand and category must exist in the DB; ordering from the
-  allowed list; prices ≥ 0. The LLM never writes SQL.
+- **NL search:** `NLSearchService` (Haiku, effort `low`) → `ParsedSearchSerializer` whitelist: allowed keys only;
+  brand and category must exist in the DB (unknown → dropped, brand spelling normalised); ordering from the allowed
+  list; prices numbers ≥ 0 (reversed range swapped). The LLM never writes SQL or touches the DB; the frontend puts
+  the filters in the URL and the normal product list does the search. AI failure → keyword search + notice.
 - **Models:** `ANTHROPIC_MODEL_VISION` = `claude-sonnet-5-5` (photo extraction, effort `medium`),
   `ANTHROPIC_MODEL_FAST` = `claude-haiku-5-5` (description, search parsing, column mapping, effort `low`).
 
@@ -133,7 +135,7 @@ frontend/src/
                 NotFoundPage  (+ LookalikesPage, ReadinessDashboardPage, ImportPage in add-ons)
   components/
     layout/     AppShell (sidebar on desktop, drawer on mobile), Sidebar, AuthLayout, Wordmark
-    catalog/    SearchBar, FilterPanel, FilterChips, SortMenu, ViewToggle, Pagination, ProductTable,
+    catalog/    SearchBar (keyword / Ask AI modes), AiSearchNotice, FilterPanel, FilterChips, SortMenu, ViewToggle, Pagination, ProductTable,
                 ProductGrid, ProductImage, ProductListSkeleton, ReadinessRing
     ui/         Button, Input, Select, Textarea, PasswordInput, FormField, FormSection, Modal, ConfirmModal,
                 Menu, Toast, Badge, Chip, Avatar, Skeleton, Spinner, EmptyState, ErrorState, PageHeader,

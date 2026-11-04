@@ -94,7 +94,7 @@ Simple analogy for README (Kaushal's wording style): a kirana shop owner's smart
 ### GenAI feature #2 (part of base): **Natural-language search**
 Why it's in the base: the assignment is titled "Product Management & **AI-Powered Search** Platform", so reviewers will expect AI search.
 - `POST /api/ai/parse-search/` with `{ "query": "Britannia biscuits under ₹50, cheapest first" }`.
-- Claude (fast model) turns the sentence into **structured filters only**, using forced tool use / JSON schema:
+- Claude (fast model) turns the sentence into **structured filters only**, using JSON-schema structured output (brand / category / ordering lists passed as `enum`s):
   `{ "search": "biscuits", "brand": "Britannia", "category": "<existing category slug or null>", "min_price": null, "max_price": 50, "ordering": "price" }`
 - Validate the output against a **whitelist**: allowed keys only. Brand and category must exist in the DB (pass the brand list + category list in the prompt; drop unknown values). Ordering must be one of the allowed orderings. Prices must be numbers ≥ 0. **The LLM never writes SQL** and never touches the DB directly.
 - The frontend then calls the **normal** `GET /api/products/` with those filters. One search pipeline, no duplicate logic.
