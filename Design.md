@@ -176,6 +176,8 @@ frontend/src/
 ## 9. Seed data
 
 - **Source:** Open Food Facts (ODbL data, CC BY-SA images), India, 20 brands × up to 7 products.
+- **Images are copied to Cloudinary** (`seed/mirror_images_to_cloudinary.py`, run once): OFF can take 4–25 s per image,
+  so first-time visitors saw blank tiles. Images are unchanged; `source_image_url` keeps the OFF address for attribution.
 - **Prices are illustrative** (OFF has no prices): leaf-category ₹/g or ₹/ml × pack size, rounded to ₹5.
 - **Deliberate problems** (marked `demo_note` in the JSON) so readiness + look-alike features have real cases.
 - **Loader writes via the ORM, not the API**, so the deliberately bad rows (e.g. invalid GTIN) can exist.
