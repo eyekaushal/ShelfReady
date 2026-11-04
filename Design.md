@@ -146,7 +146,7 @@ frontend/src/
                 NotFoundPage, LookalikesPage
   components/
     layout/     AppShell (sidebar on desktop, drawer on mobile), Sidebar, AuthLayout, Wordmark
-    catalog/    SearchBar (keyword / Ask AI modes), AiSearchNotice, FilterPanel, FilterChips, SortMenu, ViewToggle, Pagination, ProductTable,
+    catalog/    SearchBar (keyword only), AskAiPanel, AiSearchNotice, FilterPanel, FilterChips, SortMenu, ViewToggle, Pagination, ProductTable,
                 ProductGrid, ProductImage, ProductListSkeleton
     ui/         Button, Input, Select, Textarea, PasswordInput, FormField, FormSection, Modal, ConfirmModal,
                 Menu, Toast, Badge, Chip, Avatar, Skeleton, Spinner, EmptyState, ErrorState, PageHeader,
@@ -172,7 +172,8 @@ frontend/src/
 - **Style:** Linear / Attio-like: white canvas, hairline borders, Inter, one blue accent, status colour only as
   rings, dots and chips. Mobile-first.
 - **Shell:** left sidebar (Catalog, Add product, API docs, user + logout); top bar with a drawer on mobile.
-- **List page:** search bar (debounced, "/" to focus) → Filter popover (brand, category, price) + sort menu +
+- **List page:** keyword search bar (debounced, "/" to focus) + "Ask AI" button that opens a separate panel with
+  example queries → Filter popover (brand, category, price) + sort menu +
   table/grid toggle → removable filter chips (reused by AI search in Block 8) → table or grid → pagination.
 - **Product form:** "Fill from photo" panel on top (new products), then sections Basics, Description, Pack shot
   (live image preview), Identifiers; client-side validation, backend field errors mapped onto the same fields.
