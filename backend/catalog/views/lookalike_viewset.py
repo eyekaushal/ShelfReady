@@ -2,7 +2,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 from drf_spectacular.utils import OpenApiParameter, extend_schema
 from rest_framework import viewsets
 from rest_framework.decorators import action
-from rest_framework.exceptions import PermissionDenied, ValidationError
+from rest_framework.exceptions import ValidationError
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 
@@ -32,17 +32,13 @@ class LookalikeViewSet(viewsets.ReadOnlyModelViewSet):
     @extend_schema(request=ResolveLookalikeSerializer, responses=LookalikePairSerializer)
     @action(detail=True, methods=["post"], permission_classes=[IsAuthenticated])
     def resolve(self, request, pk=None):
+        # Any logged-in user may review a pair: it only records a decision. Changing the
+        # products themselves stays limited to their creator or staff.
         pair = self.get_object()
-        user = request.user
-        owners = {pair.product_a.created_by_id, pair.product_b.created_by_id}
-        if not user.is_staff and user.id not in owners:
-            raise PermissionDenied(
-                "Only the creator of one of these products or a staff member can resolve this."
-            )
 
         serializer = ResolveLookalikeSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        pair = LookalikeService.resolve(pair, serializer.validated_data["status"], user)
+        pair = LookalikeService.resolve(pair, serializer.validated_data["status"], request.user)
         return Response(LookalikePairSerializer(pair).data)
 
     @extend_schema(

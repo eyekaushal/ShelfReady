@@ -1,9 +1,11 @@
-import { CopyCheck } from 'lucide-react'
-import { useSearchParams } from 'react-router-dom'
+import { CopyCheck, LogIn } from 'lucide-react'
+import { useLocation, useSearchParams } from 'react-router-dom'
 
+import { useAuth } from '../auth/useAuth'
 import { Pagination } from '../components/catalog/Pagination'
 import { LookalikePairCard } from '../components/lookalikes/LookalikePairCard'
 import { STATUS_LABELS } from '../components/lookalikes/statusLabels'
+import { Button } from '../components/ui/Button'
 import { EmptyState } from '../components/ui/EmptyState'
 import { ErrorState } from '../components/ui/ErrorState'
 import { PageHeader } from '../components/ui/PageHeader'
@@ -27,6 +29,8 @@ export function LookalikesPage() {
   const pairs = useLookalikes({ status, page, page_size: pageSize })
   const resolve = useResolveLookalike()
   const toast = useToast()
+  const { user, isLoading: authLoading } = useAuth()
+  const location = useLocation()
 
   const onResolve = (id, nextStatus) => {
     resolve.mutate(
@@ -83,6 +87,17 @@ export function LookalikesPage() {
         title="Look-alikes"
         subtitle="Same-brand products a shelf camera could confuse. Record what tells them apart."
       />
+      {!user && !authLoading ? (
+        <div className="mb-4 flex flex-wrap items-center justify-between gap-3 rounded-lg border border-accent-ring bg-accent-soft px-4 py-2.5">
+          <p className="text-[13px] text-gray-700">
+            Sign in to mark pairs as distinct or duplicate. The sign-in page has a one-click demo account.
+          </p>
+          <Button to="/login" state={{ from: location }} size="sm" variant="primary">
+            <LogIn className="size-3.5" />
+            Sign in
+          </Button>
+        </div>
+      ) : null}
       <div className="mb-4 inline-flex h-9 items-center rounded-md border border-gray-200 bg-gray-50 p-0.5" role="group">
         {Object.entries(STATUS_LABELS).map(([value, { label }]) => (
           <button

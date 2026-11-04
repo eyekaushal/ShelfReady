@@ -20,7 +20,7 @@ React (Vercel) ──axios + JWT──▶ Django REST API (Render) ──▶ Pos
 
 - **Backend: one class per file.** Views and ViewSets, serializers, models and services are all classes.
 - **Thin views.** Views only parse the request, call a service and return a response.
-- **Services hold business logic.** For example `ReadinessService.compute(product)`, never inside `Model.save()`.
+- **Services hold business logic.** For example `LookalikeService.analyze(product)`, never inside `Model.save()`.
 - **Frontend: function components + hooks**, one component per file. Non-UI helpers (the API client) can be a class.
 - **KISS:** no extra layers, no generic base classes unless they're used 3 or more times.
 
@@ -46,7 +46,6 @@ backend/
     image_service.py          class ImageService            (safe fetch, pHash, size, blur)
     embedding_service.py      class EmbeddingService        (fastembed or pg_trgm fallback)
     lookalike_service.py      class LookalikeService        (analyse, refresh pairs, resolve, form check)
-    readiness_service.py      class ReadinessService
     gtin_validator.py         class GtinValidator
     import_service.py         class ImportService
     catalog_seeder.py         class CatalogSeeder           (loads seed JSON, idempotent)
@@ -86,8 +85,7 @@ backend/
 | POST | `/api/ai/generate-description/` | user, throttled | Text → description + tags |
 | POST | `/api/ai/parse-search/` | – (throttled `ai_search`, cached 10 min) | Sentence → `{filters, cached}` for `GET /api/products/` |
 | GET | `/api/lookalikes/?status=&product=` · `/api/lookalikes/check/?name=&brand=` | – | Pairs · similar SKUs for the form warning |
-| POST | `/api/lookalikes/{id}/resolve/` | owner of either product / staff | `resolved_distinct` (needs a differing attribute) or `duplicate` |
-| GET | `/api/readiness/summary/` | – | Add-on #2 |
+| POST | `/api/lookalikes/{id}/resolve/` | any logged-in user | `resolved_distinct` (needs a differing attribute) or `duplicate` |
 | POST / GET | `/api/imports/` · `/api/imports/{id}/` | user | Add-on #3 |
 | GET | `/api/health/` | – | Keep-warm ping |
 | GET | `/api/docs/` · `/api/redoc/` · `/api/schema/` | – | API docs |
@@ -117,7 +115,8 @@ backend/
 - **NL search:** `NLSearchService` (Haiku, effort `low`) → `ParsedSearchSerializer` whitelist: allowed keys only;
   brand and category must exist in the DB (unknown → dropped, brand spelling normalised); ordering from the allowed
   list; prices numbers ≥ 0 (reversed range swapped). The LLM never writes SQL or touches the DB; the frontend puts
-  the filters in the URL and the normal product list does the search. AI failure → keyword search + notice.
+  the filters in the URL and the normal product list does the search. Search words that match nothing are dropped
+  when other filters were understood. AI failure → keyword search + notice.
 - **Models:** `ANTHROPIC_MODEL_VISION` = `claude-sonnet-5-5` (photo extraction, effort `medium`),
   `ANTHROPIC_MODEL_FAST` = `claude-haiku-5-5` (description, search parsing, column mapping, effort `low`).
 
@@ -144,11 +143,11 @@ frontend/src/
                 aiApi.js (60 s timeout for AI calls)
   auth/         AuthContext.jsx (AuthProvider), authContext.js, useAuth.js (+ canEditProduct), ProtectedRoute.jsx
   pages/        ProductListPage, ProductDetailPage, ProductFormPage (new + edit), LoginPage, RegisterPage,
-                NotFoundPage, LookalikesPage  (+ ReadinessDashboardPage, ImportPage in add-ons)
+                NotFoundPage, LookalikesPage
   components/
     layout/     AppShell (sidebar on desktop, drawer on mobile), Sidebar, AuthLayout, Wordmark
     catalog/    SearchBar (keyword / Ask AI modes), AiSearchNotice, FilterPanel, FilterChips, SortMenu, ViewToggle, Pagination, ProductTable,
-                ProductGrid, ProductImage, ProductListSkeleton, ReadinessRing
+                ProductGrid, ProductImage, ProductListSkeleton
     ui/         Button, Input, Select, Textarea, PasswordInput, FormField, FormSection, Modal, ConfirmModal,
                 Menu, Toast, Badge, Chip, Avatar, Skeleton, Spinner, EmptyState, ErrorState, PageHeader,
                 DescriptionList
@@ -157,7 +156,7 @@ frontend/src/
   hooks/        useUrlFilters, useProducts / useProduct, useProductMutations, useCatalogOptions, useDebounce,
                 useAiStatus
   lib/          cloudinary.js (optional unsigned upload), apiError.js (class ApiError), validation.js (mirrors the backend serializer, incl. GTIN
-                mod-10), format.js (₹ en-IN, dates), readiness.js, cn.js
+                mod-10), format.js (₹ en-IN, dates), cn.js
 ```
 
 - **Server state:** TanStack Query (30 s stale time; retries once, only on network / 5xx errors).
@@ -173,7 +172,6 @@ frontend/src/
 - **Style:** Linear / Attio-like: white canvas, hairline borders, Inter, one blue accent, status colour only as
   rings, dots and chips. Mobile-first.
 - **Shell:** left sidebar (Catalog, Add product, API docs, user + logout); top bar with a drawer on mobile.
-  Readiness and Import links get added with the add-ons.
 - **List page:** search bar (debounced, "/" to focus) → Filter popover (brand, category, price) + sort menu +
   table/grid toggle → removable filter chips (reused by AI search in Block 8) → table or grid → pagination.
 - **Product form:** "Fill from photo" panel on top (new products), then sections Basics, Description, Pack shot
@@ -181,9 +179,8 @@ frontend/src/
   AI-filled fields get a blue "AI-filled · review" badge (amber "AI · check this" when confidence is low) that
   disappears once the user edits the field. "Write with AI" under the description fills description + tags.
 - **AI look:** no new colours: the same blue accent with a Sparkles icon; "AI unavailable" grey tag when off.
-- **Details page:** image, highlight tiles (price, pack size, variant, GTIN, category, readiness ring), description,
-  tags, full field list. Includes a "Possible look-alikes" box; add-ons add the readiness checklist and history timeline.
-- **Readiness ring:** dashed "Not scored yet" until Block 11 computes scores (avoids a misleading 0%).
+- **Details page:** image, highlight tiles (price, pack size, variant, GTIN, category), description,
+  tags, full field list. Includes a "Possible look-alikes" box.
 - **Feedback:** toasts (bottom centre, 4 s), confirm modal for delete.
 
 ## 9. Seed data
@@ -192,7 +189,7 @@ frontend/src/
 - **Images are copied to Cloudinary** (`seed/mirror_images_to_cloudinary.py`, run once): OFF can take 4–25 s per image,
   so first-time visitors saw blank tiles. Images are unchanged; `source_image_url` keeps the OFF address for attribution.
 - **Prices are illustrative** (OFF has no prices): leaf-category ₹/g or ₹/ml × pack size, rounded to ₹5.
-- **Deliberate problems** (marked `demo_note` in the JSON) so readiness + look-alike features have real cases.
+- **Deliberate problems** (marked `demo_note` in the JSON) so the look-alike feature and the demo have real cases.
 - **Loader writes via the ORM, not the API**, so the deliberately bad rows (e.g. invalid GTIN) can exist.
 - **Idempotent:** matched on category slug / username / GTIN, so re-running updates instead of duplicating.
 

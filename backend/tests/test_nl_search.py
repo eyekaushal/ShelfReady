@@ -155,6 +155,33 @@ class TestParseSearchEndpoint:
 
         assert names == ["Good Day Cashew"]
 
+    @pytest.mark.parametrize(
+        ("answer", "expected"),
+        [
+            ({"search": "packets left", "brand": "Parle"}, ""),  # "how many Maggie packets left"
+            ({"search": "products", "ordering": "price"}, ""),  # "give me cheapest products"
+            ({"search": "packets glucose", "brand": "Parle"}, ""),  # no Parle product says "glucose"
+            ({"search": "cashew packets", "brand": "Britannia"}, "cashew"),  # useful words stay
+            ({"search": "unicorn"}, "unicorn"),  # nothing else understood: an honest empty result
+        ],
+    )
+    def test_search_words_that_find_nothing_are_dropped(
+        self, api_client, catalog_for_search, fake_claude, answer, expected
+    ):
+        empty = {
+            "search": "",
+            "brand": "",
+            "category": "",
+            "min_price": None,
+            "max_price": None,
+            "ordering": "",
+        }
+        fake_claude(claude_response({**empty, **answer}))
+
+        filters = api_client.post(PARSE, {"query": "a shopper's sentence"}, format="json").json()["filters"]
+
+        assert filters["search"] == expected
+
     def test_identical_query_is_cached(self, api_client, catalog_for_search, fake_claude):
         answer = {"search": "", "brand": "Parle", "category": "", "min_price": None, "max_price": None,
                   "ordering": ""}  # fmt: skip

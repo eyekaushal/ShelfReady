@@ -31,7 +31,7 @@ Features are *inspired by publicly described challenges in retail image recognit
 **Goals**
 - Meet every base-spec item in the assignment, with no bugs.
 - Use AI that is useful and safe: photo → form, natural-language search.
-- Show domain understanding through the add-ons (look-alikes, readiness score).
+- Show domain understanding through the look-alike detector.
 
 **Non-goals**
 - Actual shelf image recognition.
@@ -60,7 +60,9 @@ Features are *inspired by publicly described challenges in retail image recognit
 | F14 | **AI natural-language search**: sentence → whitelisted filters → removable chips → normal product list API. Falls back to keyword search |
 | F15 | **Deployed**: Render (API) + Vercel (UI) + Neon (DB), with seed data and a demo account |
 
-### 5.2 Add-ons (in priority order)
+### 5.2 Add-ons
+
+Only A1 was built. A2–A4 were dropped on 4 Nov 2026 for time.
 
 | ID | Add-on | Why it matters for shelf recognition |
 |---|---|---|

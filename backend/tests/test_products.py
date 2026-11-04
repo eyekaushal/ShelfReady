@@ -50,13 +50,13 @@ class TestCreate:
 
         assert response.json()["created_by"] == "asha"
 
-    def test_readiness_fields_are_read_only(self, auth_client, categories):
-        payload = valid_payload(categories, readiness_score=100, needs_review=True)
+    def test_computed_fields_cannot_be_set_or_seen(self, auth_client, categories):
+        payload = valid_payload(categories, readiness_score=100, image_phash="abc")
 
-        response = auth_client.post(LIST, payload, format="json")
+        body = auth_client.post(LIST, payload, format="json").json()
 
-        assert response.json()["readiness_score"] == 0
-        assert response.json()["needs_review"] is False
+        assert "readiness_score" not in body and "image_phash" not in body
+        assert Product.objects.get(pk=body["id"]).readiness_score == 0
 
     def test_extra_spaces_are_cleaned(self, auth_client, categories):
         payload = valid_payload(categories, name="  Good   Day  ", brand=" Britannia ")

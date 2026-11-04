@@ -2,8 +2,6 @@ import { Link } from 'react-router-dom'
 
 import { formatPrice } from '../../lib/format'
 import { ProductImage } from './ProductImage'
-import { ReadinessRing } from './ReadinessRing'
-import { isScored } from '../../lib/readiness'
 
 /** Card view with the pack shot front and centre. */
 export function ProductGrid({ products }) {
@@ -22,10 +20,7 @@ export function ProductGrid({ products }) {
               {product.name}
             </h3>
             {product.pack_size ? <p className="mt-0.5 text-xs text-gray-500">{product.pack_size}</p> : null}
-            <div className="mt-auto flex items-center justify-between pt-3">
-              <span className="text-[13px] font-semibold tabular text-gray-900">{formatPrice(product.price)}</span>
-              <ReadinessRing score={product.readiness_score} scored={isScored(product)} showLabel={false} />
-            </div>
+            <p className="mt-auto pt-3 text-[13px] font-semibold tabular text-gray-900">{formatPrice(product.price)}</p>
           </div>
         </Link>
       ))}

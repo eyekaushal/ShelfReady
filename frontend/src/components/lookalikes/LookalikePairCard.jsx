@@ -63,7 +63,7 @@ function reason(pair) {
 export function LookalikePairCard({ pair, onResolve, resolving }) {
   const { user } = useAuth()
   const { product_a: first, product_b: second, differing_attributes: differing } = pair
-  const canResolve = canEditProduct(user, first) || canEditProduct(user, second)
+  const canEditEither = canEditProduct(user, first) || canEditProduct(user, second)
   const status = STATUS_LABELS[pair.status]
 
   return (
@@ -81,12 +81,14 @@ export function LookalikePairCard({ pair, onResolve, resolving }) {
         <ProductSide product={second} differing={differing} editable={canEditProduct(user, second)} />
       </div>
 
-      {canResolve && pair.status === 'unresolved' ? (
+      {user && pair.status === 'unresolved' ? (
         <footer className="flex flex-wrap items-center justify-between gap-3 border-t border-gray-100 px-4 py-2.5">
           <p className="text-xs text-gray-500">
             {differing.length
               ? 'These differ now. Mark them as distinct.'
-              : 'To mark as distinct, first fill in a pack size or variant that differs.'}
+              : canEditEither
+                ? 'To mark as distinct, first fill in a pack size or variant that differs.'
+                : 'Marking as distinct needs a differing pack size or variant, which only the creator or staff can add.'}
           </p>
           <div className="flex items-center gap-2">
             <Button size="sm" onClick={() => onResolve(pair.id, 'duplicate')} disabled={resolving}>

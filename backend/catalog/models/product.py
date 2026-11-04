@@ -15,6 +15,8 @@ class Product(models.Model):
     3. Computed by services: never edited by users (read-only in the API).
     """
 
+    SEARCH_FIELDS = ["name", "brand", "description"]  # what ?search= looks through
+
     # 1. Required by the brief
     name = models.CharField(max_length=200)
     brand = models.CharField(max_length=100, db_index=True)
