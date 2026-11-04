@@ -1,4 +1,4 @@
-import { BookOpen, LogOut, Package, Plus } from 'lucide-react'
+import { BookOpen, CopyCheck, LogOut, Package, Plus } from 'lucide-react'
 import { NavLink } from 'react-router-dom'
 
 import { API_BASE_URL } from '../../api/apiClient'
@@ -47,6 +47,9 @@ export function Sidebar({ className, onNavigate }) {
         </NavItem>
         <NavItem to="/products/new" icon={Plus} onNavigate={onNavigate}>
           Add product
+        </NavItem>
+        <NavItem to="/lookalikes" icon={CopyCheck} onNavigate={onNavigate}>
+          Look-alikes
         </NavItem>
 
         <SectionLabel>Resources</SectionLabel>

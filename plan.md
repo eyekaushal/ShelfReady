@@ -5,7 +5,7 @@
 > **Per block:** create the block's branch from `main` → build → run tests → 3-line summary → one `git add -A` + one commit → push branch → PR into `main` → merge → tick here.
 > Claude only gives the git commands; Kaushal runs them (see CLAUDE.md §16). `main` is always deployable.
 
-**Progress:** 8 of 14 blocks done
+**Progress:** 9 of 14 blocks done
 
 ---
 
@@ -101,16 +101,18 @@
 - [x] Vercel live at https://shelf-ready.vercel.app with the API + Cloudinary env vars
 - [x] `RENDER_URL` variable set and keep-warm run succeeded
 - [x] Seed images copied to Cloudinary (first load was 4–25 s per image from Open Food Facts)
-- [ ] Full flow tested in an incognito window
+- [x] Full flow tested in an incognito window
 
 ## Block 10 — Add-on #1: Look-alike SKU detector
 **Branch:** `feature/lookalike-detector`
-- [ ] `ImageService`: pHash, width, height, blur (Pillow + numpy)
-- [ ] `EmbeddingService`: fastembed bge-small → pgvector (pg_trgm fallback)
-- [ ] `LookalikePair` model + `LookalikeService` (same brand + top category, thresholds from settings)
-- [ ] Endpoints: list + resolve
-- [ ] Look-alikes page + "Possible look-alikes" box + warning on create
-- [ ] Tests on fixture data · redeploy
+- [x] `ImageService.measure`: pHash, width, height, blur (Pillow + numpy)
+- [x] `EmbeddingService`: fastembed bge-small → pgvector locally; pg_trgm on Render (`EMBEDDINGS_ENABLED=False`: the model peaks at ~320 MB, the plan has 512 MB)
+- [x] `LookalikePair` model + `LookalikeService` (same brand + top category, thresholds from settings; trigram 0.50 tuned on seed data); people's decisions survive rechecks
+- [x] `analyze_product` Celery task on save (never fails the save) + `analyze_catalog` command in `build.sh`
+- [x] Endpoints: list (`status`, `product`), resolve (distinct needs a differing attribute), check
+- [x] Look-alikes page + "Possible look-alikes" box + warning on the form
+- [x] Tests on fixture data (248 passing); real data checked in both modes; UI checked in the browser
+- [ ] Redeploy and check on the live site
 
 ## Block 11 — Add-on #2: Recognition-readiness score
 **Branch:** `feature/readiness-score`

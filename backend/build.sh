@@ -6,3 +6,4 @@ pip install -r requirements.txt
 python manage.py collectstatic --no-input
 python manage.py migrate --no-input
 python manage.py seed_catalog  # safe to repeat: updates demo rows instead of duplicating them
+python manage.py analyze_catalog  # measures only what is missing, then rechecks look-alike pairs

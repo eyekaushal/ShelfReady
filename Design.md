@@ -45,7 +45,7 @@ backend/
     description_service.py    class DescriptionService
     image_service.py          class ImageService            (safe fetch, pHash, size, blur)
     embedding_service.py      class EmbeddingService        (fastembed or pg_trgm fallback)
-    lookalike_service.py      class LookalikeService
+    lookalike_service.py      class LookalikeService        (analyse, refresh pairs, resolve, form check)
     readiness_service.py      class ReadinessService
     gtin_validator.py         class GtinValidator
     import_service.py         class ImportService
@@ -85,7 +85,8 @@ backend/
 | POST | `/api/ai/extract-product/` | user, throttled | Photo (URL or multipart `image`) → `{fields, confidence, notes}` |
 | POST | `/api/ai/generate-description/` | user, throttled | Text → description + tags |
 | POST | `/api/ai/parse-search/` | – (throttled `ai_search`, cached 10 min) | Sentence → `{filters, cached}` for `GET /api/products/` |
-| GET | `/api/lookalikes/?status=` · POST `/api/lookalikes/{id}/resolve/` | user | Add-on #1 |
+| GET | `/api/lookalikes/?status=&product=` · `/api/lookalikes/check/?name=&brand=` | – | Pairs · similar SKUs for the form warning |
+| POST | `/api/lookalikes/{id}/resolve/` | owner of either product / staff | `resolved_distinct` (needs a differing attribute) or `duplicate` |
 | GET | `/api/readiness/summary/` | – | Add-on #2 |
 | POST / GET | `/api/imports/` · `/api/imports/{id}/` | user | Add-on #3 |
 | GET | `/api/health/` | – | Keep-warm ping |
@@ -120,6 +121,17 @@ backend/
 - **Models:** `ANTHROPIC_MODEL_VISION` = `claude-sonnet-5-5` (photo extraction, effort `medium`),
   `ANTHROPIC_MODEL_FAST` = `claude-haiku-5-5` (description, search parsing, column mapping, effort `low`).
 
+## 6b. Look-alike detector
+
+- **When:** on product save, `analyze_product` (Celery; inline on Render) redoes only what's stale. `analyze_catalog`
+  runs in `build.sh` because seed rows skip the API; it only measures what's missing.
+- **Flag a pair:** same brand + same top-level category, and pHash distance ≤ 10 of 64 bits, or text similarity over
+  the threshold. On the seed data, photos only catch near-identical images, so text does most of the work.
+- **Text similarity has one switch** (`EMBEDDINGS_ENABLED`, in `EmbeddingService`): embeddings ≥ 0.90 locally, `pg_trgm`
+  ≥ 0.50 on Render. The two modes disagree on some pairs (Parle-G vs Parle-G Biscuit: cosine 0.83, trigram 0.50).
+- **Status:** a filled pack size or variant that differs → `resolved_distinct` automatically; otherwise `unresolved`.
+  Filling in the missing attribute resolves a twin by itself. A person's decision (`resolved_by`) is never overwritten.
+
 ## 7. Frontend layout
 
 Stack: React 19 + Vite + plain JS, Tailwind v4, React Router 7, TanStack Query 5, axios, lucide-react icons,
@@ -132,7 +144,7 @@ frontend/src/
                 aiApi.js (60 s timeout for AI calls)
   auth/         AuthContext.jsx (AuthProvider), authContext.js, useAuth.js (+ canEditProduct), ProtectedRoute.jsx
   pages/        ProductListPage, ProductDetailPage, ProductFormPage (new + edit), LoginPage, RegisterPage,
-                NotFoundPage  (+ LookalikesPage, ReadinessDashboardPage, ImportPage in add-ons)
+                NotFoundPage, LookalikesPage  (+ ReadinessDashboardPage, ImportPage in add-ons)
   components/
     layout/     AppShell (sidebar on desktop, drawer on mobile), Sidebar, AuthLayout, Wordmark
     catalog/    SearchBar (keyword / Ask AI modes), AiSearchNotice, FilterPanel, FilterChips, SortMenu, ViewToggle, Pagination, ProductTable,
@@ -140,6 +152,7 @@ frontend/src/
     ui/         Button, Input, Select, Textarea, PasswordInput, FormField, FormSection, Modal, ConfirmModal,
                 Menu, Toast, Badge, Chip, Avatar, Skeleton, Spinner, EmptyState, ErrorState, PageHeader,
                 DescriptionList
+  components/lookalikes/ LookalikePairCard, PossibleLookalikes, SkuWarning, statusLabels
   components/ai/ PhotoFillPanel (upload / URL → Claude → prefill), AiBadge ("AI-filled · review", amber if unsure)
   hooks/        useUrlFilters, useProducts / useProduct, useProductMutations, useCatalogOptions, useDebounce,
                 useAiStatus
@@ -160,7 +173,7 @@ frontend/src/
 - **Style:** Linear / Attio-like: white canvas, hairline borders, Inter, one blue accent, status colour only as
   rings, dots and chips. Mobile-first.
 - **Shell:** left sidebar (Catalog, Add product, API docs, user + logout); top bar with a drawer on mobile.
-  Look-alikes, Readiness and Import links get added with the add-ons.
+  Readiness and Import links get added with the add-ons.
 - **List page:** search bar (debounced, "/" to focus) → Filter popover (brand, category, price) + sort menu +
   table/grid toggle → removable filter chips (reused by AI search in Block 8) → table or grid → pagination.
 - **Product form:** "Fill from photo" panel on top (new products), then sections Basics, Description, Pack shot
@@ -169,7 +182,7 @@ frontend/src/
   disappears once the user edits the field. "Write with AI" under the description fills description + tags.
 - **AI look:** no new colours: the same blue accent with a Sparkles icon; "AI unavailable" grey tag when off.
 - **Details page:** image, highlight tiles (price, pack size, variant, GTIN, category, readiness ring), description,
-  tags, full field list. Add-ons add the readiness checklist, "Possible look-alikes" box and history timeline.
+  tags, full field list. Includes a "Possible look-alikes" box; add-ons add the readiness checklist and history timeline.
 - **Readiness ring:** dashed "Not scored yet" until Block 11 computes scores (avoids a misleading 0%).
 - **Feedback:** toasts (bottom centre, 4 s), confirm modal for delete.
 

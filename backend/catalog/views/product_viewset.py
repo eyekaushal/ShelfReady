@@ -7,6 +7,7 @@ from catalog.filters.product_filter import ProductFilter
 from catalog.models import Product
 from catalog.permissions.is_owner_or_staff import IsOwnerOrStaff
 from catalog.serializers.product_serializer import ProductSerializer
+from catalog.tasks import analyze_product
 from common.filters.stable_ordering_filter import StableOrderingFilter
 
 
@@ -38,4 +39,20 @@ class ProductViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         # The owner is always the logged-in user, never something sent in the request body.
-        serializer.save(created_by=self.request.user)
+        product = serializer.save(created_by=self.request.user)
+        analyze_product.delay(product.id)
+
+    def perform_update(self, serializer):
+        before = serializer.instance
+        old_image = before.image_url
+        old_text = (before.name, before.brand, before.variant)
+
+        product = serializer.save()
+
+        # Only redo what's stale. The pairs are always rechecked, because a new pack size
+        # or a new category can change them.
+        analyze_product.delay(
+            product.id,
+            image_changed=product.image_url != old_image,
+            text_changed=(product.name, product.brand, product.variant) != old_text,
+        )

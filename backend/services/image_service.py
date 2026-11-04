@@ -4,6 +4,8 @@ import socket
 from urllib.parse import urljoin, urlparse
 
 import httpx2
+import imagehash
+import numpy as np
 from django.conf import settings
 from PIL import Image, UnidentifiedImageError
 from rest_framework.exceptions import ValidationError
@@ -65,6 +67,29 @@ class ImageService:
             output = io.BytesIO()
             image.convert("RGB").save(output, format="JPEG", quality=85)
             return output.getvalue(), "image/jpeg"
+
+    @staticmethod
+    def measure(data: bytes) -> dict:
+        """
+        What the catalog stores about a pack photo:
+        - image_phash: a 64-bit fingerprint of how the image looks; similar images differ in few bits
+        - image_width / image_height: pixels
+        - blur_score: variance of the Laplacian, an edge filter. Sharp photos have strong edges,
+          so a higher number means sharper.
+        """
+        with Image.open(io.BytesIO(data)) as image:
+            rgb = image.convert("RGB")
+            gray = np.asarray(rgb.convert("L"), dtype=np.float64)
+            # Laplacian: 4 x each pixel minus its four neighbours, for all inner pixels.
+            edges = (
+                4 * gray[1:-1, 1:-1] - gray[:-2, 1:-1] - gray[2:, 1:-1] - gray[1:-1, :-2] - gray[1:-1, 2:]
+            )
+            return {
+                "image_phash": str(imagehash.phash(rgb)),
+                "image_width": rgb.width,
+                "image_height": rgb.height,
+                "blur_score": round(float(edges.var()), 2),
+            }
 
     # --- fetching ----------------------------------------------------------------------
 

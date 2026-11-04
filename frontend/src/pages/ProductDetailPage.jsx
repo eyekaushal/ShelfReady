@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 
 import { canEditProduct, useAuth } from '../auth/useAuth'
 import { ProductImage } from '../components/catalog/ProductImage'
+import { PossibleLookalikes } from '../components/lookalikes/PossibleLookalikes'
 import { ReadinessRing } from '../components/catalog/ReadinessRing'
 import { isScored } from '../lib/readiness'
 import { Avatar } from '../components/ui/Avatar'
@@ -167,6 +168,8 @@ export function ProductDetailPage() {
               </div>
             ) : null}
           </section>
+
+          <PossibleLookalikes productId={item.id} />
 
           <section className="rounded-lg border border-gray-200 px-4 py-1">
             <DescriptionList

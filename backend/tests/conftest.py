@@ -13,6 +13,14 @@ def clear_cache():
     cache.clear()
 
 
+@pytest.fixture(autouse=True)
+def skip_product_analysis(request, monkeypatch):
+    # Saving a product downloads its image. Tests must not use the network, so the task is
+    # skipped unless a test asks for it with @pytest.mark.real_analysis.
+    if not request.node.get_closest_marker("real_analysis"):
+        monkeypatch.setattr("catalog.views.product_viewset.analyze_product.delay", lambda *a, **k: None)
+
+
 @pytest.fixture
 def api_client():
     return APIClient()
@@ -32,6 +40,7 @@ def tokens(api_client, user):
 
 
 # --- catalog fixtures ---------------------------------------------------------
+
 
 @pytest.fixture
 def other_user(db):

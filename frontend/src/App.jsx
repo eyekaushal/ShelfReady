@@ -4,6 +4,7 @@ import { ProtectedRoute } from './auth/ProtectedRoute'
 import { AppShell } from './components/layout/AppShell'
 import { AuthLayout } from './components/layout/AuthLayout'
 import { LoginPage } from './pages/LoginPage'
+import { LookalikesPage } from './pages/LookalikesPage'
 import { NotFoundPage } from './pages/NotFoundPage'
 import { ProductDetailPage } from './pages/ProductDetailPage'
 import { ProductFormPage } from './pages/ProductFormPage'
@@ -16,6 +17,7 @@ export default function App() {
       <Route element={<AppShell />}>
         <Route index element={<ProductListPage />} />
         <Route path="products/:id" element={<ProductDetailPage />} />
+        <Route path="lookalikes" element={<LookalikesPage />} />
         <Route element={<ProtectedRoute />}>
           <Route path="products/new" element={<ProductFormPage />} />
           <Route path="products/:id/edit" element={<ProductFormPage />} />
