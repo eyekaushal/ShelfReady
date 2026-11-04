@@ -4,7 +4,8 @@ from rest_framework import serializers
 class GeneratedDescriptionSerializer(serializers.Serializer):
     """Validates Claude's answer for the description generator (output is untrusted data)."""
 
-    description = serializers.CharField(min_length=20, max_length=2000)
+    # Short on purpose: what the product is, not how the pack looks (see DescriptionService prompt).
+    description = serializers.CharField(min_length=20, max_length=300)
     tags = serializers.ListField(child=serializers.CharField(max_length=40), max_length=10)
 
     def validate_tags(self, values):

@@ -18,7 +18,7 @@ class ExtractedProductSerializer(serializers.Serializer):
     category_slug = serializers.CharField(allow_blank=True)
     variant = serializers.CharField(max_length=100, allow_blank=True)
     pack_size = serializers.CharField(max_length=50, allow_blank=True)
-    description = serializers.CharField(max_length=2000, allow_blank=True)
+    description = serializers.CharField(max_length=300, allow_blank=True)  # 1-2 short sentences
     tags = serializers.ListField(child=serializers.CharField(max_length=40), max_length=10)
     confidence = serializers.DictField(child=serializers.ChoiceField(choices=CONFIDENCE_LEVELS))
     notes = serializers.CharField(max_length=500, allow_blank=True)

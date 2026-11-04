@@ -107,9 +107,10 @@ backend/
 - **Untrusted input:** text on packaging or in spreadsheets is data, never instructions (said in the system
   prompt; output is only data, validated, unknown keys dropped, never auto-saved).
 - **Photo → form:** `ImageService` fetches URLs safely (SSRF: http/https only, public IPs only, each redirect
-  re-checked, 5 s, 5 MB, image content-type) or reads the upload, verifies JPEG/PNG/WebP with Pillow and shrinks
+  re-checked, 10 s, 5 MB, image content-type) or reads the upload, verifies JPEG/PNG/WebP with Pillow and shrinks
   to ≤1568 px. Categories are a whitelist (`enum` of slugs) and come back as an id for the form.
-  Price and GTIN are never filled by AI.
+  Price and GTIN are never filled by AI. Descriptions are 1–2 short sentences (≤300 chars, enforced by the
+  serializer): what the product is, never how the pack looks.
 - **Uploads:** browser → Cloudinary (unsigned preset) → permanent URL → extract by URL. Without Cloudinary env
   vars: one-off multipart upload, not stored.
 - **NL search whitelist (Block 8):** allowed keys only; brand and category must exist in the DB; ordering from the

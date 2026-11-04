@@ -148,3 +148,21 @@ class TestLogging:
 
         record = next(r for r in caplog.records if r.getMessage() == "ai call")
         assert record.outcome == "RateLimitError"
+
+
+class TestShortDescriptions:
+    def test_wordy_description_is_rejected_and_retried(self):
+        wordy = {
+            "description": "A yellow pouch with a bowl of noodles on the front. " * 8,
+            "tags": ["noodles"],
+        }
+        short = {
+            "description": "Masala-flavoured instant noodles from Maggi in a 70 g pack.",
+            "tags": ["noodles"],
+        }
+        sdk = FakeSDK(claude_response(wordy), claude_response(short))
+
+        result = call(ClaudeClient(sdk))
+
+        assert result["description"] == short["description"]
+        assert len(sdk.calls) == 2
