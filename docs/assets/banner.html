@@ -1,0 +1,112 @@
+<!doctype html>
+<!-- Source of banner.png. To re-render with Chrome, from the repo root:
+  chrome --headless=new --hide-scrollbars --force-device-scale-factor=2 --window-size=1280,424
+    --default-background-color=00000000 --virtual-time-budget=8000
+    --screenshot="$PWD/docs/assets/banner.png" "file://$PWD/docs/assets/banner.html"
+-->
+<html>
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=block" rel="stylesheet">
+<style>
+  html, body { margin: 0; background: transparent; }
+  svg { display: block; font-family: Inter, sans-serif; }
+  .name { font-weight: 800; font-size: 72px; letter-spacing: -3px; fill: #111827; }
+  .tag { font-weight: 600; font-size: 25px; letter-spacing: -.4px; fill: #2563eb; }
+  .desc { font-size: 17.5px; fill: #4b5563; }
+  .pill { font-weight: 500; font-size: 14.5px; fill: #374151; }
+  .h { font-size: 12px; fill: #6b7280; }
+  .brand { font-size: 12px; fill: #6b7280; }
+  .pname { font-weight: 600; font-size: 15px; fill: #111827; }
+  .label { font-size: 13px; fill: #6b7280; }
+  .val { font-weight: 500; font-size: 13px; fill: #111827; text-anchor: end; }
+  .miss { font-weight: 500; font-size: 13px; fill: #d97706; text-anchor: end; }
+  .badge { font-weight: 500; font-size: 12px; fill: #b45309; }
+</style>
+</head>
+<body>
+<svg width="1280" height="424" viewBox="0 0 1280 424" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="wash" cx=".82" cy=".5" r=".62">
+      <stop offset="0" stop-color="#dbeafe"/><stop offset="1" stop-color="#dbeafe" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.1" fill="#cbd5e1" opacity=".55"/>
+    </pattern>
+    <clipPath id="clip"><rect width="1280" height="424" rx="20"/></clipPath>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#1e3a8a" flood-opacity=".16"/>
+    </filter>
+    <!-- A plain pack, shown twice: the two look-alikes. -->
+    <g id="pack">
+      <rect width="58" height="74" rx="7" fill="#f59e0b"/>
+      <rect y="20" width="58" height="22" fill="#fff" opacity=".92"/>
+      <rect x="11" y="27" width="36" height="8" rx="2" fill="#2563eb"/>
+    </g>
+  </defs>
+
+  <g clip-path="url(#clip)">
+    <rect width="1280" height="424" fill="#fff"/>
+    <rect width="1280" height="424" fill="url(#dots)"/>
+    <rect width="1280" height="424" fill="url(#wash)"/>
+
+    <!-- The real ShelfReady logo (frontend/public/favicon.svg), 72 px -->
+    <g transform="translate(66 66) scale(2.75)">
+      <rect width="32" height="32" rx="8" fill="#2563eb"/>
+      <rect x="7" y="9" width="18" height="2.5" rx="1.25" fill="#fff"/>
+      <rect x="7" y="20.5" width="18" height="2.5" rx="1.25" fill="#fff"/>
+      <rect x="9" y="12.5" width="4" height="7" rx="1" fill="#fff" opacity=".9"/>
+      <rect x="14.5" y="14" width="4" height="5.5" rx="1" fill="#fff" opacity=".7"/>
+      <rect x="20" y="12.5" width="3" height="7" rx="1" fill="#fff" opacity=".9"/>
+    </g>
+    <text class="name" x="168" y="133">ShelfReady</text>
+
+    <text class="tag" x="66" y="203">The recognition-ready product catalog.</text>
+    <text class="desc" x="66" y="243">Cameras can only recognise what's listed correctly.</text>
+    <text class="desc" x="66" y="269">ShelfReady keeps the product master clean, with AI to help.</text>
+
+    <!-- What it does -->
+    <g>
+      <rect x="66" y="302" width="150" height="36" rx="18" fill="#fff" stroke="#e5e7eb"/>
+      <text class="pill" x="141" y="325" text-anchor="middle">Photo to product</text>
+      <rect x="226" y="302" width="130" height="36" rx="18" fill="#fff" stroke="#e5e7eb"/>
+      <text class="pill" x="291" y="325" text-anchor="middle">Ask AI search</text>
+      <rect x="366" y="302" width="180" height="36" rx="18" fill="#fff" stroke="#e5e7eb"/>
+      <text class="pill" x="456" y="325" text-anchor="middle">Look-alike detector</text>
+    </g>
+
+    <!-- A look-alike pair, in the style of the app's card -->
+    <g filter="url(#soft)">
+      <rect x="650" y="62" width="570" height="300" rx="14" fill="#fff" stroke="#e5e7eb"/>
+    </g>
+    <text class="h" x="674" y="96">Same brand, similar packs. What tells them apart?</text>
+    <rect x="1098" y="79" width="100" height="25" rx="6" fill="#fffbeb"/>
+    <circle cx="1111" cy="91.5" r="3" fill="#f59e0b"/>
+    <text class="badge" x="1120" y="96">Unresolved</text>
+    <line x1="650" y1="118" x2="1220" y2="118" stroke="#f3f4f6"/>
+    <line x1="935" y1="118" x2="935" y2="362" stroke="#f3f4f6"/>
+
+    <!-- Left product -->
+    <rect x="674" y="138" width="92" height="102" rx="9" fill="#f9fafb" stroke="#e5e7eb"/>
+    <use href="#pack" x="691" y="152"/>
+    <text class="brand" x="782" y="164">Demo brand</text>
+    <text class="pname" x="782" y="186">Glucose Biscuits</text>
+    <text class="label" x="674" y="282">Pack size</text>
+    <text class="val" x="911" y="282">100 g</text>
+    <text class="label" x="674" y="314">Variant</text>
+    <text class="val" x="911" y="314">Classic</text>
+
+    <!-- Right product -->
+    <rect x="959" y="138" width="92" height="102" rx="9" fill="#f9fafb" stroke="#e5e7eb"/>
+    <use href="#pack" x="976" y="152"/>
+    <text class="brand" x="1067" y="164">Demo brand</text>
+    <text class="pname" x="1067" y="186">Glucose Biscuits</text>
+    <text class="label" x="959" y="282">Pack size</text>
+    <text class="miss" x="1196" y="282">Not set</text>
+    <text class="label" x="959" y="314">Variant</text>
+    <text class="val" x="1196" y="314">Classic</text>
+  </g>
+  <rect x=".5" y=".5" width="1279" height="423" rx="20" fill="none" stroke="#e5e7eb"/>
+</svg>
+</body>
+</html>

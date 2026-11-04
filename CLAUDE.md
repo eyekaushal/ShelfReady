@@ -243,7 +243,6 @@ EMBEDDINGS_ENABLED=True                    # set False to use pg_trgm fallback
 LOOKALIKE_PHASH_MAX_DISTANCE=10
 LOOKALIKE_TEXT_MIN_SIMILARITY=0.90
 LOOKALIKE_TRIGRAM_MIN_SIMILARITY=0.50     # used when EMBEDDINGS_ENABLED=False (Render)
-READINESS_MIN_IMAGE_SIDE=300
 ```
 **Frontend (`frontend/.env.example`)**
 ```
