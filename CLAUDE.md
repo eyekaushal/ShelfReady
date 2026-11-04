@@ -84,7 +84,7 @@ Simple analogy for README (Kaushal's wording style): a kirana shop owner's smart
 
 ### GenAI feature (part of base): **Photo → autofilled product**
 - `POST /api/ai/extract-product/` accepts **either** `image_url` **or** an uploaded image file (multipart, max 5 MB, jpeg/png/webp).
-- Claude **vision** reads the pack shot and returns structured fields: `name`, `brand`, `category` (must be chosen from the existing category list, which is passed into the prompt), `variant` (e.g. flavour), `pack_size` (e.g. "250 g"), `description` (2–3 sentences, factual, no invented health claims), `tags` (3–6), plus a `confidence` per field and `notes` for anything unreadable.
+- Claude **vision** reads the pack shot and returns structured fields: `name`, `brand`, `category` (must be chosen from the existing category list, which is passed into the prompt), `variant` (e.g. flavour), `pack_size` (e.g. "250 g"), `description` (1–2 short sentences, max ~40 words: what the product is (type, brand, flavour/variant, pack size); never how the pack looks; no invented health claims), `tags` (3–6), plus a `confidence` per field and `notes` for anything unreadable.
 - Use **JSON schema structured output** (`output_config.format`), then validate it with a DRF serializer. On invalid output, retry once, then return a clean error. (Forced tool use returns a 400 on Claude Sonnet 5.5, so structured output is the option used.)
 - **Never auto-save.** The frontend prefills the Add Product form; the user reviews and edits, then saves. Show a small "AI-filled — please review" badge on each prefilled field.
 - Also a text-only fallback `POST /api/ai/generate-description/` (name + brand + category → description + tags), matching the brief's own example.
@@ -210,7 +210,7 @@ Per-product checklist (each check = pass/fail + human message), score = % passed
 
 ## 7. Security & quality rules
 - Secrets only in env vars. Commit `.env.example`, never `.env`.
-- **Server-side image fetch safety (SSRF):** only http/https; resolve the host and block private/loopback/link-local IPs; 5 s timeout; max 5 MB; check content-type is an image; don't follow redirects to blocked hosts.
+- **Server-side image fetch safety (SSRF):** only http/https; resolve the host and block private/loopback/link-local IPs; 10 s timeout (`IMAGE_FETCH_TIMEOUT_SECONDS`; Open Food Facts often takes 5–6 s); max 5 MB; check content-type is an image; don't follow redirects to blocked hosts.
 - Treat any text from images/spreadsheets as untrusted data, never as instructions.
 - AI endpoints throttled. Graceful degradation if `ANTHROPIC_API_KEY` is missing: the app still works, AI buttons show "AI unavailable".
 - Don't break the brief's required behaviour for an add-on.

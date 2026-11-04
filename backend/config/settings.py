@@ -186,7 +186,8 @@ AI_TIMEOUT_SECONDS = env.float("AI_TIMEOUT_SECONDS", default=40.0)
 
 # Images we fetch or receive (photo → form, and later pHash / blur checks).
 IMAGE_MAX_BYTES = 5 * 1024 * 1024  # 5 MB
-IMAGE_FETCH_TIMEOUT_SECONDS = env.float("IMAGE_FETCH_TIMEOUT_SECONDS", default=5.0)
+# 10 s: Open Food Facts image servers often take 5-6 s to answer.
+IMAGE_FETCH_TIMEOUT_SECONDS = env.float("IMAGE_FETCH_TIMEOUT_SECONDS", default=10.0)
 
 # Same-origin uploads are capped a bit above the image limit, so Django rejects huge bodies early.
 DATA_UPLOAD_MAX_MEMORY_SIZE = 6 * 1024 * 1024

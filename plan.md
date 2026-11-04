@@ -72,7 +72,7 @@
 ## Block 7 — AI: Photo → product form ✅
 **Branch:** `feature/ai-photo-to-form`
 - [x] `ClaudeClient` class: env models, JSON-schema structured output, DRF validation + one retry, refusal fallback (Sonnet), log line per call, SDK errors → `ai_*` codes
-- [x] `ImageService`: SSRF-safe fetch (http/https, public IPs only, every redirect re-checked, 5 s, 5 MB, image content-type), Pillow-verified JPEG/PNG/WebP, shrink to 1568 px for Claude
+- [x] `ImageService`: SSRF-safe fetch (http/https, public IPs only, every redirect re-checked, 10 s, 5 MB, image content-type), Pillow-verified JPEG/PNG/WebP, shrink to 1568 px for Claude
 - [x] `POST /api/ai/extract-product/` (URL or upload; category whitelist; never saves) + `GET /api/ai/status/`
 - [x] `POST /api/ai/generate-description/` (fast model)
 - [x] Throttling (`ai` scope, 20/hour per user) + "AI unavailable" when there's no key (checked before any image fetch)

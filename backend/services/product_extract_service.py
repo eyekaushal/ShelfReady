@@ -22,8 +22,10 @@ leave it empty ("") and say so in `notes`. Never guess a pack size, flavour or b
 - `pack_size`: net quantity as printed, normalised like "250 g", "1 kg", "500 ml", "1 l".
 - `variant`: flavour or type that tells this SKU apart from its siblings (e.g. "Cashew", \
 "Magic Masala"); "" if there is none.
-- `description`: 2-3 factual sentences about the product and its pack. No health or \
-nutrition claims unless printed on the pack, no marketing superlatives.
+- `description`: 1-2 short sentences (at most 40 words) saying what the product is: its type, \
+brand, flavour or variant, and pack size if readable. Example: "Masala-flavoured instant noodles \
+from Maggi in a 70 g pack." Do NOT describe how the pack looks (colours, pictures, taglines, \
+layout). No health or nutrition claims, no marketing words.
 - `tags`: 3-6 short lowercase search keywords.
 - `confidence`: for each field, "high" if clearly printed, "medium" if partly visible or \
 inferred from the design, "low" if a best effort."""
