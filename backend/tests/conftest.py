@@ -3,6 +3,15 @@ from django.contrib.auth.models import User
 from django.core.cache import cache
 from rest_framework.test import APIClient
 
+from config.celery import app as celery_app
+
+
+@pytest.fixture(autouse=True, scope="session")
+def run_tasks_inline():
+    # Docker sets eager mode off for its real worker. Tests must never send tasks to Redis.
+    # The prefixed name, because config/celery.py loads settings with namespace="CELERY".
+    celery_app.conf.CELERY_TASK_ALWAYS_EAGER = True
+
 
 @pytest.fixture(autouse=True)
 def clear_cache():

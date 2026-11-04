@@ -131,7 +131,7 @@ Dropped for time, so the remaining effort goes to a solid base spec and docs.
 
 ## Block 14 — Docs, CI and submission
 **Branch:** `docs/readme-architecture-ci`
-- [ ] CI polish: add frontend lint + build, pgvector Postgres service
-- [ ] README.md (all sections in CLAUDE.md §12), incl. Open Food Facts attribution (ODbL data, CC BY-SA images) and "prices are illustrative"
-- [ ] ARCHITECTURE.md (request journey, Django-for-Express table, interview Q&A)
+- [x] CI polish: frontend lint + build job (backend already used the pgvector Postgres service)
+- [x] README.md (all sections in CLAUDE.md §12), incl. Open Food Facts attribution and "prices are illustrative"; Docker setup tested on a fresh clone
+- [x] ARCHITECTURE.md (request journey, Django-for-Express table, interview Q&A)
 - [ ] Submission checklist (CLAUDE.md §13) sent to Indira
