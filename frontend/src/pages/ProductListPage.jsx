@@ -1,7 +1,10 @@
+import { useMutation } from '@tanstack/react-query'
 import { PackageSearch, Plus } from 'lucide-react'
 import { useState } from 'react'
 
+import { aiApi } from '../api/aiApi'
 import { useAuth } from '../auth/useAuth'
+import { AiSearchNotice } from '../components/catalog/AiSearchNotice'
 import { FilterChips } from '../components/catalog/FilterChips'
 import { FilterPanel } from '../components/catalog/FilterPanel'
 import { Pagination } from '../components/catalog/Pagination'
@@ -17,11 +20,20 @@ import { EmptyState } from '../components/ui/EmptyState'
 import { ErrorState } from '../components/ui/ErrorState'
 import { PageHeader } from '../components/ui/PageHeader'
 import { useToast } from '../components/ui/toastContext'
+import { useAiStatus } from '../hooks/useAiStatus'
 import { useBrands, useCategories } from '../hooks/useCatalogOptions'
 import { useProductMutations } from '../hooks/useProductMutations'
 import { useProducts } from '../hooks/useProducts'
 import { useUrlFilters } from '../hooks/useUrlFilters'
+import { toApiError } from '../lib/apiError'
 import { cn } from '../lib/cn'
+
+/** Why AI search fell back to keywords, in plain words. */
+function fallbackMessage(error) {
+  if (error.status === 429) return "You've used AI search a lot this hour."
+  if (error.code === 'ai_not_configured') return 'AI search is unavailable right now.'
+  return "AI search couldn't understand that right now."
+}
 
 export function ProductListPage() {
   const { filters, setFilters, clearFilters, activeFilterCount } = useUrlFilters()
@@ -32,10 +44,40 @@ export function ProductListPage() {
   const { remove } = useProductMutations()
   const toast = useToast()
   const [deleting, setDeleting] = useState(null)
+  const ai = useAiStatus()
+  const parseSearch = useMutation({ mutationFn: aiApi.parseSearch })
+  const [aiNotice, setAiNotice] = useState(null) // {kind: 'ai' | 'fallback', query, message?}
+
+  /**
+   * AI search: the sentence becomes filters (already whitelisted by the server), which go into
+   * the URL like manual filters, so the normal product list does the actual search.
+   * If AI fails, we fall back to a plain keyword search for the same words.
+   */
+  const askAi = (query) => {
+    parseSearch.mutate(query, {
+      onSuccess: ({ filters: parsed }) => {
+        setFilters({
+          search: parsed.search,
+          brand: parsed.brand,
+          category: parsed.category,
+          min_price: parsed.min_price ?? '',
+          max_price: parsed.max_price ?? '',
+          ordering: parsed.ordering,
+        })
+        setAiNotice({ kind: 'ai', query })
+      },
+      onError: (error) => {
+        setFilters({ search: query, brand: '', category: '', min_price: '', max_price: '', ordering: '' })
+        setAiNotice({ kind: 'fallback', query, message: fallbackMessage(toApiError(error)) })
+      },
+    })
+  }
 
   const page = Number(filters.page)
   const pageSize = Number(filters.page_size)
   const hasAnyFilter = activeFilterCount > 0 || Boolean(filters.search)
+  // Hide the AI note once the user has cleared everything it set.
+  const showAiNotice = aiNotice && (hasAnyFilter || filters.ordering !== '-created_at')
 
   const confirmDelete = () => {
     remove.mutate(deleting.id, {
@@ -122,7 +164,13 @@ export function ProductListPage() {
 
       <div className="mb-4 space-y-3">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <SearchBar value={filters.search} onChange={(search) => setFilters({ search })} />
+          <SearchBar
+            value={filters.search}
+            onChange={(search) => setFilters({ search })}
+            aiEnabled={ai.enabled}
+            onAsk={askAi}
+            asking={parseSearch.isPending}
+          />
           <div className="flex items-center gap-2">
             <FilterPanel
               filters={filters}
@@ -135,6 +183,7 @@ export function ProductListPage() {
             <ViewToggle value={filters.view} onChange={(view) => setFilters({ view, page: filters.page })} />
           </div>
         </div>
+        <AiSearchNotice notice={showAiNotice ? aiNotice : null} onDismiss={() => setAiNotice(null)} />
         <FilterChips
           filters={filters}
           setFilters={setFilters}
