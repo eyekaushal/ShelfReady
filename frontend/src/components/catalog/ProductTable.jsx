@@ -7,8 +7,6 @@ import { Badge } from '../ui/Badge'
 import { Button } from '../ui/Button'
 import { Menu } from '../ui/Menu'
 import { ProductImage } from './ProductImage'
-import { ReadinessRing } from './ReadinessRing'
-import { isScored } from '../../lib/readiness'
 
 const headClasses = 'px-3 py-2.5 text-left text-[12px] font-medium text-gray-500 whitespace-nowrap'
 
@@ -26,7 +24,6 @@ export function ProductTable({ products, onDelete }) {
             <th className={headClasses}>Brand</th>
             <th className={`${headClasses} hidden md:table-cell`}>Category</th>
             <th className={`${headClasses} text-right`}>Price</th>
-            <th className={headClasses}>Readiness</th>
             <th className={`${headClasses} hidden lg:table-cell`}>Added</th>
             <th className={`${headClasses} w-10`}>
               <span className="sr-only">Actions</span>
@@ -66,9 +63,6 @@ export function ProductTable({ products, onDelete }) {
                 </td>
                 <td className="px-3 py-2 text-right text-[13px] font-medium tabular text-gray-900">
                   {formatPrice(product.price)}
-                </td>
-                <td className="px-3 py-2">
-                  <ReadinessRing score={product.readiness_score} scored={isScored(product)} />
                 </td>
                 <td className="hidden px-3 py-2 text-[13px] text-gray-500 lg:table-cell">{timeAgo(product.created_at)}</td>
                 <td className="px-2 py-2" onClick={(event) => event.stopPropagation()}>

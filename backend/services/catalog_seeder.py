@@ -13,7 +13,7 @@ class CatalogSeeder:
 
     Writes go straight through the ORM, NOT the API serializer, on purpose: the seed
     includes a few deliberately bad rows (e.g. an invalid GTIN) that the API would reject,
-    so the readiness score has real problems to find.
+    so the demo has real data problems to show.
     """
 
     DEMO_USERNAME = "demo"

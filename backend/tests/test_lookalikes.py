@@ -343,12 +343,13 @@ class TestLookalikeApi:
         assert response.status_code == 200
         assert response.json()["status"] == "duplicate" and response.json()["resolved_by"] == user.username
 
-    def test_stranger_cannot_resolve(self, api_client, other_user, twin):
+    def test_any_logged_in_user_can_resolve(self, api_client, other_user, twin):
         api_client.force_authenticate(user=other_user)
 
         response = api_client.post(f"{LIST}{twin.id}/resolve/", {"status": "duplicate"}, format="json")
 
-        assert response.status_code == 403
+        assert response.status_code == 200
+        assert response.json()["resolved_by"] == other_user.username
 
     def test_staff_can_resolve(self, api_client, staff_user, twin):
         api_client.force_authenticate(user=staff_user)

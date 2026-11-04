@@ -33,7 +33,7 @@ class ProductViewSet(viewsets.ModelViewSet):
 
     filter_backends = [DjangoFilterBackend, SearchFilter, StableOrderingFilter]
     filterset_class = ProductFilter
-    search_fields = ["name", "brand", "description"]  # icontains on each, OR-ed together
+    search_fields = Product.SEARCH_FIELDS  # icontains on each, OR-ed together
     ordering_fields = ["price", "name", "created_at"]
     ordering = ["-created_at"]  # newest first by default
 

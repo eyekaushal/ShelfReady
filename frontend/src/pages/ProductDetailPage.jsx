@@ -5,8 +5,6 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { canEditProduct, useAuth } from '../auth/useAuth'
 import { ProductImage } from '../components/catalog/ProductImage'
 import { PossibleLookalikes } from '../components/lookalikes/PossibleLookalikes'
-import { ReadinessRing } from '../components/catalog/ReadinessRing'
-import { isScored } from '../lib/readiness'
 import { Avatar } from '../components/ui/Avatar'
 import { Badge } from '../components/ui/Badge'
 import { Button } from '../components/ui/Button'
@@ -78,7 +76,6 @@ export function ProductDetailPage() {
 
   const item = product.data
   const editable = canEditProduct(user, item)
-  const scored = isScored(item)
 
   const confirmDelete = () => {
     remove.mutate(item.id, {
@@ -146,12 +143,6 @@ export function ProductDetailPage() {
               <Highlight label="Variant" value={item.variant} missing />
               <Highlight label="GTIN" value={item.gtin ? <span className="font-mono text-sm">{item.gtin}</span> : ''} />
               <Highlight label="Category" value={item.category_detail?.name} />
-              <Highlight label="Recognition readiness">
-                <span className="flex items-center gap-2">
-                  <ReadinessRing score={item.readiness_score} scored={scored} size={22} showLabel={false} />
-                  {scored ? `${item.readiness_score}%` : <span className="text-sm font-normal text-gray-400">Not scored yet</span>}
-                </span>
-              </Highlight>
             </div>
           </section>
 

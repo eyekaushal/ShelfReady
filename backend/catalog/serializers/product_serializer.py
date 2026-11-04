@@ -51,12 +51,7 @@ class ProductSerializer(serializers.ModelSerializer):
             "created_by",
             "created_at",
             "updated_at",
-            "readiness_score",
-            "readiness_issues",
-            "needs_review",
         ]
-        # Computed by services, never set by users.
-        read_only_fields = ["readiness_score", "readiness_issues", "needs_review"]
         # The DB constraints are our safety net; validate_gtin / validate_price give friendly messages,
         # so turn off DRF's auto-generated validators for them (they'd duplicate the errors).
         validators = []

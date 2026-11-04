@@ -5,7 +5,7 @@
 > **Per block:** create the block's branch from `main` → build → run tests → 3-line summary → one `git add -A` + one commit → push branch → PR into `main` → merge → tick here.
 > Claude only gives the git commands; Kaushal runs them (see CLAUDE.md §16). `main` is always deployable.
 
-**Progress:** 9 of 14 blocks done
+**Progress:** 10 of 11 blocks done (Blocks 11–13 dropped on 4 Nov 2026 for time)
 
 ---
 
@@ -112,29 +112,22 @@
 - [x] Endpoints: list (`status`, `product`), resolve (distinct needs a differing attribute), check
 - [x] Look-alikes page + "Possible look-alikes" box + warning on the form
 - [x] Tests on fixture data (248 passing); real data checked in both modes; UI checked in the browser
-- [ ] Redeploy and check on the live site
+- [x] Redeployed; live check: 37 unresolved + 21 distinct pairs, pg_trgm mode, page and API working
 
-## Block 11 — Add-on #2: Recognition-readiness score
-**Branch:** `feature/readiness-score`
-- [ ] `ReadinessService` with the 7 checks
-- [ ] Recompute on save (Celery task, eager in prod)
-- [ ] `GET /api/readiness/summary/`
-- [ ] Dashboard page + score badge on cards + checklist on details
-- [ ] Tests for each rule · redeploy
+## Block 11 — Add-on #2: Recognition-readiness score: NOT BUILDING
+Dropped for time, so the remaining effort goes to a solid base spec and docs.
 
-## Block 12 — Add-on #3: Smart bulk import
-**Branch:** `feature/bulk-import`
-- [ ] `ImportJob` model + CSV/XLSX upload
-- [ ] Claude column mapping (allowed fields only)
-- [ ] Mapping UI + row-by-row validation preview
-- [ ] Celery import in batches + progress polling + summary
-- [ ] `samples/messy_brand_catalog.csv` · redeploy
+## Block 12 — Add-on #3: Smart bulk import: NOT BUILDING
+Dropped for time, so the remaining effort goes to a solid base spec and docs.
 
-## Block 13 — Add-on #4: Change history (optional)
-**Branch:** `feature/change-history`
-- [ ] django-simple-history on Product
-- [ ] Timeline on the details page
-- [ ] "New packaging — review" badge when `image_url` changes
+## Block 13 — Add-on #4: Change history (optional): NOT BUILDING
+Dropped for time, so the remaining effort goes to a solid base spec and docs.
+
+## Fixes from live testing ✅
+**Branch:** `fix/live-test-bugs`
+- [x] AI search: words that match nothing are dropped when other filters were understood; prompt ignores question and stock words
+- [x] Any logged-in user can resolve look-alikes; visitors get a sign-in prompt
+- [x] Readiness removed from the UI and the API
 
 ## Block 14 — Docs, CI and submission
 **Branch:** `docs/readme-architecture-ci`

@@ -12,10 +12,7 @@ export function ProductListSkeleton({ view, rows = 12 }) {
             <Skeleton className="aspect-square w-full" />
             <Skeleton className="mt-3 h-3 w-1/3" />
             <Skeleton className="mt-2 h-4 w-4/5" />
-            <div className="mt-4 flex justify-between">
-              <Skeleton className="h-4 w-16" />
-              <Skeleton className="size-4 rounded-full" />
-            </div>
+            <Skeleton className="mt-4 h-4 w-16" />
           </div>
         ))}
       </div>
@@ -36,7 +33,6 @@ export function ProductListSkeleton({ view, rows = 12 }) {
             <Skeleton className="h-6 w-20 rounded-md" />
             <Skeleton className="hidden h-3.5 w-28 md:block" />
             <Skeleton className="h-3.5 w-16" />
-            <Skeleton className="size-4 rounded-full" />
           </div>
         ))}
       </div>

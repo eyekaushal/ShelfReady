@@ -121,9 +121,7 @@ Auth + Product CRUD API
 → Natural-language search (AI → whitelisted filters → chips)
 → Deploy (Render + Vercel + Neon)          ← base spec complete here
 → Look-alike SKU detector                   ← add-on #1 (headline feature)
-→ Recognition-readiness score               ← add-on #2
-→ Smart bulk import (Celery in local Docker) ← add-on #3
-→ Change history                            ← add-on #4 (optional)
+→ (Add-ons #2–#4 in section 6 were dropped on 4 Nov 2026 for time: not building them)
 → README + ARCHITECTURE.md + CI polish
 ```
 
