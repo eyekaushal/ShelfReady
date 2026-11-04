@@ -1,10 +1,11 @@
 import { useMutation } from '@tanstack/react-query'
-import { PackageSearch, Plus } from 'lucide-react'
+import { PackageSearch, Plus, Sparkles } from 'lucide-react'
 import { useState } from 'react'
 
 import { aiApi } from '../api/aiApi'
 import { useAuth } from '../auth/useAuth'
 import { AiSearchNotice } from '../components/catalog/AiSearchNotice'
+import { AskAiPanel } from '../components/catalog/AskAiPanel'
 import { FilterChips } from '../components/catalog/FilterChips'
 import { FilterPanel } from '../components/catalog/FilterPanel'
 import { Pagination } from '../components/catalog/Pagination'
@@ -47,6 +48,7 @@ export function ProductListPage() {
   const ai = useAiStatus()
   const parseSearch = useMutation({ mutationFn: aiApi.parseSearch })
   const [aiNotice, setAiNotice] = useState(null) // {kind: 'ai' | 'fallback', query, message?}
+  const [aiOpen, setAiOpen] = useState(false)
 
   /**
    * AI search: the sentence becomes filters (already whitelisted by the server), which go into
@@ -164,13 +166,25 @@ export function ProductListPage() {
 
       <div className="mb-4 space-y-3">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <SearchBar
-            value={filters.search}
-            onChange={(search) => setFilters({ search })}
-            aiEnabled={ai.enabled}
-            onAsk={askAi}
-            asking={parseSearch.isPending}
-          />
+          <div className="flex w-full items-center gap-2 sm:max-w-lg">
+            <SearchBar value={filters.search} onChange={(search) => setFilters({ search })} />
+            {ai.enabled ? (
+              <button
+                type="button"
+                onClick={() => setAiOpen(!aiOpen)}
+                aria-expanded={aiOpen}
+                className={cn(
+                  'inline-flex h-9 shrink-0 items-center gap-1.5 rounded-md border px-3 text-sm font-medium transition-colors duration-150',
+                  aiOpen
+                    ? 'border-accent-ring bg-accent-soft text-accent-hover'
+                    : 'border-gray-200 bg-white text-gray-700 hover:border-gray-300 hover:bg-gray-50',
+                )}
+              >
+                <Sparkles className={cn('size-4', aiOpen ? 'text-accent' : 'text-gray-500')} aria-hidden="true" />
+                Ask AI
+              </button>
+            ) : null}
+          </div>
           <div className="flex items-center gap-2">
             <FilterPanel
               filters={filters}
@@ -183,6 +197,7 @@ export function ProductListPage() {
             <ViewToggle value={filters.view} onChange={(view) => setFilters({ view, page: filters.page })} />
           </div>
         </div>
+        {aiOpen ? <AskAiPanel onAsk={askAi} asking={parseSearch.isPending} onClose={() => setAiOpen(false)} /> : null}
         <AiSearchNotice notice={showAiNotice ? aiNotice : null} onDismiss={() => setAiNotice(null)} />
         <FilterChips
           filters={filters}
