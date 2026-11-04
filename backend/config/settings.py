@@ -198,6 +198,17 @@ FILE_UPLOAD_MAX_MEMORY_SIZE = 6 * 1024 * 1024
 # Identical AI searches are cached briefly (Block 8); local memory is enough for one instance.
 CACHES = {"default": {"BACKEND": "django.core.cache.backends.locmem.LocMemCache"}}
 
+# --- Look-alike detector ---------------------------------------------------------
+
+# True: local embedding model + pgvector (about 320 MB of memory to load).
+# False: pg_trgm name similarity inside Postgres (Render's free plan only has 512 MB).
+# Off by default, so a server that forgets this setting can't run out of memory.
+EMBEDDINGS_ENABLED = env.bool("EMBEDDINGS_ENABLED", default=False)
+LOOKALIKE_PHASH_MAX_DISTANCE = env.int("LOOKALIKE_PHASH_MAX_DISTANCE", default=10)  # of 64 bits
+LOOKALIKE_TEXT_MIN_SIMILARITY = env.float("LOOKALIKE_TEXT_MIN_SIMILARITY", default=0.90)  # cosine
+# 0.50 was tuned on the seed data: it catches "Parle-G" vs "Parle-G Biscuit".
+LOOKALIKE_TRIGRAM_MIN_SIMILARITY = env.float("LOOKALIKE_TRIGRAM_MIN_SIMILARITY", default=0.50)
+
 # --- Seed data ------------------------------------------------------------------
 
 # Password for the public demo account created by `manage.py seed_catalog` (shown in the README).

@@ -6,6 +6,7 @@ import { aiApi } from '../api/aiApi'
 import { canEditProduct, useAuth } from '../auth/useAuth'
 import { AiBadge } from '../components/ai/AiBadge'
 import { PhotoFillPanel } from '../components/ai/PhotoFillPanel'
+import { SkuWarning } from '../components/lookalikes/SkuWarning'
 import { ProductImage } from '../components/catalog/ProductImage'
 import { Badge } from '../components/ui/Badge'
 import { Button } from '../components/ui/Button'
@@ -248,11 +249,12 @@ export function ProductFormPage() {
             <FormField label="Category" htmlFor="field-category" error={errors.category} badge={badge('category')} hint="Pick the most specific category you can. Cameras need the full path.">
               <Select id="field-category" value={values.category} onChange={set('category')} invalid={Boolean(errors.category)} placeholder="Choose a category" options={categoryOptions} />
             </FormField>
+            <SkuWarning name={values.name} brand={values.brand} excludeId={id} />
           </FormSection>
 
           <FormSection title="Description" description="Factual packaging details. No invented claims.">
             <FormField label="Description" htmlFor="field-description" error={errors.description} badge={badge('description')}>
-              <Textarea id="field-description" rows={5} value={values.description} onChange={set('description')} invalid={Boolean(errors.description)} placeholder="Two or three sentences about the product and its pack." maxLength={2000} />
+              <Textarea id="field-description" rows={5} value={values.description} onChange={set('description')} invalid={Boolean(errors.description)} placeholder="One or two short sentences saying what the product is." maxLength={2000} />
               <div className="flex items-center justify-between gap-3 pt-0.5">
                 <p className="text-xs text-gray-500">
                   <span className="tabular">{values.description.length}/2000</span>

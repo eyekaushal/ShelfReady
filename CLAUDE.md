@@ -45,7 +45,7 @@ Simple analogy for README (Kaushal's wording style): a kirana shop owner's smart
 | Frontend libs | React Router, TanStack Query, axios (interceptor for JWT refresh), Tailwind CSS |
 | LLM | **Anthropic Claude API** (Kaushal has a key). Models via env vars (see section 9). Verify current model IDs in Anthropic docs before use. |
 | Image similarity | **Perceptual hash (imagehash pHash)**. NOT CLIP (no free hosted API; too heavy for Render free 512 MB). |
-| Text similarity | **Small local embedding model → pgvector**: `fastembed` with `BAAI/bge-small-en-v1.5` (384 dims, ONNX, no torch). Lazy-load. **Fallback:** if Render runs out of memory, switch to `pg_trgm` trigram similarity on name (keep it behind one function so the swap is one line). |
+| Text similarity | **Small local embedding model → pgvector**: `fastembed` with `BAAI/bge-small-en-v1.5` (384 dims, ONNX, no torch). Lazy-load. **Render uses the `pg_trgm` fallback** (`EMBEDDINGS_ENABLED=False`): the model peaks at ~320 MB on a 512 MB plan (measured in Block 10). Local Docker uses embeddings. The switch lives in `EmbeddingService`. |
 | Hosting | Backend **Render** (free web service), frontend **Vercel**, DB **Neon** |
 | Celery + Redis | **Local Docker Compose only** (no paid worker). In production set `CELERY_TASK_ALWAYS_EAGER=True` so the same task code runs inline. State this honestly in README. |
 | Docker | `docker-compose.yml`: `db` (image `pgvector/pgvector:pg16`), `redis`, `backend`, `worker`, `frontend` |
@@ -244,6 +244,7 @@ CELERY_TASK_ALWAYS_EAGER=True              # True on Render (no worker), False i
 EMBEDDINGS_ENABLED=True                    # set False to use pg_trgm fallback
 LOOKALIKE_PHASH_MAX_DISTANCE=10
 LOOKALIKE_TEXT_MIN_SIMILARITY=0.90
+LOOKALIKE_TRIGRAM_MIN_SIMILARITY=0.50     # used when EMBEDDINGS_ENABLED=False (Render)
 READINESS_MIN_IMAGE_SIDE=300
 ```
 **Frontend (`frontend/.env.example`)**

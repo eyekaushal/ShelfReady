@@ -9,6 +9,7 @@ export function useProductMutations() {
   const refreshLists = () => {
     queryClient.invalidateQueries({ queryKey: ['products'] })
     queryClient.invalidateQueries({ queryKey: ['brands'] }) // a new brand may have appeared
+    queryClient.invalidateQueries({ queryKey: ['lookalikes'] }) // saving rechecks look-alike pairs
   }
 
   const create = useMutation({

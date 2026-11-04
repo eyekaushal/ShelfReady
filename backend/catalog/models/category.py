@@ -54,3 +54,10 @@ class Category(models.Model):
             )
             ids.extend(current_level)
         return ids
+
+    def root(self) -> "Category":
+        """The top of this category's tree: "Food" for Food › Biscuits › Cookies."""
+        node = self
+        while node.parent is not None:
+            node = node.parent
+        return node

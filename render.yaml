@@ -22,6 +22,8 @@ services:
         value: .onrender.com
       - key: CELERY_TASK_ALWAYS_EAGER
         value: "True"  # no paid worker: the same task code runs inline
+      - key: EMBEDDINGS_ENABLED
+        value: "False"  # the model needs ~320 MB to load; the free plan has 512 MB. Uses pg_trgm.
       - key: DJANGO_SECRET_KEY
         generateValue: true
       - key: DATABASE_URL

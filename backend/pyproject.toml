@@ -11,5 +11,6 @@ select = ["E", "F", "I", "B", "UP", "DJ"]
 DJANGO_SETTINGS_MODULE = "config.settings"
 testpaths = ["tests"]
 addopts = "-q"
+markers = ["real_analysis: run the product analysis task instead of skipping it"]
 # WhiteNoise warns when `collectstatic` hasn't run yet; harmless in tests.
 filterwarnings = ["ignore:No directory at:UserWarning"]

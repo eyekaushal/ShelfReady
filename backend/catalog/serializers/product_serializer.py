@@ -31,9 +31,7 @@ class ProductSerializer(serializers.ModelSerializer):
         validators=[URLValidator(schemes=["http", "https"], message="Enter a valid http or https URL.")],
     )
     gtin = serializers.CharField(max_length=20, required=False, allow_blank=True)
-    tags = serializers.ListField(
-        child=serializers.CharField(max_length=40), required=False, max_length=10
-    )
+    tags = serializers.ListField(child=serializers.CharField(max_length=40), required=False, max_length=10)
 
     class Meta:
         model = Product
