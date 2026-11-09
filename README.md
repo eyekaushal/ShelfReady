@@ -28,7 +28,7 @@ Built for the Infilect Full Stack Development Intern assignment, "Product Manage
 | **Redoc** | https://shelfready-api.onrender.com/api/redoc/ |
 | **Demo login** | `demo` / `ShelfReady@2026` (or **Use the demo account** on the sign-in page) |
 
-The API runs on a free plan that sleeps when idle. A scheduled ping keeps it awake, but if you land on a sleeping server, the first load can take about a minute.
+The API runs on Render's free plan. An UptimeRobot monitor pings it every 5 minutes so it doesn't go to sleep. If it ever has, the first load can take about a minute.
 
 **A two-minute tour:**
 1. On the catalog, click **Ask AI**, then an example such as *Cheapest noodles*. The sentence becomes removable filters.
@@ -137,7 +137,7 @@ Secrets live only in environment variables. `backend/.env.example` and `frontend
 - **Render:** defined in [`render.yaml`](render.yaml). Gunicorn runs 1 worker with 4 threads and a 90-second timeout. Render's free plan has no shell, so [`backend/build.sh`](backend/build.sh) installs, collects static files, migrates, seeds and analyses on every deploy.
 - **Vercel:** the root directory is `frontend`; [`vercel.json`](frontend/vercel.json) sends all routes to `index.html`.
 - **Auto-deploy:** Render and Vercel both deploy when `main` changes.
-- **Cold starts:** the free plan sleeps after 15 idle minutes. A GitHub Actions job pings `/api/health/` every 10 minutes. That endpoint skips the database, so Neon can still sleep and save its free hours.
+- **Cold starts:** the free plan sleeps after 15 idle minutes, and waking it up turned out to be unreliable (requests sometimes hung for hours). So an UptimeRobot monitor pings `/api/health/` every 5 minutes, and the service never goes to sleep. A GitHub Actions cron was tried first, but GitHub only ran it every few hours. `/api/health/` skips the database, so Neon can still sleep and save its free hours.
 - **Celery:** there's no paid worker in production, so `CELERY_TASK_ALWAYS_EAGER=True` runs the same task code inside the request.
 
 ## Key design decisions

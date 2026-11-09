@@ -139,7 +139,7 @@ A worker costs money. `CELERY_TASK_ALWAYS_EAGER` runs the same task inline, at t
 DRF's `ScopedRateThrottle` counts per user or IP in the cache. On Render, `X-Forwarded-For` can be forged, so `GlobalAiThrottle` adds one shared daily counter to cap AI spend. Counters live in memory, which only suits one process; that's why gunicorn runs 1 worker with threads.
 
 **What about the free-tier cold start?**
-Render sleeps after 15 idle minutes. A scheduled ping keeps it awake, and the frontend waits up to 70 seconds. The health endpoint skips the database so that Neon can sleep.
+Render sleeps after 15 idle minutes, and in practice waking it sometimes hung for hours. I first used a GitHub Actions cron to ping it, but GitHub only ran it every few hours. Now an UptimeRobot monitor pings `/api/health/` every 5 minutes, so the service never sleeps, and I get an email if it goes down. The health endpoint skips the database so Neon can still sleep.
 
 **Name a bug you found and fixed.**
 Ask AI sometimes left stray words like "packets left" in the search, and since every word must match, the list came back empty. A better prompt alone wasn't reliable, so the server now drops words that match nothing. Tests with a mocked Claude cover it.

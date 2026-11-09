@@ -202,7 +202,7 @@ frontend/src/
   shell, so `backend/build.sh` runs migrate + `seed_catalog` on every deploy (seeded rows reset to the seed values).
 - **AI limits:** per user/IP (`ai`, `ai_search`) plus one shared daily cap (`GlobalAiThrottle`), because
   `X-Forwarded-For` can be forged on Render. The auth throttle has the same weakness (known limitation).
-- **CI:** GitHub Actions → ruff + pytest (pgvector Postgres service) + frontend lint + build. Runs on every push and on every PR into `main`. Keep-warm cron every ~10 min.
+- **CI:** GitHub Actions → ruff + pytest (pgvector Postgres service) + frontend lint + build. Runs on every push and on every PR into `main`. Kept awake by an UptimeRobot monitor every 5 min (the GitHub cron ran only every few hours).
 
 ## 11. Git workflow
 

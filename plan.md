@@ -5,7 +5,7 @@
 > **Per block:** create the block's branch from `main` → build → run tests → 3-line summary → one `git add -A` + one commit → push branch → PR into `main` → merge → tick here.
 > Claude only gives the git commands; Kaushal runs them (see CLAUDE.md §16). `main` is always deployable.
 
-**Progress:** 10 of 11 blocks done (Blocks 11–13 dropped on 4 Nov 2026 for time)
+**Progress:** 11 of 11 blocks done (Blocks 11–13 dropped on 4 Nov 2026 for time)
 
 ---
 
@@ -16,7 +16,7 @@
 - [x] Settings from env vars (django-environ), `.env.example`, `.gitignore`
 - [x] `docker-compose.yml`: db (pgvector), redis, backend, worker (frontend service added in Block 6)
 - [x] Migration enabling `vector` + `pg_trgm`
-- [x] `/api/health/` endpoint (no DB hit, so keep-warm pings don't use up Neon's compute hours)
+- [x] `/api/health/` endpoint (no DB hit, so uptime pings don't use up Neon's compute hours)
 - [x] Custom exception handler (consistent error format, JSON 404/500) + request-id middleware + JSON logging
 - [x] pytest + pytest-django + ruff configured (11 tests passing)
 - [x] Basic GitHub Actions CI (ruff + check + migrations check + pytest) on push and on PRs into `main`
@@ -95,11 +95,11 @@
 - [x] Gunicorn: 1 worker + 4 threads, `--timeout 90` (rehearsed in production mode on an empty DB)
 - [x] Fix: page load only clears the saved login on a 401; API timeout 70 s for Render cold starts
 - [x] `GlobalAiThrottle`: shared daily cap on AI calls (`ai_global`, 300/day), since `X-Forwarded-For` can be forged
-- [x] Keep-warm GitHub Actions cron (needs the `RENDER_URL` repo variable)
+- [x] ~~Keep-warm GitHub Actions cron~~ replaced by an UptimeRobot monitor (GitHub ran the cron only every few hours; Render's wake-up then hung)
 - [x] Neon project created (Singapore); extensions enabled by the migration
 - [x] Render live at https://shelfready-api.onrender.com, env vars + CORS set, seed + demo account in prod
 - [x] Vercel live at https://shelf-ready.vercel.app with the API + Cloudinary env vars
-- [x] `RENDER_URL` variable set and keep-warm run succeeded
+- [x] Pinger set up (first a GitHub cron, replaced by UptimeRobot on 9 Nov 2026)
 - [x] Seed images copied to Cloudinary (first load was 4–25 s per image from Open Food Facts)
 - [x] Full flow tested in an incognito window
 
@@ -129,9 +129,9 @@ Dropped for time, so the remaining effort goes to a solid base spec and docs.
 - [x] Any logged-in user can resolve look-alikes; visitors get a sign-in prompt
 - [x] Readiness removed from the UI and the API
 
-## Block 14 — Docs, CI and submission
+## Block 14 — Docs, CI and submission ✅
 **Branch:** `docs/readme-architecture-ci`
 - [x] CI polish: frontend lint + build job (backend already used the pgvector Postgres service)
 - [x] README.md (all sections in CLAUDE.md §12), incl. Open Food Facts attribution and "prices are illustrative"; Docker setup tested on a fresh clone
 - [x] ARCHITECTURE.md (request journey, Django-for-Express table, interview Q&A)
-- [ ] Submission checklist (CLAUDE.md §13) sent to Indira
+- [x] Submission checklist (CLAUDE.md §13) sent to Indira
