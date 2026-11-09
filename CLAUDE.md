@@ -107,7 +107,7 @@ Why it's in the base: the assignment is titled "Product Management & **AI-Powere
 - Render: `gunicorn`, `whitenoise` for admin static, build = install → collectstatic → migrate. `DEBUG=False`, `ALLOWED_HOSTS`, `CORS_ALLOWED_ORIGINS` = Vercel domain, `CSRF_TRUSTED_ORIGINS`.
 - Neon: enable `vector` and `pg_trgm` **via a Django migration** (`pgvector.django.VectorExtension`, `TrigramExtension`), not manually.
 - Vercel: SPA rewrite (`vercel.json` → all routes to `index.html`). `VITE_API_BASE_URL` env var.
-- Render free sleeps after inactivity (~50 s cold start). Add a keep-warm ping (GitHub Actions cron every ~10 min hitting `/api/health/`) and mention the cold start in the README.
+- Render free sleeps after inactivity (~50 s cold start). Keep it awake with an UptimeRobot monitor every 5 min hitting `/api/health/` (a GitHub Actions cron was tried, but GitHub ran it only every few hours and Render's wake-up then hung). Mention the cold start in the README.
 
 ---
 
@@ -257,7 +257,7 @@ VITE_API_BASE_URL=http://localhost:8000/api
 /frontend     React + Vite + JS
 /samples      messy_brand_catalog.csv
 docker-compose.yml
-.github/workflows/ci.yml, keep-warm.yml
+.github/workflows/ci.yml
 README.md
 ARCHITECTURE.md
 CLAUDE.md

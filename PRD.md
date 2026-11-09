@@ -75,7 +75,7 @@ Only A1 was built. A2–A4 were dropped on 4 Nov 2026 for time.
 
 - **Security:** secrets in env vars; SSRF-safe image fetching; packaging and spreadsheet text treated as untrusted data; AI endpoints throttled (20/hour per user).
 - **Graceful degradation:** with no `ANTHROPIC_API_KEY`, the app still works and AI buttons show "AI unavailable".
-- **Performance:** fits the Render free tier (512 MB). Cold start (~50 s) is mentioned in the README, with a keep-warm ping.
+- **Performance:** fits the Render free tier (512 MB). Cold start (~50 s) is mentioned in the README, kept awake by an UptimeRobot monitor.
 - **Code quality:** OOP (one class per file in the backend), KISS, every line explainable in an interview.
 - **Testing:** pytest for backend rules and permissions; Claude mocked in CI; frontend lint + build in CI.
 - **Version control:** one branch per build block, merged into `main` via PRs with CI checks. `main` is always deployable, and the commit history shows clear, small steps for reviewers.
